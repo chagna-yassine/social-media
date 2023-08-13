@@ -7,20 +7,21 @@
     --dark: #000000;
 }
 .Login{
+    overflow: hidden;
     width: 100%;
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    background-image: url("../../Images/Login-bg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
 .Welcome-container{
+    top: 20%;
+    left: 10%;
     position: absolute;
-    top: 20vh;
-    left: 40vh;
-    width: 70vh;
+    width: 40%;
+    min-height: 10%;
     text-align: center;
 }
 .Welcome-container span{
@@ -35,10 +36,10 @@
 }
 .Auth-container{
     background-color: var(--dark-green);
-    top: 10vh;
-    right: 10vh;
+    top: 10%;
+    right: 8%;
     position: absolute;
-    width: 55vh;
+    width: 28%;
     min-height: 80vh;
     border-radius: 30px;
 }
@@ -47,9 +48,9 @@
     width: 15vh;
     height: 15vh;
     background-color: var(--light-green);
-    border-radius: 10vh;
-    top: -5vh;
-    left: -5vh;
+    border-radius: 50%;
+    top: -6%;
+    left: -8%;
 }
 .Label{
     color: var(--white);
@@ -57,12 +58,12 @@
     font-variant: small-caps;
     text-transform: capitalize;
     font-size: 5vh;
-    margin-block-start: 6vh;
+    margin-block-start: 15%;
 }
 .Form{
-    width: 55vh;
+    width: 100%;
     min-height: 10vh;
-    margin-block: 10vh;
+    margin-block: 20%;
 }
 .Form-label{
     display: block;
@@ -70,22 +71,21 @@
     text-align: center;
     text-transform: capitalize;
     font-weight: bold;
-    margin-block-start: 4vh;
-    margin-block-end: 2vh;
+    margin-block-start: 8%;
+    margin-block-end: 5%;
 }
 .Input-container{
     position: relative;
-    width: 40vh;
+    width: 75%;
     margin: auto;
 }
 .Form-input{
     display: block;
     background-color: var(--light-blue);
     border: none;
-    border-radius: 1vh;
-    padding: 0.5vh;
-    padding-inline-start: 1vh;
-    width: 40vh;
+    border-radius: 50px;
+    padding: 1.5%;
+    width: 100%;
     margin: auto;
     font-weight: bolder;
     text-align: center;
@@ -95,20 +95,20 @@
 }
 .Input-icon{
     position: absolute;
-    right: 0.5vh;
-    top: 0.5vh;
+    right: 1.5%;
+    top: 15%;
 }
 .Submition{
-    width: 40vh;
+    width: 60%;
     margin: auto;
-    margin-block-start: 5vh;
+    margin-block-start: 5%;
 }
 .Submition a{
     display: block;
     text-align: center;
     color: var(--light-blue);
     text-decoration: none;
-    margin-block: 5vh;
+    margin-block: 15%;
 }
 .Submition input{
     display: block;
@@ -118,8 +118,233 @@
     color: var(--dark);
     font-weight: bolder;
     border-radius: 5vh;
-    width: 20vh;
+    width: 60%;
     height: 5vh;
     font-size: 3vh;
     cursor: pointer;
+}
+/* Responsive design */
+@media screen and (min-width: 900px) and  (max-width: 1150px){
+    .Welcome-container{
+        top: 30%;
+        left: 10%;
+        width: 40%;
+    }
+    .Welcome-container span{
+        font-size: 7vh;
+    }
+    .Welcome-container .App-name{
+        font-size: 10vh;
+    }
+    .Auth-container{
+        top: 10%;
+        right: 5%;
+        width: 35%;
+    }
+    .Logo{
+        width: 13vh;
+        height: 13vh;
+        top: -5%;
+        left: -9%;
+    }
+    .Label{
+        font-size: 4.5vh;
+    }
+    .Form{
+        width: 100%;
+        margin-block: 15%;
+    }
+    .Input-container{
+        width: 75%;
+    }
+    .Form-input{
+        width: 100%;
+    }
+    .Input-icon{
+        right: -2%;
+        top: 15%;
+        width: 15%;
+    }
+    .Submition{
+        width: 60%;
+    }
+    .Submition a{
+        margin-block: 15%;
+    }
+    .Submition input{
+        width: 60%;
+        height: 5vh;
+        font-size: 3vh;
+    }
+}
+@media screen and (min-width: 650px) and  (max-width: 900px){
+    .Welcome-container{
+        top: 30%;
+        left: 10%;
+        width: 40%;
+    }
+    .Welcome-container span{
+        font-size: 5vh;
+    }
+    .Welcome-container .App-name{
+        font-size: 7vh;
+    }
+    .Auth-container{
+        top: 10%;
+        right: 5%;
+        width: 45%;
+    }
+    .Logo{
+        width: 13vh;
+        height: 13vh;
+        top: -5%;
+        left: -9%;
+    }
+    .Label{
+        font-size: 4.5vh;
+    }
+    .Form{
+        width: 100%;
+        margin-block: 15%;
+    }
+    .Input-container{
+        width: 75%;
+    }
+    .Form-input{
+        width: 100%;
+    }
+    .Input-icon{
+        right: -2%;
+        top: 15%;
+        width: 15%;
+    }
+    .Submition{
+        width: 60%;
+    }
+    .Submition a{
+        margin-block: 15%;
+    }
+    .Submition input{
+        width: 60%;
+        height: 5vh;
+        font-size: 3vh;
+    }
+}
+@media screen and (min-width: 450px) and  (max-width: 650px){
+    .Welcome-container{
+        width: 55%;
+        height: 20vh;
+        top: 1%;
+        left: 22.5%;
+    }
+    .Welcome-container span{
+        font-size: 5vh;
+    }
+    .Welcome-container .App-name{
+        font-size: 7vh;
+    }
+    .Auth-container{
+        width: 55%;
+        min-height: 10vh;
+        max-height: 60vh;
+        top: 30%;
+        left: 22.5%;
+    }
+    .Logo{
+        width: 10vh;
+        height: 10vh;
+        top: -5%;
+        left: -8%;
+    }
+    .Label{
+        font-size: 4vh;
+    }
+    .Form{
+        width: 100%;
+        margin-block: 10%;
+    }
+    .Form-label{
+        font-size: 1.5vh;
+    }
+    .Input-container{
+        width: 65%;
+    }
+    .Form-input{
+        width: 100%;
+    }
+    .Input-icon{
+        right: 1%;
+        width: 6%;
+    }
+    .Submition{
+        width: 100%;
+    }
+    .Submition a{
+        margin-block: 10%;
+        font-size: 1.2vh;
+    }
+    .Submition input{
+        width: 30%;
+        height: 3vh;
+        font-size: 2vh;
+    }
+}
+@media screen and (max-width: 450px) {
+    .Welcome-container{
+        width: 55%;
+        height: 20vh;
+        top: 1%;
+        left: 22.5%;
+    }
+    .Welcome-container span{
+        font-size: 80%;
+    }
+    .Welcome-container .App-name{
+        font-size: 150%;
+    }
+    .Auth-container{
+        width: 75%;
+        min-height: 10vh;
+        max-height: 60vh;
+        top: 30%;
+        left: 12.5%;
+    }
+    .Logo{
+        width: 10vh;
+        height: 10vh;
+        top: -5%;
+        left: -8%;
+    }
+    .Label{
+        font-size: 4vh;
+    }
+    .Form{
+        width: 100%;
+        margin-block: 10%;
+    }
+    .Form-label{
+        font-size: 1.5vh;
+    }
+    .Input-container{
+        width: 65%;
+    }
+    .Form-input{
+        width: 100%;
+    }
+    .Input-icon{
+        right: 1%;
+        width: 6%;
+    }
+    .Submition{
+        width: 100%;
+    }
+    .Submition a{
+        margin-block: 10%;
+        font-size: 1.2vh;
+    }
+    .Submition input{
+        width: 30%;
+        height: 3vh;
+        font-size: 2vh;
+    }
 }

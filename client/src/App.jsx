@@ -5,10 +5,12 @@ import {BrowserRouter as Router , Route , Routes} from 'react-router-dom'
 import Home from "./Home/Home";
 import Login from './Auth/Login/Login';
 import Signup from './Auth/Signup/Signup';
+import TopMenu from './TopMenu/TopMenu';
 
 function App() {
   return (
     <Router>
+      <TopMenu/>
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/login' element={<Login />}/>
