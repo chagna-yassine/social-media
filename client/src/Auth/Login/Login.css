@@ -18,7 +18,7 @@
     background-position: center;
     transition: background-image 1s;
 }
-.Welcome-container{
+.Login .Welcome-container{
     top: 20%;
     left: 10%;
     position: absolute;
@@ -26,17 +26,17 @@
     min-height: 10%;
     text-align: center;
 }
-.Welcome-container span{
+.Login .Welcome-container span{
     display: block;
     text-transform: capitalize;
     font-size: 10vh;
     font-weight: lighter;
 }
-.Welcome-container .App-name{
+.Login .Welcome-container .App-name{
     font-weight: bolder;
     font-size: 15vh;
 }
-.Auth-container{
+.Login .Auth-container{
     background-color: var(--brown);
     top: 10%;
     right: 8%;
@@ -45,7 +45,7 @@
     min-height: 80vh;
     border-radius: 30px;
 }
-.Logo{
+.Login .Logo{
     position: absolute;
     width: 15vh;
     height: 15vh;
@@ -54,7 +54,7 @@
     top: -6%;
     left: -8%;
 }
-.Label{
+.Login .Label{
     color: var(--white);
     text-align: center;
     font-variant: small-caps;
@@ -62,12 +62,12 @@
     font-size: 5vh;
     margin-block-start: 15%;
 }
-.Form{
+.Login .Form{
     width: 100%;
     min-height: 10vh;
     margin-block: 20%;
 }
-.Form-label{
+.Login .Form-label{
     display: block;
     color: var(--white);
     text-align: center;
@@ -76,12 +76,12 @@
     margin-block-start: 8%;
     margin-block-end: 5%;
 }
-.Input-container{
+.Login .Input-container{
     position: relative;
     width: 75%;
     margin: auto;
 }
-.Form-input{
+.Login .Form-input{
     display: block;
     background-color: var(--light-blue);
     border: none;
@@ -92,27 +92,27 @@
     font-weight: bolder;
     text-align: center;
 }
-.Form-input:focus{
+.Login .Form-input:focus{
     outline: none;
 }
-.Input-icon{
+.Login .Input-icon{
     position: absolute;
     right: 1.5%;
     top: 15%;
 }
-.Submition{
+.Login .Submition{
     width: 60%;
     margin: auto;
     margin-block-start: 5%;
 }
-.Submition a{
+.Login .Submition a{
     display: block;
     text-align: center;
     color: var(--light-blue);
     text-decoration: none;
     margin-block: 15%;
 }
-.Submition input{
+.Login .Submition input{
     display: block;
     margin: auto;
     background-color: var(--dark-blue);
@@ -124,227 +124,229 @@
     height: 5vh;
     font-size: 3vh;
     cursor: pointer;
+    font-variant: small-caps;
+    text-transform: capitalize;
 }
 /* Responsive design */
 @media screen and (min-width: 900px) and  (max-width: 1150px){
-    .Welcome-container{
+    .Login .Welcome-container{
         top: 30%;
         left: 10%;
         width: 40%;
     }
-    .Welcome-container span{
+    .Login .Welcome-container span{
         font-size: 7vh;
     }
-    .Welcome-container .App-name{
+    .Login .Welcome-container .App-name{
         font-size: 10vh;
     }
-    .Auth-container{
+    .Login .Auth-container{
         top: 10%;
         right: 5%;
         width: 35%;
     }
-    .Logo{
+    .Login .Logo{
         width: 13vh;
         height: 13vh;
         top: -5%;
         left: -9%;
     }
-    .Label{
+    .Login .Label{
         font-size: 4.5vh;
     }
-    .Form{
+    .Login .Form{
         width: 100%;
         margin-block: 15%;
     }
-    .Input-container{
+    .Login .Input-container{
         width: 75%;
     }
-    .Form-input{
+    .Login .Form-input{
         width: 100%;
     }
-    .Input-icon{
+    .Login .Input-icon{
         right: -2%;
         top: 15%;
         width: 15%;
     }
-    .Submition{
+    .Login .Submition{
         width: 60%;
     }
-    .Submition a{
+    .Login .Submition a{
         margin-block: 15%;
     }
-    .Submition input{
+    .Login .Submition input{
         width: 60%;
         height: 5vh;
         font-size: 3vh;
     }
 }
 @media screen and (min-width: 650px) and  (max-width: 900px){
-    .Welcome-container{
+    .Login .Welcome-container{
         top: 30%;
         left: 10%;
         width: 40%;
     }
-    .Welcome-container span{
+    .Login .Welcome-container span{
         font-size: 5vh;
     }
-    .Welcome-container .App-name{
+    .Login .Welcome-container .App-name{
         font-size: 7vh;
     }
-    .Auth-container{
+    .Login .Auth-container{
         top: 10%;
         right: 5%;
         width: 45%;
     }
-    .Logo{
+    .Login .Logo{
         width: 13vh;
         height: 13vh;
         top: -5%;
         left: -9%;
     }
-    .Label{
+    .Login .Label{
         font-size: 4.5vh;
     }
-    .Form{
+    .Login .Form{
         width: 100%;
         margin-block: 15%;
     }
-    .Input-container{
+    .Login .Input-container{
         width: 75%;
     }
-    .Form-input{
+    .Login .Form-input{
         width: 100%;
     }
-    .Input-icon{
+    .Login .Input-icon{
         right: -2%;
         top: 15%;
         width: 15%;
     }
-    .Submition{
+    .Login .Submition{
         width: 60%;
     }
-    .Submition a{
+    .Login .Submition a{
         margin-block: 15%;
     }
-    .Submition input{
+    .Login .Submition input{
         width: 60%;
         height: 5vh;
         font-size: 3vh;
     }
 }
 @media screen and (min-width: 450px) and  (max-width: 650px){
-    .Welcome-container{
+    .Login .Welcome-container{
         width: 55%;
         height: 20vh;
         top: 1%;
         left: 22.5%;
     }
-    .Welcome-container span{
+    .Login .Welcome-container span{
         font-size: 5vh;
     }
-    .Welcome-container .App-name{
+    .Login .Welcome-container .App-name{
         font-size: 7vh;
     }
-    .Auth-container{
+    .Login .Auth-container{
         width: 55%;
         min-height: 10vh;
         max-height: 60vh;
         top: 30%;
         left: 22.5%;
     }
-    .Logo{
+    .Login .Logo{
         width: 10vh;
         height: 10vh;
         top: -5%;
         left: -8%;
     }
-    .Label{
+    .Login .Label{
         font-size: 4vh;
     }
-    .Form{
+    .Login .Form{
         width: 100%;
         margin-block: 10%;
     }
-    .Form-label{
+    .Login .Form-label{
         font-size: 1.5vh;
     }
-    .Input-container{
+    .Login .Input-container{
         width: 65%;
     }
-    .Form-input{
+    .Login .Form-input{
         width: 100%;
     }
-    .Input-icon{
+    .Login .Input-icon{
         right: 1%;
         width: 6%;
     }
-    .Submition{
+    .Login .Submition{
         width: 100%;
     }
-    .Submition a{
+    .Login .Submition a{
         margin-block: 10%;
         font-size: 1.2vh;
     }
-    .Submition input{
+    .Login .Submition input{
         width: 30%;
         height: 3vh;
         font-size: 2vh;
     }
 }
 @media screen and (max-width: 450px) {
-    .Welcome-container{
+    .Login .Welcome-container{
         width: 55%;
         height: 20vh;
         top: 1%;
         left: 22.5%;
     }
-    .Welcome-container span{
+    .Login .Welcome-container span{
         font-size: 80%;
     }
-    .Welcome-container .App-name{
+    .Login .Welcome-container .App-name{
         font-size: 150%;
     }
-    .Auth-container{
+    .Login .Auth-container{
         width: 75%;
         min-height: 10vh;
         max-height: 60vh;
         top: 30%;
         left: 12.5%;
     }
-    .Logo{
+    .Login .Logo{
         width: 10vh;
         height: 10vh;
         top: -5%;
         left: -8%;
     }
-    .Label{
+    .Login .Label{
         font-size: 4vh;
     }
-    .Form{
+    .Login .Form{
         width: 100%;
         margin-block: 10%;
     }
-    .Form-label{
+    .Login .Form-label{
         font-size: 1.5vh;
     }
-    .Input-container{
+    .Login .Input-container{
         width: 65%;
     }
-    .Form-input{
+    .Login .Form-input{
         width: 100%;
     }
-    .Input-icon{
+    .Login .Input-icon{
         right: 1%;
         width: 6%;
     }
-    .Submition{
+    .Login .Submition{
         width: 100%;
     }
-    .Submition a{
+    .Login .Submition a{
         margin-block: 10%;
         font-size: 1.2vh;
     }
-    .Submition input{
+    .Login .Submition input{
         width: 30%;
         height: 3vh;
         font-size: 2vh;

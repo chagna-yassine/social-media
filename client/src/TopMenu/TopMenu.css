@@ -75,3 +75,24 @@
     border: 1px solid var(--dark);
     transform: translateX(100%);
 }
+/* Responsive design */
+@media screen and (min-width: 900px) and  (max-width: 1150px){
+    .DisplayMode{
+        width: 5%;
+    }
+}
+@media screen and (min-width: 650px) and  (max-width: 900px){
+    .DisplayMode{
+        width: 5.5%;
+    }
+}
+@media screen and (min-width: 450px) and  (max-width: 650px){
+    .DisplayMode{
+        width: 7.5%;
+    }
+}
+@media screen and (max-width: 450px) {
+    .DisplayMode{
+        width: 10%;
+    }
+}

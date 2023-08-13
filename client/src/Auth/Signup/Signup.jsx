@@ -5,9 +5,11 @@ import {faEye} from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import { handleBgImgs } from '../../HandleBgImgs/handleBgImgs'
+import { handleViewPassword } from '../AuthFunctionalities'
 
 const Signup = () => {
   const [eyeIcon,setEyeIcon] = useState(faEye);
+  const [confirmEyeIcon,setConfirmEyeIcon] = useState(faEye);
   const [cookies] = useCookies(['displayMode']);
   const currentDisplayMode = cookies.displayMode || 'light';
   //To stop the component from loading twice
@@ -32,62 +34,67 @@ const Signup = () => {
         </div>
         <div className="Auth-container">
           <div className="Logo"></div>
-            <h2 className='Label'>login</h2>
+            <h2 className='Label'>signup</h2>
             <form className='Form'>
-              <div>
-                  <label className='Form-label' htmlFor="username">first name</label>
-                  <div className='Input-container'>
-                    <input className='Form-input' id='username' type="text" />
+              <div className="Info">
+                <div className="Col">
+                  <div>
+                      <label className='Form-label' htmlFor="username">first name</label>
+                      <div className='Input-container'>
+                        <input className='Form-input' id='username' type="text" />
+                      </div>
                   </div>
-              </div>
-              <div>
-                  <label className='Form-label' htmlFor="username">last name</label>
-                  <div className='Input-container'>
-                    <input className='Form-input' id='username' type="text" />
+                  <div>
+                      <label className='Form-label' htmlFor="username">last name</label>
+                      <div className='Input-container'>
+                        <input className='Form-input' id='username' type="text" />
+                      </div>
                   </div>
-              </div>
-              <div>
-                  <label className='Form-label' htmlFor="username">age</label>
-                  <div className='Input-container'>
-                    <input className='Form-input' id='username' type="text" />
+                  <div>
+                      <label className='Form-label' htmlFor="username">age</label>
+                      <div className='Input-container'>
+                        <input className='Form-input' id='username' type="text" />
+                      </div>
                   </div>
-              </div>
-              <div>
-                  <label className='Form-label' htmlFor="username">phone</label>
-                  <div className='Input-container'>
-                    <input className='Form-input' id='username' type="text" />
+                  <div>
+                      <label className='Form-label' htmlFor="username">phone</label>
+                      <div className='Input-container'>
+                        <input className='Form-input' id='username' type="text" />
+                      </div>
                   </div>
-              </div>
-              <div>
-                  <label className='Form-label' htmlFor="username">email</label>
-                  <div className='Input-container'>
-                    <input className='Form-input' id='username' type="text" />
-                  </div>
-              </div>
-              <div>
-                  <label className='Form-label' htmlFor="username">username</label>
-                  <div className='Input-container'>
-                    <input className='Form-input' id='username' type="text" />
-                  </div>
-              </div>
-              <div>
-                  <label className='Form-label' htmlFor="password">password</label>
-                  <div className='Input-container'>
-                    <input className='Form-input' id='password' type="password" />
-                    <FontAwesomeIcon className='Input-icon' icon={eyeIcon} onClick={()=>{/* setEyeIcon(handleViewPassword()) */}}/>
-                  </div>
-              </div>
-              <div>
-                  <label className='Form-label' htmlFor="password">password</label>
-                  <div className='Input-container'>
-                    <input className='Form-input' id='password' type="password" />
-                    <FontAwesomeIcon className='Input-icon' icon={eyeIcon} onClick={()=>{/* setEyeIcon(handleViewPassword()) */}}/>
-                  </div>
+                </div>
+                <div className="Col">
+                    <div>
+                        <label className='Form-label' htmlFor="username">email</label>
+                        <div className='Input-container'>
+                          <input className='Form-input' id='username' type="text" />
+                        </div>
+                    </div>
+                    <div>
+                        <label className='Form-label' htmlFor="username">username</label>
+                        <div className='Input-container'>
+                          <input className='Form-input' id='username' type="text" />
+                        </div>
+                    </div>
+                    <div>
+                        <label className='Form-label' htmlFor="signup-password">password</label>
+                        <div className='Input-container'>
+                          <input className='Form-input' id='signup-password' type="password" />
+                          <FontAwesomeIcon className='Input-icon' icon={eyeIcon} onClick={()=>{setEyeIcon(handleViewPassword("signup-password"))}}/>
+                        </div>
+                    </div>
+                    <div>
+                        <label className='Form-label' htmlFor="confirm-signup-password">confirm password</label>
+                        <div className='Input-container'>
+                          <input className='Form-input' id='confirm-signup-password' type="password" />
+                          <FontAwesomeIcon className='Input-icon' icon={confirmEyeIcon} onClick={()=>{setConfirmEyeIcon(handleViewPassword("confirm-signup-password"))}}/>
+                        </div>
+                    </div>
+                </div>
               </div>
               <div className='Submition'>
-                 <a href="">Forgot password?</a>
-                 <input type="submit" value="submit"/>
-                 <Link to="/signup">Don't have an account?</Link>
+                 <input type="submit" value="signup"/>
+                 <Link to="/login">Already have an account?</Link>
               </div>
             </form>
         </div>

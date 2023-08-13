@@ -3,9 +3,11 @@ import './Login.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faEye} from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
-import { handleViewPassword } from './LoginFunctionalities'
 import { useCookies } from 'react-cookie'
 import { handleBgImgs } from '../../HandleBgImgs/handleBgImgs'
+import { handleViewPassword } from '../AuthFunctionalities'
+
+
 const Login = () => {
   const [eyeIcon,setEyeIcon] = useState(faEye);
   const [cookies] = useCookies(['displayMode']);
@@ -41,10 +43,10 @@ const Login = () => {
                   </div>
               </div>
               <div>
-                  <label className='Form-label' htmlFor="password">password</label>
+                  <label className='Form-label' htmlFor="login-password">password</label>
                   <div className='Input-container'>
-                    <input className='Form-input' id='password' type="password" />
-                    <FontAwesomeIcon className='Input-icon' icon={eyeIcon} onClick={()=>{setEyeIcon(handleViewPassword())}}/>
+                    <input className='Form-input' id='login-password' type="password" />
+                    <FontAwesomeIcon className='Input-icon' icon={eyeIcon} onClick={()=>{setEyeIcon(handleViewPassword("login-password"))}}/>
                   </div>
               </div>
               <div className='Submition'>

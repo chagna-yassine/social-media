@@ -18,70 +18,77 @@
     background-position: center;
     transition: background-image 1s;
 }
-.Welcome-container{
-    top: 20%;
-    left: 10%;
+.Signup .Welcome-container{
+    top: 30%;
+    right: 8%;
     position: absolute;
-    width: 40%;
+    width: 28%;
     min-height: 10%;
     text-align: center;
 }
-.Welcome-container span{
+.Signup .Welcome-container span{
     display: block;
     text-transform: capitalize;
-    font-size: 10vh;
+    font-size: 7vh;
     font-weight: lighter;
 }
-.Welcome-container .App-name{
+.Signup .Welcome-container .App-name{
     font-weight: bolder;
-    font-size: 15vh;
+    font-size: 11vh;
 }
-.Auth-container{
+.Signup .Auth-container{
     background-color: var(--brown);
     top: 10%;
-    right: 8%;
+    left: 8%;
     position: absolute;
     width: 50%;
     max-height: 80vh;
     border-radius: 30px;
 }
-.Logo{
+.Signup .Logo{
     position: absolute;
     width: 15vh;
     height: 15vh;
     background-color: var(--light-green);
     border-radius: 50%;
-    top: -6%;
+    top: -8%;
     left: -8%;
 }
-.Label{
+.Signup .Label{
     color: var(--white);
     text-align: center;
     font-variant: small-caps;
     text-transform: capitalize;
     font-size: 5vh;
-    margin-block-start: 15%;
+    margin-block-start: 5%;
 }
-.Form{
+.Signup .Form{
     width: 100%;
     min-height: 10vh;
-    margin-block: 20%;
+    margin-block: 5%;
 }
-.Form-label{
+.Signup .Info{
+    display: flex;
+    width: 100%;
+}
+.Signup .Col{
+    width: 50%;
+}
+.Signup .Form-label{
     display: block;
     color: var(--white);
     text-align: center;
     text-transform: capitalize;
     font-weight: bold;
-    margin-block-start: 8%;
-    margin-block-end: 5%;
+    margin-block-start: 4%;
+    margin-block-end: 4%;
 }
-.Input-container{
+.Signup .Input-container{
     position: relative;
     width: 75%;
     margin: auto;
 }
-.Form-input{
+.Signup .Form-input{
     display: block;
     background-color: var(--light-blue);
     border: none;
@@ -92,27 +99,27 @@
     font-weight: bolder;
     text-align: center;
 }
-.Form-input:focus{
+.Signup .Form-input:focus{
     outline: none;
 }
-.Input-icon{
+.Signup .Input-icon{
     position: absolute;
     right: 1.5%;
     top: 15%;
 }
-.Submition{
+.Signup .Submition{
     width: 60%;
     margin: auto;
-    margin-block-start: 5%;
+   /*  margin-block-start: %; */
 }
-.Submition a{
+.Signup .Submition a{
     display: block;
     text-align: center;
     color: var(--light-blue);
     text-decoration: none;
-    margin-block: 15%;
+    margin-block: 3%;
 }
-.Submition input{
+.Signup .Submition input{
     display: block;
     margin: auto;
     background-color: var(--dark-blue);
@@ -124,227 +131,233 @@
     height: 5vh;
     font-size: 3vh;
     cursor: pointer;
+    margin-block: 10%;
+    font-variant: small-caps;
+    text-transform: capitalize;
 }
 /* Responsive design */
 @media screen and (min-width: 900px) and  (max-width: 1150px){
-    .Welcome-container{
+    .Signup .Welcome-container{
         top: 30%;
-        left: 10%;
-        width: 40%;
+        right: 8%;
+        width: 30%;
     }
-    .Welcome-container span{
-        font-size: 7vh;
+    .Signup .Welcome-container span{
+        font-size: 5.7vh;
     }
-    .Welcome-container .App-name{
-        font-size: 10vh;
+    .Signup .Welcome-container .App-name{
+        font-size: 8.7vh;
     }
-    .Auth-container{
+    .Signup .Auth-container{
         top: 10%;
         right: 5%;
-        width: 35%;
+        width: 45%;
     }
-    .Logo{
+    .Signup .Logo{
         width: 13vh;
         height: 13vh;
         top: -5%;
         left: -9%;
     }
-    .Label{
+    .Signup .Label{
         font-size: 4.5vh;
     }
-    .Form{
+    .Signup .Form{
         width: 100%;
         margin-block: 15%;
     }
-    .Input-container{
+    .Signup .Input-container{
         width: 75%;
     }
-    .Form-input{
+    .Signup .Form-input{
         width: 100%;
     }
-    .Input-icon{
+    .Signup .Input-icon{
         right: -2%;
         top: 15%;
         width: 15%;
     }
-    .Submition{
+    .Signup .Submition{
         width: 60%;
     }
-    .Submition a{
+    .Signup .Submition a{
         margin-block: 15%;
     }
-    .Submition input{
+    .Signup .Submition input{
         width: 60%;
         height: 5vh;
         font-size: 3vh;
     }
 }
 @media screen and (min-width: 650px) and  (max-width: 900px){
-    .Welcome-container{
+    .Signup .Welcome-container{
         top: 30%;
-        left: 10%;
-        width: 40%;
+        right: 8%;
+        width: 30%;
     }
-    .Welcome-container span{
+    .Signup .Welcome-container span{
         font-size: 5vh;
     }
-    .Welcome-container .App-name{
+    .Signup .Welcome-container .App-name{
         font-size: 7vh;
     }
-    .Auth-container{
+    .Signup .Auth-container{
         top: 10%;
         right: 5%;
         width: 45%;
     }
-    .Logo{
+    .Signup .Logo{
         width: 13vh;
         height: 13vh;
         top: -5%;
         left: -9%;
     }
-    .Label{
+    .Signup .Label{
         font-size: 4.5vh;
     }
-    .Form{
+    .Signup .Form{
         width: 100%;
         margin-block: 15%;
     }
-    .Input-container{
+    .Signup .Input-container{
         width: 75%;
     }
-    .Form-input{
+    .Signup .Form-label{
+        font-size: 2.2vh;
+    }
+    .Signup .Form-input{
         width: 100%;
     }
-    .Input-icon{
-        right: -2%;
+    .Signup .Input-icon{
+        right: 2%;
         top: 15%;
-        width: 15%;
+        width: 10%;
     }
-    .Submition{
+    .Signup .Submition{
         width: 60%;
     }
-    .Submition a{
+    .Signup .Submition a{
         margin-block: 15%;
     }
-    .Submition input{
+    .Signup .Submition input{
         width: 60%;
         height: 5vh;
         font-size: 3vh;
     }
 }
 @media screen and (min-width: 450px) and  (max-width: 650px){
-    .Welcome-container{
+    .Signup .Welcome-container{
         width: 55%;
         height: 20vh;
         top: 1%;
         left: 22.5%;
     }
-    .Welcome-container span{
+    .Signup .Welcome-container span{
         font-size: 5vh;
     }
-    .Welcome-container .App-name{
+    .Signup .Welcome-container .App-name{
         font-size: 7vh;
     }
-    .Auth-container{
-        width: 55%;
+    .Signup .Auth-container{
+        width: 65%;
         min-height: 10vh;
         max-height: 60vh;
         top: 30%;
         left: 22.5%;
     }
-    .Logo{
+    .Signup .Logo{
         width: 10vh;
         height: 10vh;
-        top: -5%;
+        top: -8%;
         left: -8%;
     }
-    .Label{
+    .Signup .Label{
         font-size: 4vh;
     }
-    .Form{
+    .Signup .Form{
         width: 100%;
         margin-block: 10%;
     }
-    .Form-label{
-        font-size: 1.5vh;
+    .Signup .Form-label{
+        font-size: 2vh;
     }
-    .Input-container{
+    .Signup .Input-container{
         width: 65%;
     }
-    .Form-input{
+    .Signup .Form-input{
         width: 100%;
     }
-    .Input-icon{
+    .Signup .Input-icon{
         right: 1%;
         width: 6%;
     }
-    .Submition{
+    .Signup .Submition{
         width: 100%;
     }
-    .Submition a{
-        margin-block: 10%;
+    .Signup .Submition a{
         font-size: 1.2vh;
     }
-    .Submition input{
+    .Signup .Submition input{
         width: 30%;
         height: 3vh;
         font-size: 2vh;
+        margin-block: 6%;
     }
 }
 @media screen and (max-width: 450px) {
-    .Welcome-container{
+    .Signup .Welcome-container{
         width: 55%;
         height: 20vh;
         top: 1%;
         left: 22.5%;
     }
-    .Welcome-container span{
+    .Signup .Welcome-container span{
         font-size: 80%;
     }
-    .Welcome-container .App-name{
+    .Signup .Welcome-container .App-name{
         font-size: 150%;
     }
-    .Auth-container{
+    .Signup .Auth-container{
         width: 75%;
         min-height: 10vh;
         max-height: 60vh;
         top: 30%;
         left: 12.5%;
     }
-    .Logo{
+    .Signup .Logo{
         width: 10vh;
         height: 10vh;
         top: -5%;
         left: -8%;
     }
-    .Label{
+    .Signup .Label{
         font-size: 4vh;
     }
-    .Form{
+    .Signup .Form{
         width: 100%;
         margin-block: 10%;
     }
-    .Form-label{
+    .Signup .Form-label{
         font-size: 1.5vh;
     }
-    .Input-container{
+    .Signup .Input-container{
         width: 65%;
     }
-    .Form-input{
+    .Signup .Form-input{
         width: 100%;
     }
-    .Input-icon{
+    .Signup .Input-icon{
         right: 1%;
         width: 6%;
     }
-    .Submition{
+    .Signup .Submition{
         width: 100%;
     }
-    .Submition a{
+    .Signup .Submition a{
         margin-block: 10%;
         font-size: 1.2vh;
     }
-    .Submition input{
+    .Signup .Submition input{
         width: 30%;
         height: 3vh;
         font-size: 2vh;
