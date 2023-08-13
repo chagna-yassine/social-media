@@ -1,0 +1,125 @@
+:root{
+    --dark-green: #233F3C;
+    --light-green: #9DC56B;
+    --dark-blue: #3D748E;
+    --light-blue: #B2E6EE;
+    --white: #FFFFFF;
+    --dark: #000000;
+}
+.Login{
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-image: url("../../Images/Login-bg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.Welcome-container{
+    position: absolute;
+    top: 20vh;
+    left: 40vh;
+    width: 70vh;
+    text-align: center;
+}
+.Welcome-container span{
+    display: block;
+    text-transform: capitalize;
+    font-size: 10vh;
+    font-weight: lighter;
+}
+.Welcome-container .App-name{
+    font-weight: bolder;
+    font-size: 15vh;
+}
+.Auth-container{
+    background-color: var(--dark-green);
+    top: 10vh;
+    right: 10vh;
+    position: absolute;
+    width: 55vh;
+    min-height: 80vh;
+    border-radius: 30px;
+}
+.Logo{
+    position: absolute;
+    width: 15vh;
+    height: 15vh;
+    background-color: var(--light-green);
+    border-radius: 10vh;
+    top: -5vh;
+    left: -5vh;
+}
+.Label{
+    color: var(--white);
+    text-align: center;
+    font-variant: small-caps;
+    text-transform: capitalize;
+    font-size: 5vh;
+    margin-block-start: 6vh;
+}
+.Form{
+    width: 55vh;
+    min-height: 10vh;
+    margin-block: 10vh;
+}
+.Form-label{
+    display: block;
+    color: var(--white);
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: bold;
+    margin-block-start: 4vh;
+    margin-block-end: 2vh;
+}
+.Input-container{
+    position: relative;
+    width: 40vh;
+    margin: auto;
+}
+.Form-input{
+    display: block;
+    background-color: var(--light-blue);
+    border: none;
+    border-radius: 1vh;
+    padding: 0.5vh;
+    padding-inline-start: 1vh;
+    width: 40vh;
+    margin: auto;
+    font-weight: bolder;
+    text-align: center;
+}
+.Form-input:focus{
+    outline: none;
+}
+.Input-icon{
+    position: absolute;
+    right: 0.5vh;
+    top: 0.5vh;
+}
+.Submition{
+    width: 40vh;
+    margin: auto;
+    margin-block-start: 5vh;
+}
+.Submition a{
+    display: block;
+    text-align: center;
+    color: var(--light-blue);
+    text-decoration: none;
+    margin-block: 5vh;
+}
+.Submition input{
+    display: block;
+    margin: auto;
+    background-color: var(--dark-blue);
+    border: none;
+    color: var(--dark);
+    font-weight: bolder;
+    border-radius: 5vh;
+    width: 20vh;
+    height: 5vh;
+    font-size: 3vh;
+    cursor: pointer;
+}
