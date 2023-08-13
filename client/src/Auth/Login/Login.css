@@ -3,6 +3,7 @@
     --light-green: #9DC56B;
     --dark-blue: #3D748E;
     --light-blue: #B2E6EE;
+    --brown: #ac7548;
     --white: #FFFFFF;
     --dark: #000000;
 }
@@ -15,6 +16,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    transition: background-image 1s;
 }
 .Welcome-container{
     top: 20%;
@@ -35,7 +37,7 @@
     font-size: 15vh;
 }
 .Auth-container{
-    background-color: var(--dark-green);
+    background-color: var(--brown);
     top: 10%;
     right: 8%;
     position: absolute;

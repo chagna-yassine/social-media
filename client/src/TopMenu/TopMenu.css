@@ -41,10 +41,7 @@
     width: 100%;
     min-height: 3vh;
     position: relative;
-    background-color: var(--light-blue);
-    color: var(--light-green);
     border-radius: 50px;
-    border: 1px solid var(--dark-blue);
     transition: all 1s;
 } 
 .Slider-icon{
@@ -54,10 +51,27 @@
     transform: translateX(0%);
     top: -20%;
     cursor: pointer;
-    background-color: var(--white);
-    border: 1px solid var(--dark-blue);
     border-radius: 50%;
     padding: 6%;
     transition: all 0.5s;
 }
-
+.Slider-icon-container.dark{
+    background-color: var(--light-blue);
+    color: var(--light-green);
+    border: 1px solid var(--dark-blue);
+}
+.Slider-icon.dark{
+    background-color: var(--white);
+    border: 1px solid var(--dark-blue);
+    transform: translateX(0%);
+}
+.Slider-icon-container.light{
+    background-color: var(--light-gray);
+    color: var(--white);
+    border: 1px solid var(--dark);
+}
+.Slider-icon.light{
+    background-color: var(--light-dark);
+    border: 1px solid var(--dark);
+    transform: translateX(100%);
+}

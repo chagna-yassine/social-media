@@ -3,21 +3,24 @@ import './Login.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faEye} from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
-import { handleBgImgs, handleViewPassword } from './LoginFunctionalities'
-
+import { handleViewPassword } from './LoginFunctionalities'
+import { useCookies } from 'react-cookie'
+import { handleBgImgs } from '../../HandleBgImgs/handleBgImgs'
 const Login = () => {
   const [eyeIcon,setEyeIcon] = useState(faEye);
+  const [cookies] = useCookies(['displayMode']);
+  const currentDisplayMode = cookies.displayMode || 'light';
   //To stop the component from loading twice
   let isCanceled = false;
   useEffect(()=>{
     if(!isCanceled){
       document.title = "Login";
-      handleBgImgs();
+      handleBgImgs(currentDisplayMode);
     }
     return ()=>{
       isCanceled = true;
     }
-  },[])
+  },[currentDisplayMode])
   return (
     <div id='Login' className='Login'>
         <div className="Welcome-container">
