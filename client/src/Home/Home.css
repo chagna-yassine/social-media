@@ -1,0 +1,164 @@
+:root{
+    --dark-green: #233F3C;
+    --light-green: #9DC56B;
+    --dark-blue: #3D748E;
+    --light-blue: #B2E6EE;
+    --brown: #ac7548;
+    --white: #FFFFFF;
+    --dark: #000000;
+}
+.Main{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-image: url(../Images/Light-1.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s;
+}
+
+.Main .Main-container{
+    background-color: var(--dark-green);
+    display: flex;
+    padding: 1em;
+    margin: 1em;
+    margin-top: 5em;
+    width: 90%;
+    min-height: 80vh;
+    border-radius: 30px;
+}
+
+.Main .Label{
+    color: var(--white);
+    text-align: center;
+    font-variant: small-caps;
+    text-transform: capitalize;
+    font-size: 5vh;
+    margin-block-start: 15%;
+}
+
+.Main .Feed-container{
+    background-color: var(--dark-blue);  
+    position: relative;
+    display: flex;
+    padding: 2em;
+    /* padding-left: 5em; */
+    width: 80%;
+
+    /* the height is just to test the scroll on the feed, need to be removed later */
+    height: fit-content;
+    
+    margin-right: 2em; 
+    border-radius: 30px;
+}
+
+.Main .Feed-container .List{
+    /* position: relative; */
+    background-color: var(--dark-blue); 
+    height: fit-content;
+    padding: 1em;
+    margin-bottom: 1em;
+    border-radius: 30px;
+    width: 100%;
+}
+
+.Main .Feed-container .Post{
+    /* position: relative; */
+    background-color: var(--dark-blue); 
+    height: fit-content;
+    padding: 1em;
+    border-radius: 30px;
+    width: 90%;
+}
+
+.Main .Feed-container .Post .Post-profile{
+    display: flex;
+}
+
+.Main .Feed-container .Post .Logo{
+    margin-right: 1em;
+    width: 13vh;
+    height: 13vh;
+    background-color: var(--light-green);
+    border-radius: 50%;
+    /* top: -3%;
+    left: 33%; */
+}
+
+.Main .Feed-container .Post .Label{
+    color: var(--white);
+    text-align: left;
+    font-variant: small-caps;
+    text-transform: capitalize;
+    font-size: 5vh;
+    margin-block-start: 15%;
+}
+
+.Main .Feed-container .Post .Post-content{
+    background-color: var(--dark-green);
+    width: 100%;
+    border-radius: 30px;
+}
+
+.Main .Feed-container .Post .Post-content .Label{
+    color: var(--white);
+    /* text-align: center; */
+    font-variant: small-caps;
+    /* text-transform: capitalize; */
+    font-size: 3vh;
+    /* margin-block-start: 15%; */
+}
+
+.More{
+    color: var(--white);
+    border-radius: 30px;
+    margin-top: 1em;
+    width: 10em;
+}
+
+.Main .Side-bar{
+    background-color: var(--dark-blue);  
+    position: relative;
+    width: 20%; 
+    border-radius: 30px;
+    padding-top: 5em;
+    padding-left: 1em;
+}
+
+.Main .Side-bar .Logo{
+    position: absolute;
+    width: 13vh;
+    height: 13vh;
+    background-color: var(--light-green);
+    border-radius: 50%;
+    top: -3%;
+    left: 33%;
+}
+
+.Main .Side-bar .List-Item{
+    /* background-color: var(--dark-blue);   */
+    position: relative;
+    width: 95%;
+    margin-top: 2em;
+    margin-bottom: 2em; 
+    border-radius: 30px;
+}
+
+.Main .bottom-bar {
+    background-color: var(--light-green);
+    padding: 10px;
+    margin-bottom: 53m;
+    border-radius: 30px;
+    text-align: center;
+    position: fixed;
+    bottom: 5%;
+    left: 13%;
+    width: 70%;
+    height: 7vh;
+}
