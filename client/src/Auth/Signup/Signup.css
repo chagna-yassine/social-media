@@ -2,10 +2,15 @@
     --dark-green: #233F3C;
     --light-green: #9DC56B;
     --dark-blue: #3D748E;
+    --dark-blue-2: #00327e;
     --light-blue: #B2E6EE;
-    --brown: #ac7548;
     --white: #FFFFFF;
+    --dark-white: #ddddddee;
     --dark: #000000;
+    --light-gray: #42464A;
+    --light-dark: #23272D;
+    --brown: #ac7548;
+    --dark-brown: #211826;
 }
 .Signup{
     overflow: hidden;
@@ -13,10 +18,20 @@
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    background-repeat: no-repeat;
-    background-size: cover;
     background-position: center;
-    transition: background-image 1s;
+    background-size: cover;
+}
+#Signup{
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    object-fit: cover !important;
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+}
+#Signup.loaded{
+    opacity: 1 !important;
 }
 .Signup .Welcome-container{
     top: 30%;
@@ -25,6 +40,13 @@
     width: 28%;
     min-height: 10%;
     text-align: center;
+    transition: color 1s;
+}
+.Signup .Welcome-container.dark{
+    color: var(--white);
+}
+.Signup .Welcome-container.light{
+    color: var(--dark);
 }
 .Signup .Welcome-container span{
     display: block;
@@ -37,30 +59,48 @@
     font-size: 11vh;
 }
 .Signup .Auth-container{
-    background-color: var(--brown);
     top: 10%;
     left: 8%;
     position: absolute;
     width: 50%;
     max-height: 80vh;
     border-radius: 30px;
+    transition: background-color 1s;
+}
+.Signup .Auth-container.light{
+    background-color: var(--brown);
+}
+.Signup .Auth-container.dark{
+    background-color: var(--dark-brown);
 }
 .Signup .Logo{
     position: absolute;
     width: 15vh;
     height: 15vh;
-    background-color: var(--light-green);
     border-radius: 50%;
     top: -8%;
     left: -8%;
+    transition: background-color 1s;
+}
+.Signup .Logo.light{
+    background-color: var(--light-green);
+}
+.Signup .Logo.dark{
+    background-color: var(--dark-green);
 }
 .Signup .Label{
-    color: var(--white);
     text-align: center;
     font-variant: small-caps;
     text-transform: capitalize;
     font-size: 5vh;
     margin-block-start: 5%;
+    transition: color 1s;
+}
+.Signup .Label.dark{
+    color: var(--dark-white);
+}
+.Signup .Label.light{
+    color: var(--white);
 }
 .Signup .Form{
     width: 100%;
@@ -76,12 +116,18 @@
 }
 .Signup .Form-label{
     display: block;
-    color: var(--white);
     text-align: center;
     text-transform: capitalize;
     font-weight: bold;
     margin-block-start: 4%;
     margin-block-end: 4%;
+    transition: color 1s;
+}
+.Signup .Form-label.dark{
+    color: var(--dark-white);
+}
+.Signup .Form-label.light{
+    color: var(--white);
 }
 .Signup .Input-container{
     position: relative;
@@ -90,7 +136,6 @@
 }
 .Signup .Form-input{
     display: block;
-    background-color: var(--light-blue);
     border: none;
     border-radius: 50px;
     padding: 1.5%;
@@ -98,6 +143,15 @@
     margin: auto;
     font-weight: bolder;
     text-align: center;
+    transition: background-color 1s;
+}
+.Signup .Form-input.light{
+    background-color: var(--light-blue);
+    color: var(--light-dark);
+}
+.Signup .Form-input.dark{
+    background-color: var(--dark-blue);
+    color: var(--dark-white);
 }
 .Signup .Form-input:focus{
     outline: none;
@@ -110,7 +164,6 @@
 .Signup .Submition{
     width: 60%;
     margin: auto;
-   /*  margin-block-start: %; */
 }
 .Signup .Submition a{
     display: block;
@@ -118,13 +171,18 @@
     color: var(--light-blue);
     text-decoration: none;
     margin-block: 3%;
+    transition: color 1s;
+}
+.Signup .Submition a.light{
+    color: var(--light-blue);
+}
+.Signup .Submition a.dark{
+    color: var(--dark-blue);
 }
 .Signup .Submition input{
     display: block;
     margin: auto;
-    background-color: var(--dark-blue);
     border: none;
-    color: var(--dark);
     font-weight: bolder;
     border-radius: 5vh;
     width: 60%;
@@ -134,7 +192,17 @@
     margin-block: 10%;
     font-variant: small-caps;
     text-transform: capitalize;
+    transition: all 1s;
 }
+.Signup .Submition input.dark{
+    background-color: var(--dark-blue-2);
+    color: var(--dark-white);
+}
+.Signup .Submition input.light{
+    background-color: var(--dark-blue);
+    color: var(--white);
+}
+
 /* Responsive design */
 @media screen and (min-width: 900px) and  (max-width: 1150px){
     .Signup .Welcome-container{
@@ -288,8 +356,8 @@
         width: 100%;
     }
     .Signup .Input-icon{
-        right: 1%;
-        width: 6%;
+        right: 3%;
+        width: 8%;
     }
     .Signup .Submition{
         width: 100%;
@@ -347,8 +415,8 @@
         width: 100%;
     }
     .Signup .Input-icon{
-        right: 1%;
-        width: 6%;
+        right: 4%;
+        width: 9%;
     }
     .Signup .Submition{
         width: 100%;

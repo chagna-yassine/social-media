@@ -17,84 +17,86 @@ const Signup = () => {
   useEffect(()=>{
     if(!isCanceled){
       document.title = "Signup";
-      handleBgImgs(currentDisplayMode);
+      handleBgImgs(currentDisplayMode,"Signup","Signup");
     }
     return ()=>{
       isCanceled = true;
     }
   },[currentDisplayMode])
+  
   return (
-    <div id='Login' className='Signup'>
-        <div className="Welcome-container">
+    <div id='Signup-container' className='Signup'>
+        <img id='Signup' loading='lazy' src='' alt="Signup" />
+        <div className={`Welcome-container ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
             <h1 className='title'>
               <span>welcome</span> 
               <span>to</span> 
               <span className='App-name'>app name</span>
             </h1>
         </div>
-        <div className="Auth-container">
-          <div className="Logo"></div>
-            <h2 className='Label'>signup</h2>
+        <div className={`Auth-container ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+          <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}></div>
+            <h2 className={`Label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>signup</h2>
             <form className='Form'>
               <div className="Info">
                 <div className="Col">
                   <div>
-                      <label className='Form-label' htmlFor="username">first name</label>
+                      <label className={`Form-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} htmlFor="firstName">first name</label>
                       <div className='Input-container'>
-                        <input className='Form-input' id='username' type="text" />
+                        <input className={`Form-input ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} id='firstName' type="text" />
                       </div>
                   </div>
                   <div>
-                      <label className='Form-label' htmlFor="username">last name</label>
+                      <label className={`Form-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} htmlFor="lastName">last name</label>
                       <div className='Input-container'>
-                        <input className='Form-input' id='username' type="text" />
+                        <input className={`Form-input ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} id='lastName' type="text" />
                       </div>
                   </div>
                   <div>
-                      <label className='Form-label' htmlFor="username">age</label>
+                      <label className={`Form-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} htmlFor="age">age</label>
                       <div className='Input-container'>
-                        <input className='Form-input' id='username' type="text" />
+                        <input className={`Form-input ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} id='age' type="number" />
                       </div>
                   </div>
                   <div>
-                      <label className='Form-label' htmlFor="username">phone</label>
+                      <label className={`Form-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} htmlFor="phone">phone</label>
                       <div className='Input-container'>
-                        <input className='Form-input' id='username' type="text" />
+                        <input className={`Form-input ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} id='phone' type="tel" />
                       </div>
                   </div>
                 </div>
                 <div className="Col">
                     <div>
-                        <label className='Form-label' htmlFor="username">email</label>
+                        <label className={`Form-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} htmlFor="email">email</label>
                         <div className='Input-container'>
-                          <input className='Form-input' id='username' type="text" />
+                          <input className={`Form-input ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} id='email' type="email" />
                         </div>
                     </div>
                     <div>
-                        <label className='Form-label' htmlFor="username">username</label>
+                        <label className={`Form-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} htmlFor="username">username</label>
                         <div className='Input-container'>
-                          <input className='Form-input' id='username' type="text" />
+                          <input className={`Form-input ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} id='username' type="text" />
                         </div>
                     </div>
                     <div>
-                        <label className='Form-label' htmlFor="signup-password">password</label>
+                        <label className={`Form-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} htmlFor="signup-password">password</label>
                         <div className='Input-container'>
-                          <input className='Form-input' id='signup-password' type="password" />
+                          <input className={`Form-input ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} id='signup-password' type="password" />
                           <FontAwesomeIcon className='Input-icon' icon={eyeIcon} onClick={()=>{setEyeIcon(handleViewPassword("signup-password"))}}/>
                         </div>
                     </div>
                     <div>
-                        <label className='Form-label' htmlFor="confirm-signup-password">confirm password</label>
+                        <label className={`Form-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} htmlFor="confirm-signup-password">confirm password</label>
                         <div className='Input-container'>
-                          <input className='Form-input' id='confirm-signup-password' type="password" />
+                          <input className={`Form-input ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} id='confirm-signup-password' type="password" />
                           <FontAwesomeIcon className='Input-icon' icon={confirmEyeIcon} onClick={()=>{setConfirmEyeIcon(handleViewPassword("confirm-signup-password"))}}/>
                         </div>
                     </div>
                 </div>
               </div>
               <div className='Submition'>
-                 <input type="submit" value="signup"/>
-                 <Link to="/login">Already have an account?</Link>
+                 <input className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} type="submit" value="signup"/>
+                 <Link className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} to="/login">Already have an account?</Link>
               </div>
             </form>
         </div>
