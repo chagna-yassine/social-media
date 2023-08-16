@@ -19,9 +19,12 @@ const Signup = () => {
   const currentDisplayMode = cookies.displayMode || 'light';
 
   useEffect(()=>{
-    document.title = t("signup.label");
     handleBgImgs(currentDisplayMode,"Signup","Signup");
-  },[currentDisplayMode , t])
+  },[currentDisplayMode]);
+
+  useEffect(()=>{
+    document.title = t("signup.label");
+  },[t])
   
   return (
     <div id='Signup-container' className='Signup'>

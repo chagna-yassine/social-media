@@ -12,9 +12,12 @@ const LoadingScreen = () => {
     const currentDisplayMode = cookies.displayMode || 'light';
 
   useEffect(()=>{
-      document.title = t("loading");
       handleBgImgs(currentDisplayMode,"Loading","Loading");
-  },[currentDisplayMode , t])
+  },[currentDisplayMode])
+
+  useEffect(()=>{
+    document.title = t("loading");
+  },[t])
 
   return (
     <div className='Loading'>

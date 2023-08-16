@@ -96,6 +96,7 @@
     border-radius: 10px;
     text-align: center;
     height: 0;
+    opacity: 0;
     transition: all 1s;
 }
 .Dropdown-item{
@@ -105,7 +106,9 @@
     font-weight: bolder;
     padding-block: 10%;
     margin: 0;
-    transition: all 1s ease-in-out;
+    height: 0;
+    padding-block: 0;
+    transition: all 0.75s ease-in-out;
 }
 .Dropdown-item:not(:last-child){
     border-bottom: 1px solid var(--white);

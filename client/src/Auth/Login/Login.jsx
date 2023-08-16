@@ -18,9 +18,12 @@ const Login = () => {
   const currentDisplayMode = cookies.displayMode || 'light';
 
   useEffect(()=>{
-      document.title = t("login.label");
       handleBgImgs(currentDisplayMode,"Login","Login");
-  },[currentDisplayMode , t])
+  },[currentDisplayMode])
+
+  useEffect(()=>{
+    document.title = t("login.label");
+  },[t])
 
   return (
     <div className='Login'>
