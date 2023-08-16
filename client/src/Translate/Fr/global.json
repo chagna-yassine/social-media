@@ -1,0 +1,26 @@
+{
+    "loading":"chargement...",
+    "welcome":"bienvenue",
+    "to":"à",
+    "login":{
+        "label":"connexion",
+        "form-label-user":"nom d'utilisateur",
+        "form-label-pwd":"mot de passe",
+        "forgot-pwd":"Mot de passe oublié?",
+        "submit":"connecter",
+        "link":"Vous n'avez pas de compte ?"
+    },
+    "signup":{
+        "label":"inscription",
+        "form-label-fname":"prénom",
+        "form-label-lname":"nom",
+        "form-label-age":"âge",
+        "form-label-tel":"téléphone",
+        "form-label-mail":"email",
+        "form-label-user":"nom d'utilisateur",
+        "form-label-pwd-1":"mot de passe",
+        "form-label-pwd-2":"confirmer le mot de passe",
+        "submit":"s'inscrire",
+        "link":"Vous avez déjà un compte ?"
+    }
+}

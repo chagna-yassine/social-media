@@ -63,7 +63,7 @@
     right: 8%;
     position: absolute;
     width: 28%;
-    min-height: 80vh;
+    max-height: 80vh;
     border-radius: 30px;
     transition: background-color 1s;
 }
@@ -131,8 +131,9 @@
     display: block;
     border: none;
     border-radius: 50px;
-    padding: 1.5%;
+    padding: 1%;
     width: 100%;
+    height: 4.5vh;
     margin: auto;
     font-weight: bolder;
     text-align: center;
@@ -151,8 +152,8 @@
 }
 .Login .Input-icon{
     position: absolute;
-    right: 1.5%;
-    top: 15%;
+    right: 2%;
+    top: 21%;
 }
 .Login .Submition{
     width: 60%;
@@ -231,11 +232,12 @@
     }
     .Login .Form-input{
         width: 100%;
+        height: 4vh;
     }
     .Login .Input-icon{
-        right: -2%;
-        top: 15%;
-        width: 15%;
+        right: 1%;
+        top: 20%;
+        width: 10%;
     }
     .Login .Submition{
         width: 60%;
@@ -284,11 +286,12 @@
     }
     .Login .Form-input{
         width: 100%;
+        height: 4vh;
     }
     .Login .Input-icon{
-        right: -2%;
-        top: 15%;
-        width: 15%;
+        right: 1%;
+        top: 20%;
+        width: 10%;
     }
     .Login .Submition{
         width: 60%;
@@ -343,9 +346,11 @@
     }
     .Login .Form-input{
         width: 100%;
+        height: 3vh;
     }
     .Login .Input-icon{
-        right: 1%;
+        right: 3%;
+        top: 10%;
         width: 6%;
     }
     .Login .Submition{
@@ -402,9 +407,11 @@
     }
     .Login .Form-input{
         width: 100%;
+        height: 3vh;
     }
     .Login .Input-icon{
-        right: 1%;
+        right: 3%;
+        top: 10%;
         width: 6%;
     }
     .Login .Submition{

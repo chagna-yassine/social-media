@@ -7,19 +7,19 @@ import Login from './Auth/Login/Login';
 import Signup from './Auth/Signup/Signup';
 import TopMenu from './TopMenu/TopMenu';
 import LoadingScreen from './LoadingScreen/LoadingScreen';
-import { useEffect, useState } from 'react';
+import { useEffect , useState , useRef } from 'react';
 
 function App() {
   const[isLoading,setIsLoading] = useState(true);
-  let isCanceled = false;
+  const isCanceled = useRef(false);
   useEffect(()=>{
-    if(!isCanceled){
+    if(!isCanceled.current){
       setTimeout(()=>{
         setIsLoading(false)
       },2000)
     }
     return ()=>{
-      isCanceled = true;
+      isCanceled.current = true;
     }
   })
   return (

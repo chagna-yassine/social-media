@@ -1,0 +1,26 @@
+{
+    "loading":"loading...",
+    "welcome":"welcome",
+    "to":"to",
+    "login":{
+        "label":"login",
+        "form-label-user":"username",
+        "form-label-pwd":"password",
+        "forgot-pwd":"Forgot password?",
+        "submit":"login",
+        "link":"Don't have an account?"
+    },
+    "signup":{
+        "label":"signup",
+        "form-label-fname":"first name",
+        "form-label-lname":"last name",
+        "form-label-age":"age",
+        "form-label-tel":"phone",
+        "form-label-mail":"email",
+        "form-label-user":"username",
+        "form-label-pwd-1":"password",
+        "form-label-pwd-2":"confirm password",
+        "submit":"signup",
+        "link":"Aready have an account?"
+    }
+}

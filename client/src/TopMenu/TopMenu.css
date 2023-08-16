@@ -76,6 +76,40 @@
     border: 1px solid var(--dark);
     transform: translateX(100%);
 }
+.Dropdown{
+    position: absolute;
+    top: 35%;
+    right: 0%;
+    width: 7%;
+    min-height: 5vh;
+}
+.Dropdown-icon{
+    height: 4.5vh;
+    fill: var(--white);
+}
+.Dropdown-items{
+    visibility: hidden;
+    position: absolute;
+    left: -30%;
+    background-color: var(--light-gray);
+    width: 100%;
+    border-radius: 10px;
+    text-align: center;
+    height: 0;
+    transition: all 1s;
+}
+.Dropdown-item{
+    text-transform: capitalize;
+    font-variant: small-caps;
+    color: var(--white);
+    font-weight: bolder;
+    padding-block: 10%;
+    margin: 0;
+    transition: all 1s ease-in-out;
+}
+.Dropdown-item:not(:last-child){
+    border-bottom: 1px solid var(--white);
+}
 /* Responsive design */
 @media screen and (min-width: 900px) and  (max-width: 1150px){
     .DisplayMode{

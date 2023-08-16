@@ -1,0 +1,26 @@
+{
+    "loading":"...تحميل",
+    "welcome":"مرحبًا بك",
+    "to":"في",
+    "login":{
+        "label":"تسجيل الدخول",
+        "form-label-user":"اسم المستخدم",
+        "form-label-pwd":"كلمة المرور",
+        "forgot-pwd":"نسيت كلمة المرور؟",
+        "submit":"تسجيل الدخول",
+        "link":"أليس لديك حساب؟"
+    },
+    "signup":{
+        "label":"الاشتراك",
+        "form-label-fname":"الاسم",
+        "form-label-lname":"النسب",
+        "form-label-age":"العمر",
+        "form-label-tel":"الهاتف",
+        "form-label-mail":"البريد الإلكتروني",
+        "form-label-user":"اسم المستخدم",
+        "form-label-pwd-1":"كلمة المرور",
+        "form-label-pwd-2":"تأكيد كلمة المرور",
+        "submit":"الاشتراك",
+        "link":"هل لديك حساب بالفعل؟"
+    }
+}

@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import './Home.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import { Link } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import { handleBgImgs } from '../HandleBgImgs/handleBgImgs'
 
@@ -11,16 +9,9 @@ const Home = () => {
   const [cookies] = useCookies(['displayMode']);
   const currentDisplayMode = cookies.displayMode || 'light';
 
-  //To stop the component from loading twice
-  let isCanceled = false;
   useEffect(()=>{
-    if(!isCanceled){
       document.title = "Home";
       handleBgImgs(currentDisplayMode,"Main-img","Main");
-    }
-    return ()=>{
-      isCanceled = true;
-    }
   },[currentDisplayMode])
 
   return (

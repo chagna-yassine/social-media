@@ -2,25 +2,25 @@ import React, { useEffect } from 'react'
 import "./LoadingScreen.css";
 import { useCookies } from 'react-cookie';
 import { handleBgImgs } from '../HandleBgImgs/handleBgImgs';
+import { useTranslation } from 'react-i18next';
 
 const LoadingScreen = () => {
+
+    const [ t ] = useTranslation("global")
+
     const [cookies] = useCookies(['displayMode']);
     const currentDisplayMode = cookies.displayMode || 'light';
-    let isCanceled = false;
+
   useEffect(()=>{
-    if(!isCanceled){
-      document.title = "Loading...";
+      document.title = t("loading");
       handleBgImgs(currentDisplayMode,"Loading","Loading");
-    }
-    return ()=>{
-      isCanceled = true;
-    }
-  },[currentDisplayMode])
+  },[currentDisplayMode , t])
+
   return (
     <div className='Loading'>
       <img id='Loading' loading='lazy' src="" alt="Loading" />
         <div className="Loading-container">
-            <h1 className="Loading-label">loading...</h1>
+            <h1 className="Loading-label">{t("loading")}</h1>
             <div className='Loading-bar'>
                 <span className="Bars"></span>
                 <span className="Bars"></span>
