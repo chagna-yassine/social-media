@@ -385,7 +385,7 @@
 }
 
 /* Responsive design */
-@media screen and (max-width: 1010px){
+@media screen and (min-width: 900px) and  (max-width: 1150px){
     .Main{
         display: flex;
         position: relative;
@@ -443,10 +443,10 @@
     .Main .Feed-container .Post .Logo{
         position: absolute;
         display: inline;
-        left: -10%;
-        top: -3%;
-        width: 4vh;
-        height: 4vh;
+        left: 1%;
+        top: -6%;
+        width: 4.5vh;
+        height: 4.5vh;
         background-color: var(--light-green);
         border-radius: 50%;
         transition: background-color 1s;
@@ -467,7 +467,7 @@
         display: block;
         position: absolute;
         top: 8%;
-        left: 8%;
+        left: 6.5%;
         width: 10em;
         min-height: 5vh;
     }
@@ -563,6 +563,726 @@
         color: var(--white);
         width: 2.5vh;
         height: 2.5vh;
+    }   
+}
+@media screen and (min-width: 768px) and  (max-width: 899px){
+    .Main{
+        display: flex;
+        position: relative;
+        justify-content: center; 
+        align-items: center;
+        overflow: hidden;
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        background-image: url(../Images/Light-1.jpeg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        transition: background-image 1s;
+    }
+
+    .Main .Main-container{
+        z-index: 1;
+        display: flex;
+        padding: 1vh;
+        margin-top: 5vh;
+        width: 90%;
+        height: 90vh;
+        border-radius: 30px;
+        overflow-y: hidden;
+        transition: background-color 1s;
+    }
+
+    .Main .Side-bar{
+        display: none;
+    }
+
+    .Main .Feed-container{
+        overflow-y: scroll;
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: auto;
+        border-radius: 30px;
+        transition: background-color 1s;
+        margin: 0;
+    }
+
+    .Main .Feed-container .List{
+        height: fit-content;
+        padding: 5vh;
+        padding-top: 1vh;
+        margin-bottom: 1em;
+        border-radius: 30px;
+        width: 100%;
+        transition: background-color 1s;
+    }
+
+    .Main .Feed-container .Post .Logo{
+        position: absolute;
+        display: inline;
+        left: 1%;
+        top: -5%;
+        width: 4.5vh;
+        height: 4.5vh;
+        background-color: var(--light-green);
+        border-radius: 50%;
+        transition: background-color 1s;
+    }
+
+    .Main .Feed-container .Post .Label{
+        margin: 0;
+        margin-inline-start: 2vh;
+        text-align: left;
+        font-variant: small-caps;
+        font-size: larger;
+        text-transform: capitalize;
+        font-size: 3vh;
+        transition: color 1s;
+    }
+
+    .DropdownModal{
+        display: block;
+        position: absolute;
+        top: 8%;
+        left: 6.5%;
+        width: 10em;
+        min-height: 5vh;
+    }
+    .DropdownModal-icon{
+        color: var(--dark);
+        height: 4.5vh;
+        fill: var(--white);
     }
     
+    .DropdownModal .List{
+        background-color: var(--dark-green);
+        display: grid;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+        padding: 1em;
+        width: 100%;
+        max-height: 55vh;
+        gap: 1vh;
+        overflow-y: scroll;
+    }
+    .DropdownModal .List::-webkit-scrollbar{
+        display: none;
+    }
+    .DropdownModal .List .List-item{
+        width: 100%; 
+        max-height: 10vh;
+        border-radius: 10px;
+        transition: background-color 1s;
+    }
+    .DropdownModal .List .List-item.light{
+        background-color: var(--white);
+    }
+    .DropdownModal .List .List-item.dark{
+        background-color: var(--dark-white);
+    }
+    
+    .DropdownModal-items{
+        visibility: hidden;
+        position: absolute;
+        left:auto;
+        background-color: var(--light-gray);
+        width: 100%;
+        border-radius: 10px;
+        text-align: left;
+        font-size: x-small;
+        height: 0;
+        opacity: 0;
+        transition: all 1s;
+    }
+    .DropdownModal-item{
+        text-transform: capitalize;
+        font-variant: small-caps;
+        color: var(--white);
+        font-weight: bolder;
+        padding-block: 10%;
+        margin: 0;
+        height: 0;
+        padding-block: 0;
+        transition: all 0.75s ease-in-out;
+    }
+    .DropdownModal-item:not(:last-child){
+        border-bottom: 1px solid var(--white);
+    }
+
+    .Main .bottom-bar {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: var(--light-green);
+        padding: 10px;
+        margin-bottom: 53m;
+        border-radius: 30px;
+        text-align: center;
+        position: fixed;
+        bottom: 4%;
+        left: 13%;
+        width: 70%;
+        height: 7vh;
+        transition: background-color 1s;
+    }
+
+    .Main .bottom-bar .bottom-bar-item{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 5vh;
+        height: 5vh;
+        border-radius: 50vh;
+        background-color: var(--dark);
+    }
+
+    .Main .bottom-bar .bottom-bar-item-icon{
+        color: var(--white);
+        width: 2.5vh;
+        height: 2.5vh;
+    }   
+}
+
+@media screen and (min-width: 650px) and  (max-width: 767px){
+    .Main{
+        display: flex;
+        position: relative;
+        justify-content: center; 
+        align-items: center;
+        overflow: hidden;
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        background-image: url(../Images/Light-1.jpeg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        transition: background-image 1s;
+    }
+
+    .Main .Main-container{
+        z-index: 1;
+        display: flex;
+        padding: 1vh;
+        margin-top: 5vh;
+        width: 90%;
+        height: 90vh;
+        border-radius: 30px;
+        overflow-y: hidden;
+        transition: background-color 1s;
+    }
+
+    .Main .Side-bar{
+        display: none;
+    }
+
+    .Main .Feed-container{
+        overflow-y: scroll;
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: auto;
+        border-radius: 30px;
+        transition: background-color 1s;
+        margin: 0;
+    }
+
+    .Main .Feed-container .List{
+        height: fit-content;
+        padding: 5vh;
+        padding-top: 1vh;
+        margin-bottom: 1em;
+        border-radius: 30px;
+        width: 100%;
+        transition: background-color 1s;
+    }
+
+    .Main .Feed-container .Post .Logo{
+        position: absolute;
+        display: inline;
+        left: -4%;
+        top: -7%;
+        width: 4.5vh;
+        height: 4.5vh;
+        background-color: var(--light-green);
+        border-radius: 50%;
+        transition: background-color 1s;
+    }
+
+    .Main .Feed-container .Post .Label{
+        margin: 0;
+        margin-inline-start: 2vh;
+        text-align: left;
+        font-variant: small-caps;
+        font-size: larger;
+        text-transform: capitalize;
+        font-size: 3vh;
+        transition: color 1s;
+    }
+
+    .DropdownModal{
+        display: block;
+        position: absolute;
+        top: 8%;
+        left: 6.5%;
+        width: 10em;
+        min-height: 5vh;
+    }
+    .DropdownModal-icon{
+        color: var(--dark);
+        height: 4.5vh;
+        fill: var(--white);
+    }
+    
+    .DropdownModal .List{
+        background-color: var(--dark-green);
+        display: grid;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+        padding: 1em;
+        width: 100%;
+        max-height: 55vh;
+        gap: 1vh;
+        overflow-y: scroll;
+    }
+    .DropdownModal .List::-webkit-scrollbar{
+        display: none;
+    }
+    .DropdownModal .List .List-item{
+        width: 100%; 
+        max-height: 10vh;
+        border-radius: 10px;
+        transition: background-color 1s;
+    }
+    .DropdownModal .List .List-item.light{
+        background-color: var(--white);
+    }
+    .DropdownModal .List .List-item.dark{
+        background-color: var(--dark-white);
+    }
+    
+    .DropdownModal-items{
+        visibility: hidden;
+        position: absolute;
+        left:auto;
+        background-color: var(--light-gray);
+        width: 100%;
+        border-radius: 10px;
+        text-align: left;
+        font-size: x-small;
+        height: 0;
+        opacity: 0;
+        transition: all 1s;
+    }
+    .DropdownModal-item{
+        text-transform: capitalize;
+        font-variant: small-caps;
+        color: var(--white);
+        font-weight: bolder;
+        padding-block: 10%;
+        margin: 0;
+        height: 0;
+        padding-block: 0;
+        transition: all 0.75s ease-in-out;
+    }
+    .DropdownModal-item:not(:last-child){
+        border-bottom: 1px solid var(--white);
+    }
+
+    .Main .bottom-bar {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: var(--light-green);
+        padding: 10px;
+        margin-bottom: 53m;
+        border-radius: 30px;
+        text-align: center;
+        position: fixed;
+        bottom: 4%;
+        left: 13%;
+        width: 70%;
+        height: 7vh;
+        transition: background-color 1s;
+    }
+
+    .Main .bottom-bar .bottom-bar-item{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 5vh;
+        height: 5vh;
+        border-radius: 50vh;
+        background-color: var(--dark);
+    }
+
+    .Main .bottom-bar .bottom-bar-item-icon{
+        color: var(--white);
+        width: 2.5vh;
+        height: 2.5vh;
+    }   
+}
+@media screen and (min-width: 450px) and  (max-width: 649px){
+    .Main{
+        display: flex;
+        position: relative;
+        justify-content: center; 
+        align-items: center;
+        overflow: hidden;
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        background-image: url(../Images/Light-1.jpeg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        transition: background-image 1s;
+    }
+
+    .Main .Main-container{
+        z-index: 1;
+        display: flex;
+        padding: 1vh;
+        margin-top: 5vh;
+        width: 90%;
+        height: 90vh;
+        border-radius: 30px;
+        overflow-y: hidden;
+        transition: background-color 1s;
+    }
+
+    .Main .Side-bar{
+        display: none;
+    }
+
+    .Main .Feed-container{
+        overflow-y: scroll;
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: auto;
+        border-radius: 30px;
+        transition: background-color 1s;
+        margin: 0;
+    }
+
+    .Main .Feed-container .List{
+        height: fit-content;
+        padding: 5vh;
+        padding-top: 1vh;
+        margin-bottom: 1em;
+        border-radius: 30px;
+        width: 100%;
+        transition: background-color 1s;
+    }
+
+    .Main .Feed-container .Post .Logo{
+        position: absolute;
+        display: inline;
+        left: -6%;
+        top: -7%;
+        width: 4.5vh;
+        height: 4.5vh;
+        background-color: var(--light-green);
+        border-radius: 50%;
+        transition: background-color 1s;
+    }
+
+    .Main .Feed-container .Post .Label{
+        margin: 0;
+        margin-inline-start: 2vh;
+        text-align: left;
+        font-variant: small-caps;
+        font-size: larger;
+        text-transform: capitalize;
+        font-size: 3vh;
+        transition: color 1s;
+    }
+
+    .DropdownModal{
+        display: block;
+        position: absolute;
+        top: 8%;
+        left: 6.5%;
+        width: 10em;
+        min-height: 5vh;
+    }
+    .DropdownModal-icon{
+        color: var(--dark);
+        height: 4.5vh;
+        fill: var(--white);
+    }
+    
+    .DropdownModal .List{
+        background-color: var(--dark-green);
+        display: grid;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+        padding: 1em;
+        width: 100%;
+        max-height: 55vh;
+        gap: 1vh;
+        overflow-y: scroll;
+    }
+    .DropdownModal .List::-webkit-scrollbar{
+        display: none;
+    }
+    .DropdownModal .List .List-item{
+        width: 100%; 
+        max-height: 10vh;
+        border-radius: 10px;
+        transition: background-color 1s;
+    }
+    .DropdownModal .List .List-item.light{
+        background-color: var(--white);
+    }
+    .DropdownModal .List .List-item.dark{
+        background-color: var(--dark-white);
+    }
+    
+    .DropdownModal-items{
+        visibility: hidden;
+        position: absolute;
+        left:auto;
+        background-color: var(--light-gray);
+        width: 100%;
+        border-radius: 10px;
+        text-align: left;
+        font-size: x-small;
+        height: 0;
+        opacity: 0;
+        transition: all 1s;
+    }
+    .DropdownModal-item{
+        text-transform: capitalize;
+        font-variant: small-caps;
+        color: var(--white);
+        font-weight: bolder;
+        padding-block: 10%;
+        margin: 0;
+        height: 0;
+        padding-block: 0;
+        transition: all 0.75s ease-in-out;
+    }
+    .DropdownModal-item:not(:last-child){
+        border-bottom: 1px solid var(--white);
+    }
+
+    .Main .bottom-bar {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: var(--light-green);
+        padding: 10px;
+        margin-bottom: 53m;
+        border-radius: 30px;
+        text-align: center;
+        position: fixed;
+        bottom: 4%;
+        left: 13%;
+        width: 70%;
+        height: 7vh;
+        transition: background-color 1s;
+    }
+
+    .Main .bottom-bar .bottom-bar-item{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 5vh;
+        height: 5vh;
+        border-radius: 50vh;
+        background-color: var(--dark);
+    }
+
+    .Main .bottom-bar .bottom-bar-item-icon{
+        color: var(--white);
+        width: 2.5vh;
+        height: 2.5vh;
+    }   
+}
+@media screen and (max-width: 450px) {
+    .Main{
+        display: flex;
+        position: relative;
+        justify-content: center; 
+        align-items: center;
+        overflow: hidden;
+        width: 100%;
+        min-height: 100%;
+        margin: 0;
+        padding: 0;
+        background-image: url(../Images/Light-1.jpeg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        transition: background-image 1s;
+    }
+
+    .Main .Main-container{
+        z-index: 1;
+        display: flex;
+        padding: 1vh;
+        margin-top: 5vh;
+        width: 90%;
+        height: 90vh;
+        border-radius: 30px;
+        overflow-y: hidden;
+        transition: background-color 1s;
+    }
+
+    .Main .Side-bar{
+        display: none;
+    }
+
+    .Main .Feed-container{
+        overflow-y: scroll;
+        position: relative;
+        display: flex;
+        width: 100%;
+        height: auto;
+        border-radius: 30px;
+        transition: background-color 1s;
+        margin: 0;
+    }
+
+    .Main .Feed-container .List{
+        height: fit-content;
+        padding: 5vh;
+        padding-top: 1vh;
+        margin-bottom: 1em;
+        border-radius: 30px;
+        width: 100%;
+        transition: background-color 1s;
+    }
+
+    .Main .Feed-container .Post .Logo{
+        position: absolute;
+        display: inline;
+        left: -10%;
+        top: -7%;
+        width: 4.5vh;
+        height: 4.5vh;
+        background-color: var(--light-green);
+        border-radius: 50%;
+        transition: background-color 1s;
+    }
+
+    .Main .Feed-container .Post .Label{
+        margin: 0;
+        margin-inline-start: 2vh;
+        text-align: left;
+        font-variant: small-caps;
+        font-size: larger;
+        text-transform: capitalize;
+        font-size: 3vh;
+        transition: color 1s;
+    }
+
+    .DropdownModal{
+        display: block;
+        position: absolute;
+        top: 8%;
+        left: 7%;
+        width: 10em;
+        min-height: 5vh;
+    }
+    .DropdownModal-icon{
+        color: var(--dark);
+        height: 4.5vh;
+        fill: var(--white);
+    }
+    
+    .DropdownModal .List{
+        background-color: var(--dark-green);
+        display: grid;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+        padding: 1em;
+        width: 100%;
+        max-height: 55vh;
+        gap: 1vh;
+        overflow-y: scroll;
+    }
+    .DropdownModal .List::-webkit-scrollbar{
+        display: none;
+    }
+    .DropdownModal .List .List-item{
+        width: 100%; 
+        max-height: 10vh;
+        border-radius: 10px;
+        transition: background-color 1s;
+    }
+    .DropdownModal .List .List-item.light{
+        background-color: var(--white);
+    }
+    .DropdownModal .List .List-item.dark{
+        background-color: var(--dark-white);
+    }
+    
+    .DropdownModal-items{
+        visibility: hidden;
+        position: absolute;
+        left:auto;
+        background-color: var(--light-gray);
+        width: 100%;
+        border-radius: 10px;
+        text-align: left;
+        font-size: x-small;
+        height: 0;
+        opacity: 0;
+        transition: all 1s;
+    }
+    .DropdownModal-item{
+        text-transform: capitalize;
+        font-variant: small-caps;
+        color: var(--white);
+        font-weight: bolder;
+        padding-block: 10%;
+        margin: 0;
+        height: 0;
+        padding-block: 0;
+        transition: all 0.75s ease-in-out;
+    }
+    .DropdownModal-item:not(:last-child){
+        border-bottom: 1px solid var(--white);
+    }
+
+    .Main .bottom-bar {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: var(--light-green);
+        padding: 10px;
+        margin-bottom: 53m;
+        border-radius: 30px;
+        text-align: center;
+        position: fixed;
+        bottom: 4%;
+        left: 13%;
+        width: 70%;
+        height: 7vh;
+        transition: background-color 1s;
+    }
+
+    .Main .bottom-bar .bottom-bar-item{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 5vh;
+        height: 5vh;
+        border-radius: 50vh;
+        background-color: var(--dark);
+    }
+
+    .Main .bottom-bar .bottom-bar-item-icon{
+        color: var(--white);
+        width: 2.5vh;
+        height: 2.5vh;
+    }   
 }
