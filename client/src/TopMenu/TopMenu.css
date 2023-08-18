@@ -18,7 +18,7 @@
 }
 .DisplayMode{
     position: absolute;
-    top: 50%;
+    top: 30%;
     right: 10%;
     width: 4%;
 }
@@ -78,7 +78,7 @@
 }
 .Dropdown{
     position: absolute;
-    top: 35%;
+    top: 15%;
     right: 0%;
     width: 7%;
     min-height: 5vh;
@@ -132,5 +132,15 @@
 @media screen and (max-width: 450px) {
     .DisplayMode{
         width: 10%;
+        position: absolute;
+        top: 30%;
+        right: 20%;
+    }
+    .Dropdown{
+        position: absolute;
+        top: 15%;
+        right: 10%;
+        width: 7%;
+        min-height: 5vh;
     }
 }
