@@ -1,7 +1,7 @@
 export const handleNotifications = ()=>{
     const dropdown = document.getElementById("Notification");
     const notificationList = document.getElementById("Notification-list");
-    const dropdownItems = document.querySelectorAll(".List-item");
+    const dropdownItems = document.querySelectorAll(".Side-bar .List-item");
     if(dropdown.style.visibility === "visible"){
         dropdown.style.visibility = "hidden"
         dropdown.style.height = 0;
