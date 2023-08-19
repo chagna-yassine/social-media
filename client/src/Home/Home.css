@@ -240,6 +240,69 @@
     color: var(--dark-white);
 }
 
+.Main .Feed-container .Post .CommentModal{
+    visibility: hidden;
+    background-color: var(--dark-blue);
+    position: absolute;
+    width: 20em;
+    height: 95%;
+    border-radius: 30px;
+    top: 15%;
+    left: 0;
+}
+
+.Main .Feed-container .Post .CommentModal .List{
+    display: grid;
+    width: 100%;
+    max-height: 30vh;
+    gap: 1vh;
+    overflow-y: scroll;
+}
+.Main .Feed-container .Post .CommentModal .List::-webkit-scrollbar{
+    display: none;
+}
+.Main .Feed-container .Post .CommentModal .List .List-item{
+    width: 100%; 
+    max-height: 10vh;
+    border-radius: 10px;
+    padding-left: 2vh;
+    margin-top: 0;
+    transition: background-color 1s;
+}
+.Main .Feed-container .Post .CommentModal .List .List-item.light{
+    background-color: var(--white);
+}
+.Main .Feed-container .Post .CommentModal .List .List-item.dark{
+    background-color: var(--dark-white);
+}
+
+.Main .Feed-container .Post .CommentModal-items{
+    /* visibility: hidden;
+    position: absolute; */
+    left:auto;
+    /* background-color: var(--light-gray); */
+    width: 100%;
+    border-radius: 0px;
+    text-align: left;
+    font-size: medium;
+    height: auto;
+    /* opacity: 0; */
+    transition: all 1s;
+}
+.Main .Feed-container .Post .CommentModal-item{
+    text-transform: capitalize;
+    font-variant: small-caps;
+    color: var(--white);
+    font-weight: bolder;
+    /* padding-left: 1en !important; */
+    margin: 0;
+    height: auto;
+    transition: all 0.75s ease-in-out;
+}
+.Main .Feed-container .Post .CommentModal-item:not(:last-child){
+    border-bottom: 1px solid var(--white);
+}
+
 .Interactions{
     display: flex !important;
     justify-content: space-around;

@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faComment, faHeart, faMessage, faPaperPlane, faSquarePlus, faUser  } from '@fortawesome/free-regular-svg-icons';
 import testImg from "../Images/Light-5.jpeg"
 import { faHouse, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { handleCommentModal } from './comment';
 
 const Home = () => {
 
@@ -44,13 +45,33 @@ const Home = () => {
                   </div>
                   <div className={`card Post-content ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                     <img src={testImg} className="card-img-top Post-content-media" alt="Post" />
+                    <div id="Comment-Modal-1" className="CommentModal">
+                      <div className="CommentModal-list">
+                          <div className="CommentModal-items"> 
+                            <ul className="list-group List">
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>random comment for this post</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>somthing about the post wich user like or not</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>nice ppicture</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>just passing by</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>random comment for this post</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>somthing about the post wich user like or not</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>nice ppicture</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>just passing by</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>random comment for this post</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>somthing about the post wich user like or not</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>nice ppicture</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>just passing by</li>
+                            </ul>
+                          </div>
+                      </div>
+                    </div>
                   </div>
                     <div className={`list-group-item Interactions ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                        <div className="Interactions-item">
                           <FontAwesomeIcon className="Interactions-item-icon" icon={faHeart}/>
                        </div>
                        <div className="Interactions-item">
-                          <FontAwesomeIcon className="Interactions-item-icon" icon={faComment}/>
+                          <FontAwesomeIcon className="Interactions-item-icon" icon={faComment} onClick={()=>{handleCommentModal("1")}}/>
                        </div>
                        <div className="Interactions-item">
                           <FontAwesomeIcon className="Interactions-item-icon" icon={faPaperPlane}/>
@@ -78,13 +99,33 @@ const Home = () => {
                   </div>
                   <div className={`card Post-content ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                     <img src={testImg} className="card-img-top Post-content-media" alt="Post" />
+                    <div id="Comment-Modal-2" className="CommentModal">
+                      <div className="CommentModal-list">
+                          <div className="CommentModal-items"> 
+                            <ul className="list-group List">
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>random comment for this post</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>somthing about the post wich user like or not</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>nice ppicture</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>just passing by</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>random comment for this post</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>somthing about the post wich user like or not</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>nice ppicture</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>just passing by</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>random comment for this post</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>somthing about the post wich user like or not</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>nice ppicture</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>just passing by</li>
+                            </ul>
+                          </div>
+                      </div>
+                    </div>
                   </div>
                     <div className={`list-group-item Interactions ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                        <div className="Interactions-item">
                           <FontAwesomeIcon className="Interactions-item-icon" icon={faHeart}/>
                        </div>
                        <div className="Interactions-item">
-                          <FontAwesomeIcon className="Interactions-item-icon" icon={faComment}/>
+                          <FontAwesomeIcon className="Interactions-item-icon" icon={faComment} onClick={()=>{handleCommentModal("2")}}/>
                        </div>
                        <div className="Interactions-item">
                           <FontAwesomeIcon className="Interactions-item-icon" icon={faPaperPlane}/>
@@ -112,13 +153,33 @@ const Home = () => {
                   </div>
                   <div className={`card Post-content ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                     <img src={testImg} className="card-img-top Post-content-media" alt="Post" />
+                    <div id="Comment-Modal-3" className="CommentModal">
+                      <div className="CommentModal-list">
+                          <div className="CommentModal-items"> 
+                            <ul className="list-group List">
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>random comment for this post</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>somthing about the post wich user like or not</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>nice ppicture</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>just passing by</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>random comment for this post</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>somthing about the post wich user like or not</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>nice ppicture</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>just passing by</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>random comment for this post</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>somthing about the post wich user like or not</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>nice ppicture</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>just passing by</li>
+                            </ul>
+                          </div>
+                      </div>
+                    </div>
                   </div>
                     <div className={`list-group-item Interactions ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                        <div className="Interactions-item">
                           <FontAwesomeIcon className="Interactions-item-icon" icon={faHeart}/>
                        </div>
                        <div className="Interactions-item">
-                          <FontAwesomeIcon className="Interactions-item-icon" icon={faComment}/>
+                          <FontAwesomeIcon className="Interactions-item-icon" icon={faComment} onClick={()=>{handleCommentModal("3")}}/>
                        </div>
                        <div className="Interactions-item">
                           <FontAwesomeIcon className="Interactions-item-icon" icon={faPaperPlane}/>
