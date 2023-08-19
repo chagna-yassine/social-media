@@ -18,7 +18,7 @@
 }
 .DisplayMode{
     position: absolute;
-    top: 30%;
+    top: 50%;
     right: 10%;
     width: 4%;
 }
@@ -78,7 +78,7 @@
 }
 .Dropdown{
     position: absolute;
-    top: 15%;
+    top: 35%;
     right: 0%;
     width: 7%;
     min-height: 5vh;
@@ -91,13 +91,18 @@
     visibility: hidden;
     position: absolute;
     left: -30%;
-    background-color: var(--light-gray);
     width: 100%;
     border-radius: 10px;
     text-align: center;
     height: 0;
     opacity: 0;
     transition: all 1s;
+}
+.Dropdown-items.light{
+    background-color: var(--light-gray);
+}
+.Dropdown-items.dark{
+    background-color: var(--dark-blue);
 }
 .Dropdown-item{
     text-transform: capitalize;
@@ -114,33 +119,38 @@
     border-bottom: 1px solid var(--white);
 }
 /* Responsive design */
-@media screen and (min-width: 900px) and  (max-width: 1150px){
+@media screen and (min-width: 950px) and  (max-width: 1150px){
     .DisplayMode{
         width: 5%;
     }
 }
-@media screen and (min-width: 650px) and  (max-width: 900px){
+@media screen and (min-width: 700px) and  (max-width: 950px){
     .DisplayMode{
         width: 5.5%;
-    }
-}
-@media screen and (min-width: 450px) and  (max-width: 650px){
-    .DisplayMode{
-        width: 7.5%;
-    }
-}
-@media screen and (max-width: 450px) {
-    .DisplayMode{
-        width: 10%;
-        position: absolute;
-        top: 30%;
-        right: 20%;
+        right: 13%;
     }
     .Dropdown{
-        position: absolute;
-        top: 15%;
-        right: 10%;
-        width: 7%;
-        min-height: 5vh;
+        right: 0%;
+        width: 9%;
+    }
+}
+@media screen and (min-width: 450px) and  (max-width: 700px){
+    .DisplayMode{
+        width: 7.5%;
+        right: 17%;
+    }
+    .Dropdown{
+        right: 0%;
+        width: 13%;
+    }
+}
+@media screen and (max-width: 500px) {
+    .DisplayMode{
+        width: 10%;
+        right: 21%;
+    }
+    .Dropdown{
+        right: 0%;
+        width: 17%;
     }
 }

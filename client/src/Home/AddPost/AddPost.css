@@ -1,0 +1,337 @@
+:root{
+    --dark-green: #233F3C;
+    --light-green: #9DC56B;
+    --dark-blue: #3D748E;
+    --dark-blue-2: #00327e;
+    --light-blue: #B2E6EE;
+    --white: #FFFFFF;
+    --dark-white: #ddddddee;
+    --dark: #000000;
+    --light-gray: #42464A;
+    --light-dark: #23272D;
+    --brown: #ac7548;
+    --dark-brown: #211826;
+    --green-blue: #3A6F7D;
+    --light-red: #da3b3b;
+}
+
+.Main .Feed-container .AddPost{
+    width: 100%;
+    max-height: fit-content;
+    padding: 2vh;
+    border-radius: 30px;
+}
+
+.Main .Feed-container .AddPost .AddPost-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-inline: 5%;
+    min-height: 10vh;
+    border-bottom: 1px solid var(--white);
+}
+
+.Main .Feed-container .AddPost .AddPost-header.ar{
+    flex-direction: row-reverse;
+}
+
+.Main .Feed-container .AddPost .AddPost-header .AddPost-header-label{
+    text-transform: capitalize;
+    font-variant: small-caps;
+    font-weight: bolder;
+    margin: 0;
+    transform: color 1s;
+}
+
+.Main .Feed-container .AddPost .AddPost-header .AddPost-header-label.light{
+    color: var(--white);
+}
+
+.Main .Feed-container .AddPost .AddPost-header .AddPost-header-label.dark{
+    color: var(--dark-white);
+}
+
+.Main .Feed-container .AddPost .AddPost-header .AddPost-header-send{
+    background-color: var(--light-green);
+    width: 10vh;
+    color: var(--white);
+    font-weight: bolder;
+    border: none;
+    border-radius: 5px;
+    padding-block: 1vh;
+    transform: All 1s;
+}
+
+.Main .Feed-container .AddPost .AddPost-header .AddPost-header-send.light{
+    background-color: var(--light-green);
+    color: var(--white);
+}
+
+.Main .Feed-container .AddPost .AddPost-header .AddPost-header-send.dark{
+    background-color: var(--dark-green);
+    color: var(--dark-white);
+}
+
+.Main .Feed-container .AddPost .Post-data{
+    width: 100%;
+    max-height: 55vh;
+}
+
+.Main .Feed-container .AddPost .Post-data .Post-data-text{
+    width: 100%;
+    max-height: 45vh;
+    margin-block: 2vh 3vh;
+}
+
+.Main .Feed-container .AddPost .Post-data .Post-data-text textarea{
+    resize: none;
+    border: 0;
+    border-radius: 30px;
+    width: 100%;
+    min-height: 45vh;
+    padding: 2vh;
+    font-size: 3.5vh;
+    background-color: var(--light-green);
+    font-weight: bolder;
+    color: var(--dark);
+    transition: all 1s;
+}
+
+.Main .Feed-container .AddPost .Post-data .Post-data-text.ar textarea{
+    text-align: right;
+}
+
+.Main .Feed-container .AddPost .Post-data .Post-data-text.light textarea{
+    background-color: var(--light-green);
+    color: var(--dark);
+
+}
+
+.Main .Feed-container .AddPost .Post-data .Post-data-text.dark textarea{
+    background-color: var(--dark-green);
+    color: var(--dark-white);
+
+}
+
+.Main .Feed-container .AddPost .Post-data .Post-data-text textarea::placeholder{
+    transform: color 1s;
+}
+
+.Main .Feed-container .AddPost .Post-data .Post-data-text.light textarea::placeholder{
+    color: var(--white);
+}
+
+.Main .Feed-container .AddPost .Post-data .Post-data-text.dark textarea::placeholder{
+    color: var(--dark-white);
+}
+
+.Main .Feed-container .AddPost .Post-data .Post-data-text textarea:focus{
+    border: 0;
+    outline: none;
+}
+
+.Main .Feed-container .AddPost .Post-data-features{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+    margin: auto;
+    height: 5vh;
+}
+
+.Main .Feed-container .AddPost .Post-data-features.ar{
+    flex-direction: row-reverse;
+}
+
+.Main .Feed-container .AddPost .Post-data-features .feature{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Main .Feed-container .AddPost .Post-data-features .feature.ar{
+    flex-direction: row-reverse;
+}
+
+.Main .Feed-container .AddPost .Post-data-features .feature .feature-icon-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 8vh;
+    height: 8vh;
+    border-radius: 50vh;
+}
+
+.Main .Feed-container .AddPost .Post-data-features .feature .feature-icon{
+    width: 4vh;
+    height: 4vh;
+}
+
+.Main .Feed-container .AddPost .Post-data-features .feature .feature-icon.media{
+    color: var(--light-green);
+}
+
+
+.Main .Feed-container .AddPost .Post-data-features .feature .feature-icon.tag{
+    color: var(--light-blue);
+}
+
+
+.Main .Feed-container .AddPost .Post-data-features .feature .feature-icon.location{
+    color: var(--light-red);
+}
+
+.Main .Feed-container .AddPost .Post-data-features .feature .feature-label{
+    margin: 0;
+    margin-inline: 2vh;
+    text-transform: capitalize;
+    font-weight: bolder;
+    color: var(--dark-brown);
+    transition: color 1s;
+}
+
+.Main .Feed-container .AddPost .Post-data-features .feature .feature-label.light{
+    color: var(--dark-brown);
+    transition: color 1s;
+}
+
+.Main .Feed-container .AddPost .Post-data-features .feature .feature-label.dark{
+    color: var(--dark-white);
+    transition: color 1s;
+}
+
+/* Responsive design */
+
+@media screen and (min-width: 900px) and  (max-width: 1150px){
+
+    .Main .Feed-container .AddPost .Post-data-features{
+        width: 92%;
+    }
+
+    .Main .Feed-container .AddPost .Post-data-features .feature .feature-label{
+        font-size: 1.7vh;
+        margin: 0;
+    }
+}
+@media screen and (min-width: 650px) and  (max-width: 900px){
+        
+    .Main .Feed-container .AddPost .AddPost-header .AddPost-header-label{
+        font-size: 3.5vh;
+    }
+
+    .Main .Feed-container .AddPost .Post-data .Post-data-text textarea{
+        font-size: 3vh;
+    }
+
+    .Main .Feed-container .AddPost .Post-data-features{
+        width: 92%;
+    }
+
+    .Main .Feed-container .AddPost .Post-data-features .feature .feature-icon-container{
+        width: 7vh;
+        height: 7vh;
+    }
+    
+    .Main .Feed-container .AddPost .Post-data-features .feature .feature-icon{
+        width: 3vh;
+        height: 3vh;
+    }
+
+    .Main .Feed-container .AddPost .Post-data-features .feature .feature-label{
+        font-size: 1.7vh;
+        margin: 0;
+    }
+}
+@media screen and (min-width: 465px) and  (max-width: 650px){
+
+    .Main .Feed-container{
+        height: 55vh;
+    }
+
+    .Main .bottom-bar{
+        bottom: 15vh;
+    }
+
+    .Main .Feed-container .AddPost .AddPost-header .AddPost-header-label{
+        font-size: 2.7vh;
+    }
+
+    .Main .Feed-container .AddPost .AddPost-header .AddPost-header-send{
+        font-size: 2vh;
+        width: 8vh;
+        padding-block: 0.5vh;
+    }
+
+    .Main .Feed-container .AddPost .Post-data .Post-data-text textarea{
+        font-size: 2vh;
+        min-height: 30vh;
+    }
+
+    .Main .Feed-container .AddPost .Post-data-features{
+        width: 100%;
+    }
+
+    .Main .Feed-container .AddPost .Post-data-features .feature .feature-icon-container{
+        width: 7vh;
+        height: 7vh;
+    }
+    
+    .Main .Feed-container .AddPost .Post-data-features .feature .feature-icon{
+        width: 3vh;
+        height: 3vh;
+    }
+
+    .Main .Feed-container .AddPost .Post-data-features .feature .feature-label{
+        font-size: 1.4vh;
+        margin: 0;
+    }
+}
+@media screen and (max-width: 465px) {
+
+    .Main .Main-container{
+        padding: 2vh;
+    }
+    
+    .Main .Feed-container{
+        height: 50vh;
+    }
+
+    .Main .bottom-bar{
+        bottom: 21vh;
+    }
+
+    .Main .Feed-container .AddPost .AddPost-header .AddPost-header-label{
+        font-size: 2.7vh;
+    }
+
+    .Main .Feed-container .AddPost .AddPost-header .AddPost-header-send{
+        font-size: 2vh;
+        width: 8vh;
+        padding-block: 0.5vh;
+    }
+
+    .Main .Feed-container .AddPost .Post-data .Post-data-text textarea{
+        font-size: 2vh;
+        min-height: 25vh;
+    }
+
+    .Main .Feed-container .AddPost .Post-data-features{
+        width: 100%;
+    }
+
+    .Main .Feed-container .AddPost .Post-data-features .feature .feature-icon-container{
+        width: 6vh;
+        height: 6vh;
+    }
+    
+    .Main .Feed-container .AddPost .Post-data-features .feature .feature-icon{
+        width: 2vh;
+        height: 2vh;
+    }
+
+    .Main .Feed-container .AddPost .Post-data-features .feature .feature-label{
+        font-size: 1.4vh;
+        margin: 0;
+    }
+}

@@ -1,0 +1,420 @@
+:root{
+    --dark-green: #233F3C;
+    --light-green: #9DC56B;
+    --dark-blue: #3D748E;
+    --dark-blue-2: #00327e;
+    --light-blue: #B2E6EE;
+    --white: #FFFFFF;
+    --dark-white: #ddddddee;
+    --dark: #000000;
+    --light-gray: #42464A;
+    --light-dark: #23272D;
+    --brown: #ac7548;
+    --dark-brown: #211826;
+    --green-blue: #3A6F7D;
+}
+.Main .Feed-container .Profile{
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: 20vh;
+    padding-block-end: 2vh;
+    border-bottom: 1px solid var(--white);
+}
+.Main .Feed-container .Profile .Profile-cover{
+    width: 100%;
+}
+.Main .Feed-container .Profile .Profile-cover img{
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
+    object-position: center;
+}
+.Main .Feed-container .Profile .Profile-pic{
+    position: absolute;
+    top: 42vh;
+    left: 5vh;
+    width: 15vh;
+    height: 15vh;
+    padding: 0.5vh;
+    border-radius: 30vh;
+    transition: background-color 1s;
+}
+.Main .Feed-container .Profile .Profile-pic.ar{
+    right: 5vh;
+    left: unset;
+}
+.Main .Feed-container .Profile .Profile-pic.light{
+    background-color: var(--light-gray);
+}
+.Main .Feed-container .Profile .Profile-pic.dark{
+    background-color: var(--light-dark);
+}
+.Main .Feed-container .Profile .Profile-pic img{
+    width: 100%;
+    height: 14vh;
+    border-radius: 30vh;
+    object-fit: cover;
+    object-position: center;
+}
+
+.Main .Feed-container .Profile .Profile-info{
+    margin-top: 5vh;
+    margin-inline-start: 23vh;
+    width: 100%;
+    min-height: 5vh;
+}
+
+.Main .Feed-container .Profile .Profile-info.ar{
+    margin-inline-start: 0;
+    text-align: end;
+}
+
+.Main .Feed-container .Profile .Profile-info.ar .Profile-name,
+.Main .Feed-container .Profile .Profile-info.ar .Profile-bio{
+    margin-right: 23vh;
+}
+
+.Main .Feed-container .Profile .Profile-info .Profile-name{
+    color: var(--white);
+    text-transform: capitalize;
+    font-variant: small-caps;
+}
+
+.Main .Feed-container .Profile .Profile-info .Profile-bio{
+    font-weight: bolder;
+    margin-inline-start: 1vh;
+    transition: color 1s;
+}
+
+.Main .Feed-container .Profile .Profile-info .Profile-bio.light{
+    color: var(--dark);
+}
+.Main .Feed-container .Profile .Profile-info .Profile-bio.dark{
+    color: var(--dark-white);
+}
+.Main .Feed-container .Profile .Profile-actions{
+    position: absolute;
+    right: 0;
+    top: 48vh;
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Main .Feed-container .Profile .Profile-actions.ar{
+    left: 0;
+    top: 52vh;
+    width: 35%;
+}
+
+.Main .Feed-container .Profile .Profile-actions.fr{
+    width: 35%;
+}
+
+.Main .Feed-container .Profile .Profile-actions button{
+    color: var(--white);
+    text-transform: capitalize;
+    font-weight: bolder;
+    border: 0;
+    border-radius: 5px;
+    width: 40%;
+    padding: 1vh;
+    transition: background-color 1s;
+}
+
+.Main .Feed-container .Profile .Profile-actions.ar button,
+.Main .Feed-container .Profile .Profile-actions.fr button{
+    font-size: 13px;
+    width: 45%;
+}
+
+.Main .Feed-container .Profile .Profile-actions button a{
+    color: var(--white);
+}
+
+.Main .Feed-container .Profile .Profile-actions .Add-post.light{
+    background-color: var(--dark-blue-2);
+}
+.Main .Feed-container .Profile .Profile-actions .Add-post.dark{
+    background-color: var(--dark-blue);
+}
+
+.Main .Feed-container .Profile .Profile-actions .Edit-Profile.light{
+    background-color: var(--light-gray);
+}
+.Main .Feed-container .Profile .Profile-actions .Edit-Profile.dark{
+    background-color: var(--light-dark);
+}
+.Main .Feed-container .Post-Label{
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: bolder;
+    color: var(--white);
+    margin-block: 2vh;
+}
+
+.Main .Feed-container .Profile-container .Post-List{
+    padding-top: 0;
+}
+
+/* Responsive design */
+
+@media screen and (min-width: 1020px) and  (max-width: 1250px){
+    
+    .Main .Feed-container .Profile .Profile-actions{
+        width: 40%;
+    }
+    .Main .Feed-container .Profile .Profile-actions.ar{
+        width: 50%;
+    }
+    .Main .Feed-container .Profile .Profile-actions.fr{
+        width: 50%;
+    }
+
+}
+@media screen and (min-width: 900px) and  (max-width: 1020px){
+
+    .Main .Feed-container .Profile .Profile-pic{
+        width: 14vh;
+        height: 14vh;
+        left: 3vh;
+    }
+
+    .Main .Feed-container .Profile .Profile-pic.ar{
+        right: 3vh;
+    }
+
+    .Main .Feed-container .Profile .Profile-pic img{
+        height: 13vh;
+    }
+
+    .Main .Feed-container .Profile .Profile-info{
+        margin-top: 6vh;
+        margin-inline-start: 20vh;
+    }
+
+    .Main .Feed-container .Profile .Profile-info.ar .Profile-name,
+    .Main .Feed-container .Profile .Profile-info.ar .Profile-bio{
+        margin-right: 20vh;
+    }
+    
+    .Main .Feed-container .Profile .Profile-info .Profile-name{
+        font-size: 3vh;
+    }
+    
+    .Main .Feed-container .Profile .Profile-info .Profile-bio{
+        font-size: 2vh;
+    }
+    
+    
+    .Main .Feed-container .Profile .Profile-actions{
+        width: 47%;
+    }
+    .Main .Feed-container .Profile .Profile-actions.ar{
+        width: 47%;
+    }
+    .Main .Feed-container .Profile .Profile-actions.fr{
+        width: 47%;
+    }
+    .Main .Feed-container .Profile .Profile-actions button{
+        font-size: 10.5px;
+    }
+
+}
+@media screen and (min-width: 650px) and  (max-width: 900px){
+    
+    .Main .Feed-container .Profile .Profile-pic{
+        width: 14vh;
+        height: 14vh;
+        left: 3vh;
+    }
+
+    .Main .Feed-container .Profile .Profile-pic.ar{
+        right: 3vh;
+    }
+
+    .Main .Feed-container .Profile .Profile-pic img{
+        height: 13vh;
+    }
+
+    .Main .Feed-container .Profile .Profile-info{
+        margin-top: 6vh;
+        margin-inline-start: 20vh;
+    }
+    
+    .Main .Feed-container .Profile .Profile-info .Profile-name{
+        font-size: 3vh;
+    }
+    
+    .Main .Feed-container .Profile .Profile-info .Profile-bio{
+        font-size: 2vh;
+    }
+
+    .Main .Feed-container .Profile .Profile-info.ar .Profile-name,
+    .Main .Feed-container .Profile .Profile-info.ar .Profile-bio{
+        margin-right: 20vh;
+    }
+    
+    
+    .Main .Feed-container .Profile .Profile-actions{
+        width: 48%;
+    }
+
+    .Main .Feed-container .Profile .Profile-actions.ar{
+        width: 48%;
+    }
+    .Main .Feed-container .Profile .Profile-actions button{
+        font-size: 10.5px;
+    }
+
+}
+@media screen and (min-width: 630px) and  (max-width: 650px){
+
+    .Main .Feed-container .Profile .Profile-cover img{
+        height: 30vh;
+    }
+
+    .Main .Feed-container .Profile .Profile-pic{
+        top: 22vh;
+    }
+    .Main .Feed-container .Profile .Profile-pic img{
+        height: 14vh;
+    }
+    
+    .Main .Feed-container .Profile .Profile-info{
+        margin-top: 8vh;
+        margin-inline-start: 3vh;
+    }
+
+    .Main .Feed-container .Profile .Profile-info.ar .Profile-name,
+    .Main .Feed-container .Profile .Profile-info.ar .Profile-bio{
+        margin-right: 3vh;
+    }
+    
+    .Main .Feed-container .Profile .Profile-info .Profile-name{
+        font-size: 3vh;
+    }
+    
+    .Main .Feed-container .Profile .Profile-info .Profile-bio{
+        font-size: 2vh;
+        margin-bottom: 0;
+    }
+    .Main .Feed-container .Profile .Profile-actions{
+        top: 40vh;
+        width: 50%;
+    }
+
+    .Main .Feed-container .Profile .Profile-actions.ar{
+        top: 42vh;
+        width: 50%;
+    }
+    .Main .Feed-container .Profile .Profile-actions.fr{
+        width: 50%;
+    }
+    .Main .Feed-container .Profile .Profile-actions button{
+        font-size: 10.5px;
+    }
+}
+@media screen and (min-width: 465px) and (max-width: 630px) {
+
+    .Main .Feed-container .Profile .Profile-cover img{
+        height: 30vh;
+    }
+
+    .Main .Feed-container .Profile .Profile-pic{
+        top: 22vh;
+    }
+    .Main .Feed-container .Profile .Profile-pic img{
+        height: 14vh;
+    }
+    
+    .Main .Feed-container .Profile .Profile-info{
+        margin-top: 8vh;
+        margin-inline-start: 3vh;
+    }
+
+    .Main .Feed-container .Profile .Profile-info.ar .Profile-name,
+    .Main .Feed-container .Profile .Profile-info.ar .Profile-bio{
+        margin-right: 3vh;
+    }
+    
+    .Main .Feed-container .Profile .Profile-info .Profile-name{
+        font-size: 3vh;
+    }
+    
+    .Main .Feed-container .Profile .Profile-info .Profile-bio{
+        font-size: 2vh;
+        margin-bottom: 0;
+    }
+    .Main .Feed-container .Profile .Profile-actions{
+        top: 41.4vh;
+        width: 60%;
+    }
+    .Main .Feed-container .Profile .Profile-actions button{
+        font-size: 1.7vh;
+    }
+    .Main .Feed-container .Profile .Profile-actions.ar{
+        top: 42vh;
+        width: 65%;
+    }
+    .Main .Feed-container .Profile .Profile-actions.fr{
+        width: 65%;
+    }
+    .Main .Feed-container .Profile .Profile-actions button{
+        font-size: 8.5px ;
+    }
+}
+@media screen and (max-width: 465px) {
+
+    .Main .Feed-container .Profile .Profile-cover img{
+        height: 30vh;
+    }
+
+    .Main .Feed-container .Profile .Profile-pic{
+        width: 12vh;
+        height: 12vh;
+        top: 24vh;
+    }
+    .Main .Feed-container .Profile .Profile-pic img{
+        height: 11vh;
+    }
+    
+    .Main .Feed-container .Profile .Profile-info{
+        margin-top: 6vh;
+        margin-inline-start: 3vh;
+    }
+
+    .Main .Feed-container .Profile .Profile-info.ar .Profile-name,
+    .Main .Feed-container .Profile .Profile-info.ar .Profile-bio{
+        margin-right: 3vh;
+    }
+
+    .Main .Feed-container .Profile .Profile-info .Profile-name{
+        font-size: 2.5vh;
+    }
+    
+    .Main .Feed-container .Profile .Profile-info .Profile-bio{
+        font-size: 1.7vh;
+        margin-bottom: 0;
+    }
+    .Main .Feed-container .Profile .Profile-actions{
+        top: 38vh;
+        width: 65%;
+    }
+    .Main .Feed-container .Profile .Profile-actions button{
+        font-size: 1.4vh;
+    }
+
+    .Main .Feed-container .Profile .Profile-actions.ar{
+        top: 39vh;
+        width: 65%;
+    }
+    .Main .Feed-container .Profile .Profile-actions.fr{
+        width: 65%;
+    }
+    .Main .Feed-container .Profile .Profile-actions.ar button{
+        font-size: 9.5px;
+    }
+}

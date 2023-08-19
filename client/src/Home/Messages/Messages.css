@@ -1,0 +1,589 @@
+:root{
+    --dark-green: #233F3C;
+    --light-green: #9DC56B;
+    --dark-blue: #3D748E;
+    --dark-blue-2: #00327e;
+    --light-blue: #B2E6EE;
+    --white: #FFFFFF;
+    --dark-white: #ddddddee;
+    --dark: #000000;
+    --light-gray: #42464A;
+    --light-dark: #23272D;
+    --brown: #ac7548;
+    --dark-brown: #211826;
+    --green-blue: #3A6F7D;
+}
+
+.Main .Feed-container .Messages{
+    width: 100%;
+    max-height: fit-content;
+    padding: 2vh;
+    border-radius: 30px;
+}
+
+.Main .Feed-container .Messages .Messages-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-inline: 5%;
+    min-height: 10vh;
+    border-bottom: 1px solid var(--white);
+}
+
+.Main .Feed-container .Messages .Messages-header.ar{
+    flex-direction: row-reverse;
+}
+
+.Main .Feed-container .Messages .Messages-header .Messages-header-label{
+    text-transform: capitalize;
+    font-variant: small-caps;
+    font-weight: bolder;
+    transition: color 1s;
+}
+
+
+.Main .Feed-container .Messages .Messages-header .Messages-header-label.light{
+    color: var(--white);
+}
+
+.Main .Feed-container .Messages .Messages-header .Messages-header-label.dark{
+    color: var(--dark-white);
+}
+
+.Main .Feed-container .Messages .Messages-container{
+    display: flex;
+}
+
+.Main .Feed-container .Messages .Messages-container.ar{
+    flex-direction: row-reverse;
+}
+
+.Main .Feed-container .Messages .Messages-container .Friends{
+    display: grid;
+    width: 30%;
+    max-height: 55vh;
+    gap: 1.5vh;
+    padding: 2vh;
+    overflow-y: scroll;
+}
+
+.Main .Feed-container .Messages .Messages-container .Friends::-webkit-scrollbar{
+    background-color: transparent;
+    width: 1vh;
+}
+
+.Main .Feed-container .Messages .Messages-container .Friends.light::-webkit-scrollbar-thumb{
+    background-color: var(--light-green);
+    border-radius: 10vh;
+}
+
+.Main .Feed-container .Messages .Messages-container .Friends.dark::-webkit-scrollbar-thumb{
+    background-color: var(--dark-green);
+    border-radius: 10vh;
+}
+
+.Main .Feed-container .Messages .Messages-container .Friends .Friends-item{
+    display: flex;
+    align-items: center;
+    min-height: 9vh;
+    border-radius: 10px;
+    transition: background-color 1s;
+}
+
+.Main .Feed-container .Messages .Messages-container .Friends .Friends-item{
+    flex-direction: row-reverse;
+}
+
+.Main .Feed-container .Messages .Messages-container .Friends .Friends-item.light{
+    background-color: var(--white);
+}
+
+.Main .Feed-container .Messages .Messages-container .Friends .Friends-item.dark{
+    background-color: var(--dark-white);
+}
+
+.Main .Feed-container .Messages .Messages-container .Friends-item-logo{
+    width: 5vh;
+    height: 5vh;
+    border-radius: 50vh;
+    margin-inline: 2vh;
+    transition: background-color 1s;
+}
+
+.Main .Feed-container .Messages .Messages-container .Friends-item-logo.light{
+    background-color: var(--light-green);
+}
+
+.Main .Feed-container .Messages .Messages-container .Friends-item-logo.dark{
+    background-color: var(--dark-green);
+}
+
+
+.Main .Feed-container .Messages .Messages-container .Friends-item-label{
+    margin: 0;
+}
+.Main .Feed-container .Messages .Messages-container .Messages-box{
+    width: 70%;
+    max-height: 55vh;
+    padding: 2vh;
+    padding-top: 0;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-inline: 5%;
+    min-height: 4vh;
+    padding-block: 1vh;
+    margin-block-end: 1vh;
+    border-bottom: 1px solid var(--white);
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header.ar{
+    flex-direction: row-reverse;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Messages-box-header-info{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 25%;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header.ar .Messages-box-header-info{
+    flex-direction: row-reverse;
+    justify-content: end;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Messages-box-header-info .Logo{
+    background-color: var(--dark);
+    width: 5vh;
+    height: 5vh;
+    border-radius: 50vh;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Messages-box-header-info .Label{
+    margin: 0;
+    margin-inline: 1vh;
+    font-size: 2.5vh;
+    font-weight: bolder;
+    transition: color 1s;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Messages-box-header-info .Label.light{
+    color: var(--white);
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Messages-box-header-info .Label.dark{
+    color: var(--dark-white);
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Info-icon{
+    width: 3vh;
+    height: 3vh;
+    transition: color 1s;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Info-icon.light{
+    color: var(--light-green);
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Info-icon.dark{
+    color: var(--dark-blue);
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Conversation{
+    width: 100%;
+    max-height: 43vh;
+    overflow-y: scroll;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Conversation::-webkit-scrollbar{
+    display: none;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Conversation .Incoming-messages,
+.Main .Feed-container .Messages .Messages-container .Messages-box .Conversation .Sent-messages{
+    display: flex;
+    width: 100%;
+    margin-bottom: 1vh;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Conversation .Sent-messages{
+    justify-content: end;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Conversation .Incoming-messages .Logo{
+    background-color: var(--dark);
+    width: 2vh;
+    height: 2vh;
+    border-radius: 20vh;
+    align-self: end;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Conversation .Incoming-messages .Message ,
+.Main .Feed-container .Messages .Messages-container .Messages-box .Conversation .Sent-messages .Message{
+    min-width: 5%;
+    border-radius: 20vh;
+    padding-inline: 3vh;
+    padding-block: 1vh;
+    margin: 10vh;
+    font-weight: bold;
+    margin: 0;
+    transition: all 1s;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Conversation .Incoming-messages.light .Message{
+    background-color: var(--light-gray);
+    color: var(--white);
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Conversation .Incoming-messages.dark .Message{
+    background-color: var(--light-dark);
+    color: var(--dark-white);
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Conversation .Sent-messages.light .Message{
+    background-color: var(--light-green);
+    color: var(--white);
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Conversation .Sent-messages.dark .Message{
+    background-color: var(--dark-blue);
+    color: var(--white);
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-form{
+    width: 100%;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-form .Input-container{
+    width: 100%;
+    position: relative;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-form .Input-container input{
+    width: 100%;
+    border-radius: 20vh;
+    border: 0;
+    padding-inline: 2vh;
+    padding-block: .5vh;
+    color: var(--dark);
+    font-weight: bolder;
+    transition: background-color 1s;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-form .Input-container.ar input{
+    text-align: right;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-form .Input-container.light input{
+    background-color: var(--white);
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-form .Input-container.dark input{
+    background-color: var(--dark-white);
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-form .Input-container input:focus{
+    border: 0;
+    outline: none;
+}
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-form .Input-container .Img-icon{
+    position: absolute;
+    right: 2vh;
+    top: 1vh;
+    transition: color 1s;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-form .Input-container.ar .Img-icon{
+    left: 2vh;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-form .Input-container .Img-icon.light{
+    color: var(--light-green);
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-form .Input-container .Img-icon.dark{
+    color: var(--dark-green);
+}
+
+/* Responsive design */
+
+@media screen and (min-width: 900px) and  (max-width: 1150px){
+    
+    .Main .Feed-container .Messages .Messages-header{
+        min-height: 9vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Friends{
+        gap: 1vh;
+        padding: 1.5vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Friends-item{
+        min-height: 7vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Friends-item-logo{
+        width: 4.5vh;
+        height: 4.5vh;
+    }
+
+    .Main .Feed-container .Messages .Messages-container .Friends-item-label{
+        font-size: 2vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Messages-box-header-info{
+        width: 42%;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Messages-box-header-info .Logo{
+        width: 4.5vh;
+        height: 4.5vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Messages-box-header-info .Label{
+        font-size: 2.4vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Info-icon{
+        width: 2.5vh;
+        height: 2.5vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Conversation .Incoming-messages .Message ,
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Conversation .Sent-messages .Message{
+        min-width: 5%;
+        padding-inline: 2vh;
+        padding-block: 0.5vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-form .Input-container input{
+        height: 4vh;
+    }
+
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-form .Input-container .Img-icon{
+        top: 0.7vh;
+    }
+}
+@media screen and (min-width: 650px) and  (max-width: 900px){
+     
+    .Main .Feed-container .Messages .Messages-header{
+        min-height: 9vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Friends{
+        gap: 1vh;
+        padding: 1.5vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Friends-item{
+        min-height: 7vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Friends-item-logo{
+        width: 4.5vh;
+        height: 4.5vh;
+    }
+
+    .Main .Feed-container .Messages .Messages-container .Friends-item-label{
+        font-size: 2vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Messages-box-header-info{
+        width: 42%;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Messages-box-header-info .Logo{
+        width: 4.5vh;
+        height: 4.5vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Messages-box-header-info .Label{
+        font-size: 2.4vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Info-icon{
+        width: 2.5vh;
+        height: 2.5vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Conversation .Incoming-messages .Message ,
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Conversation .Sent-messages .Message{
+        min-width: 5%;
+        padding-inline: 2vh;
+        padding-block: 0.5vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-form .Input-container input{
+        height: 4vh;
+    }
+
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-form .Input-container .Img-icon{
+        top: 0.7vh;
+    }
+}
+@media screen and (min-width: 630px) and  (max-width: 650px){
+
+    .Main .Feed-container .Messages .Messages-header{
+        min-height: 9vh;
+    }
+    .Main .Feed-container .Messages .Messages-container .Friends{
+        gap: 1vh;
+        padding: 1.5vh;
+        max-height: 42vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Friends-item{
+        min-height: 7vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Friends-item-logo{
+        width: 4.5vh;
+        height: 4.5vh;
+    }
+
+    .Main .Feed-container .Messages .Messages-container .Friends-item-label{
+        font-size: 2vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Messages-box-header-info{
+        width: 42%;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Messages-box-header-info .Logo{
+        width: 4.5vh;
+        height: 4.5vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Messages-box-header-info .Label{
+        font-size: 2.4vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Info-icon{
+        width: 2.5vh;
+        height: 2.5vh;
+    }
+
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Conversation{
+        max-height: 30vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Conversation .Incoming-messages .Message ,
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Conversation .Sent-messages .Message{
+        min-width: 5%;
+        padding-inline: 2vh;
+        padding-block: 0.5vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-form .Input-container input{
+        height: 4vh;
+    }
+
+    .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-form .Input-container .Img-icon{
+        top: 0.7vh;
+    }
+}
+@media screen and (min-width: 465px) and (max-width: 630px) {
+
+    .Main .Feed-container .Messages .Messages-header{
+        min-height: 9vh;
+    }
+    .Main .Feed-container .Messages .Messages-container .Friends{
+        gap: 1vh;
+        padding: 1.5vh;
+        max-height: 42vh;
+        width: 100%;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Friends-item{
+        min-height: 7vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Friends-item-logo{
+        width: 4.5vh;
+        height: 4.5vh;
+    }
+
+    .Main .Feed-container .Messages .Messages-container .Friends-item-label{
+        font-size: 2vh;
+    }
+
+    .Main .Feed-container .Messages .Messages-container .Messages-box{
+        display: none ;
+    }
+}
+@media screen and (max-width: 465px) {
+
+    .Main .Feed-container .Messages .Messages-header{
+        min-height: 9vh;
+    }
+    .Main .Feed-container .Messages .Messages-container .Friends{
+        gap: 1vh;
+        padding: 1.5vh;
+        max-height: 37vh;
+        width: 100%;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Friends-item{
+        min-height: 7vh;
+    }
+    
+    .Main .Feed-container .Messages .Messages-container .Friends-item-logo{
+        width: 4.5vh;
+        height: 4.5vh;
+    }
+
+    .Main .Feed-container .Messages .Messages-container .Friends-item-label{
+        font-size: 2vh;
+    }
+
+    .Main .Feed-container .Messages .Messages-container .Messages-box{
+        display: none ;
+    }
+    .Main .Side-bar{
+        position: absolute;
+        right: 1vh;
+        top: 6vh;
+        height: 25vh !important;
+        width: 40%;
+        visibility: hidden;
+        transition: all 1s;
+    }
+    .Main .Side-bar.light{
+        background-color: var(--light-blue);
+    }
+    .Main .Side-bar.dark{
+        background-color: var(--dark-green);
+    }
+    .Main .Side-bar-header{
+        display: none;
+    }
+    .Main .Side-bar .List{
+        visibility: hidden;
+        font-size: 1.4vh;
+        max-height: 20vh !important;
+        transition: all 1s;
+    }
+    .Main .Side-bar .List .List-item{
+        visibility: hidden;
+        margin-block-end: 1vh;
+        transition: all 1s;
+    }
+    .Main .Side-bar-header-icon-container{
+        display: flex;
+        position: absolute;
+        top: 3vh;
+        right: 1vh;
+        width: 3.2vh;
+        height: 3.2vh;
+    }
+    .Main .Side-bar-header-icon{
+        width: 2vh;
+        height: 2vh;
+    }
+}

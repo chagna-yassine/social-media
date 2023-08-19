@@ -22,5 +22,33 @@
         "form-label-pwd-2":"confirmer le mot de passe",
         "submit":"s'inscrire",
         "link":"Vous avez déjà un compte ?"
+    },
+    "home":{
+        "main":{
+            "label":"Principal",
+            "notif":"notification",
+            "cmnt":"commentez votre publication",
+            "like":"aime ta publication",
+            "share":"partagez votre publication",
+            "msg":"Vous avez un message de"
+        },
+        "search":"Chercher",
+        "addPost":{
+            "label":"Ajouter publication",
+            "create":"créer publication",
+            "postText":"taguer des amis?",
+            "media":"image/video",
+            "tag":"tag friends",
+            "location":"ajouter un emplacement",
+            "post":"publication"
+        },
+        "msgs":"Messages",
+        "profile":{
+            "label":"Profil",
+            "add":"ajouter publication",
+            "edit":"modifier le profil",
+            "posts":"publications"
+        }
+        
     }
 }

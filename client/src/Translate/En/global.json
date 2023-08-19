@@ -22,5 +22,33 @@
         "form-label-pwd-2":"confirm password",
         "submit":"signup",
         "link":"Aready have an account?"
+    },
+    "home":{
+        "main":{
+            "label":"Main Field",
+            "notif":"Notification",
+            "cmnt":"comment on your post",
+            "like":"like your post",
+            "share":"share your post",
+            "msg":"You have a message from"
+        },
+        "search":"Search",
+        "addPost":{
+            "label":"Add Post",
+            "create":"create post",
+            "postText":"What's on your mind?",
+            "media":"image/video",
+            "tag":"tag friends",
+            "location":"add location",
+            "post":"post"
+        },
+        "msgs":"Messages",
+        "profile":{
+            "label":"Profile",
+            "add":"add post",
+            "edit":"edit profile",
+            "posts":"posts"
+        }
+        
     }
 }

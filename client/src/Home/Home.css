@@ -20,7 +20,7 @@
     align-items: center;
     overflow: hidden;
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     margin: 0;
     padding: 0;
     background-image: url(../Images/Light-1.jpeg);
@@ -31,13 +31,12 @@
 }
 
 .Main .Main-container{
+    position: relative;
     z-index: 1;
     display: flex;
     padding: 5vh;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
     width: 90%;
-    height: 90vh;
+    max-height: 80vh;
     border-radius: 30px;
     overflow-y: hidden;
     transition: background-color 1s;
@@ -57,6 +56,7 @@
     width: 100% !important;
     height: 100vh !important;
     object-fit: cover !important;
+    overflow: hidden !important;
 }
 #Main-img.loaded{
     opacity: 1 !important;
@@ -75,7 +75,7 @@
     position: relative;
     display: flex;
     width: 80%;
-    height: 95%;
+    height: 70vh;
     margin-right: 2em; 
     border-radius: 30px;
     transition: background-color 1s;
@@ -102,250 +102,13 @@
     background-color: var(--dark-green);
 }
 
-.Main .Feed-container .List{
-    height: fit-content;
-    padding: 5vh;
-    margin-bottom: 1em;
-    border-radius: 30px;
-    width: 100%;
-    transition: background-color 1s;
-}
-.Main .Feed-container .List.light{
-    background-color: var(--green-blue);
-}
-.Main .Feed-container .List.dark{
-    background-color: var(--light-gray);
-}
-.Main .Feed-container .List-item{
-    width: 100%;
-    max-height: 55vh;
-    margin-block: 2vh;
-    border-radius: 30px;
-    padding: 0;
-    border: 0 !important;
-}
-.Main .Feed-container .Post{
-    position: relative;
-    width: 100%;
-    height: 55vh;
-    padding: 1em;
-    border-radius: 30px;
-    border: 0 !important;
-    transition: background-color 1s;
-}
-.Main .Feed-container .Post .Post-header{
-    max-height: 10vh;
-}
-.Main .Feed-container .Post.light{
-    background-color: var(--dark-green);
-}
-.Main .Feed-container .Post.dark{
-    background-color: var(--dark-brown); 
-}
-
-.Main .Feed-container .Post .Post-info{
-    background-color: transparent;
-    display: flex;
-    max-height: 5vh;
-}
-.Main .Feed-container .Post .Post-profile{
-    display: flex;
-}
-.Main .Feed-container .Post .Logo-container{
-    width: 6vh !important;
-}
-.Main .Feed-container .Post .Logo{
-    width: 6vh;
-    height: 6vh;
-    background-color: var(--light-green);
-    border-radius: 50%;
-    transition: background-color 1s;
-}
-.Main .Feed-container .Post .Logo.light{
-    background-color: var(--light-green);
-}
-.Main .Feed-container .Post .Logo.dark{
-    background-color: var(--dark-green);
-}
-.Main .Feed-container .Post .Label{
-    margin: 0;
-    margin-inline-start: 2vh;
-    text-align: left;
-    font-variant: small-caps;
-    text-transform: capitalize;
-    font-size: 3vh;
-    transition: color 1s;
-}
-
-.Main .Feed-container .Post .Label.light{
-    color: var(--white);
-}
-.Main .Feed-container .Post .Label.dark{
-    color: var(--dark-white);
-}
-
-.Main .Feed-container .Post .Caption{
-    margin-bottom: 1em;
-    margin-inline-start: 2vh;
-    text-align: left;
-    font-variant: small-caps;
-    text-transform: capitalize;
-    font-size: 3vh;
-    transition: color 1s;
-}
-
-.Main .Feed-container .Post .Caption.light{
-    color: var(--white);
-}
-.Main .Feed-container .Post .Caption.dark{
-    color: var(--dark-white);
-}
-
-.Main .Feed-container .Post .Post-content{
-    width: 100%;
-    min-height: 39vh;
-    border-radius: 30px;
-    border: 0 ;
-    transition: background-color 1s;
-}
-
-.Main .Feed-container .Post .Post-content.light{
-    background-color: transparent;
-    height: 40vh;
-}
-.Main .Feed-container .Post .Post-content.dark{
-    background-color: transparent;
-    height: 40vh;
-}
-
-.Main .Feed-container .Post .Post-content .Post-content-media{
-    margin-top: 2em;
-    width: 100%;
-    height: 40vh;
-    border-radius: 30px;
-    object-fit: cover;
-    object-position: center;
-}
-
-.Main .Feed-container .Post .Post-content .Label{
-    font-variant: small-caps;
-    font-size: 3vh;
-    transition: color 1s;
-}
-
-.Main .Feed-container .Post .Post-content .Label.light{
-    color: var(--white);
-}
-.Main .Feed-container .Post .Post-content .Label.dark{
-    color: var(--dark-white);
-}
-
-.Main .Feed-container .Post .CommentModal{
-    visibility: hidden;
-    background-color: var(--dark-blue);
-    position: absolute;
-    width: 20em;
-    height: 80%;
-    border-radius: 30px;
-    top: 15%;
-    left: 0;
-}
-
-.Main .Feed-container .Post .CommentModal .List{
-    display: grid;
-    width: 100%;
-    max-height: 30vh;
-    gap: 1vh;
-    overflow-y: scroll;
-}
-.Main .Feed-container .Post .CommentModal .List::-webkit-scrollbar{
-    display: none;
-}
-.Main .Feed-container .Post .CommentModal .List .List-item{
-    width: 100%; 
-    max-height: 10vh;
-    border-radius: 10px;
-    padding-left: 2vh;
-    margin-top: 0;
-    transition: background-color 1s;
-}
-.Main .Feed-container .Post .CommentModal .List .List-item.light{
-    background-color: var(--white);
-}
-.Main .Feed-container .Post .CommentModal .List .List-item.dark{
-    background-color: var(--dark-white);
-}
-
-.Main .Feed-container .Post .CommentModal-items{
-    /* visibility: hidden;
-    position: absolute; */
-    left:auto;
-    /* background-color: var(--light-gray); */
-    width: 100%;
-    border-radius: 0px;
-    text-align: left;
-    font-size: medium;
-    height: auto;
-    /* opacity: 0; */
-    transition: all 1s;
-}
-.Main .Feed-container .Post .CommentModal-item{
-    text-transform: capitalize;
-    font-variant: small-caps;
-    color: var(--white);
-    font-weight: bolder;
-    /* padding-left: 1en !important; */
-    margin: 0;
-    height: auto;
-    transition: all 0.75s ease-in-out;
-}
-.Main .Feed-container .Post .CommentModal-item:not(:last-child){
-    border-bottom: 1px solid var(--white);
-}
-
-.Interactions{
-    display: flex !important;
-    justify-content: space-around;
-    position: absolute;
-    top: 0vh;
-    border-radius: 50vh !important;
-    width: 10em;
-    padding: 0 !important;
-    padding-block: 0.5% !important;
-    border: 0 !important;
-    margin-block-start: 1vh;
-    transition: background-color 1s;
-}
-
-.Interactions.light{
-    background-color: var(--light-blue);
-}
-.Interactions.dark{
-    background-color: var(--dark-white);
-}
-
-.Interactions-item{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--dark);
-    width: 4vh;
-    height: 4vh;
-    border-radius: 5vh;
-}
-
-.Interactions-item-icon{
-    color: var(--white);
-    width: 90%;
-}
-
 .Main .Side-bar{
+    visibility: visible;
     background-color: var(--dark-blue);  
     position: relative;
     width: 20%; 
-    height: 100%;
     border-radius: 30px;
-    padding: 1vh;
+    padding: 2vh;
     transition: background-color 1s;
 }
 
@@ -370,6 +133,7 @@
     font-variant: small-caps;
 }
 
+.Main .Side-bar-header .Side-bar-header-icon-container , 
 .Main .Side-bar-header-icon-container{
     display: flex;
     justify-content: center;
@@ -380,11 +144,16 @@
     background-color: var(--dark);
 }
 
+.Main .Side-bar-header-icon-container{
+    display: none;
+}
+
 .Main .Side-bar-header-icon{
     color: var(--white);
 }
 
 .Main .Side-bar .List{
+    visibility: visible;
     display: grid;
     width: 100%;
     max-height: 55vh;
@@ -395,10 +164,15 @@
     display: none;
 }
 .Main .Side-bar .List .List-item{
-    width: 100%; 
+    visibility: visible;
+    max-width: 100%; 
     max-height: 10vh;
     border-radius: 10px;
     transition: background-color 1s;
+}
+.Main .Side-bar .List .List-item.ar{
+    direction: rtl;
+    text-align: right;
 }
 .Main .Side-bar .List .List-item.light{
     background-color: var(--white);
@@ -443,909 +217,173 @@
     height: 3.5vh;
 }
 
-.DropdownModal{
-    display: none;
-}
-
 /* Responsive design */
 @media screen and (min-width: 900px) and  (max-width: 1150px){
-    .Main{
-        display: flex;
-        position: relative;
-        justify-content: center; 
-        align-items: center;
-        overflow: hidden;
-        width: 100%;
-        min-height: 100%;
-        margin: 0;
-        padding: 0;
-        background-image: url(../Images/Light-1.jpeg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        transition: background-image 1s;
-    }
-
-    .Main .Main-container{
-        z-index: 1;
-        display: flex;
-        padding: 1vh;
-        margin-top: 5vh;
-        width: 90%;
-        height: 90vh;
-        border-radius: 30px;
-        overflow-y: hidden;
-        transition: background-color 1s;
-    }
-
-    .Main .Side-bar{
-        display: none;
-    }
-
     .Main .Feed-container{
-        overflow-y: scroll;
-        position: relative;
-        display: flex;
-        width: 100%;
-        height: auto;
-        border-radius: 30px;
-        transition: background-color 1s;
-        margin: 0;
+        width: 75%;
+        height: 70vh;
     }
-
-    .Main .Feed-container .List{
-        height: fit-content;
-        padding: 5vh;
-        padding-top: 1vh;
-        margin-bottom: 1em;
-        border-radius: 30px;
-        width: 100%;
-        transition: background-color 1s;
+    .Main .Side-bar{
+        width: 25%; 
     }
-
-    .Main .Feed-container .Post .Logo{
-        position: absolute;
-        display: inline;
-        left: 1%;
-        top: -6%;
-        width: 4.5vh;
-        height: 4.5vh;
-        background-color: var(--light-green);
-        border-radius: 50%;
-        transition: background-color 1s;
-    }
-
-    .Main .Feed-container .Post .Label{
-        margin: 0;
-        margin-inline-start: 2vh;
-        text-align: left;
-        font-variant: small-caps;
-        font-size: larger;
-        text-transform: capitalize;
-        font-size: 3vh;
-        transition: color 1s;
-    }
-
-    .DropdownModal{
-        display: block;
-        position: absolute;
-        top: 8%;
-        left: 6.5%;
-        width: 10em;
-        min-height: 5vh;
-    }
-    .DropdownModal-icon{
-        color: var(--dark);
-        height: 4.5vh;
-        fill: var(--white);
+    .Main .Side-bar .List{
+        font-size: 1.7vh;
     }
     
-    .DropdownModal .List{
-        background-color: var(--dark-green);
-        display: grid;
-        border-bottom-left-radius: 30px;
-        border-bottom-right-radius: 30px;
-        padding: 1em;
-        width: 100%;
-        max-height: 55vh;
-        gap: 1vh;
-        overflow-y: scroll;
-    }
-    .DropdownModal .List::-webkit-scrollbar{
-        display: none;
-    }
-    .DropdownModal .List .List-item{
-        width: 100%; 
-        max-height: 10vh;
-        border-radius: 10px;
-        transition: background-color 1s;
-    }
-    .DropdownModal .List .List-item.light{
-        background-color: var(--white);
-    }
-    .DropdownModal .List .List-item.dark{
-        background-color: var(--dark-white);
-    }
-    
-    .DropdownModal-items{
-        visibility: hidden;
-        position: absolute;
-        left:auto;
-        background-color: var(--light-gray);
-        width: 100%;
-        border-radius: 10px;
-        text-align: left;
-        font-size: x-small;
-        height: 0;
-        opacity: 0;
-        transition: all 1s;
-    }
-    .DropdownModal-item{
-        text-transform: capitalize;
-        font-variant: small-caps;
-        color: var(--white);
-        font-weight: bolder;
-        padding-block: 10%;
-        margin: 0;
-        height: 0;
-        padding-block: 0;
-        transition: all 0.75s ease-in-out;
-    }
-    .DropdownModal-item:not(:last-child){
-        border-bottom: 1px solid var(--white);
+    .Main .Side-bar-header-icon-container{
+        width: 3.2vh;
+        height: 3.2vh;
+        margin-inline-start: 0.5vh;
     }
 
+    .Main .Side-bar-header-icon{
+        width: 2vh;
+        height: 2vh;
+    }
     .Main .bottom-bar {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        background-color: var(--light-green);
-        padding: 10px;
-        margin-bottom: 53m;
-        border-radius: 30px;
-        text-align: center;
-        position: fixed;
-        bottom: 4%;
-        left: 13%;
-        width: 70%;
-        height: 7vh;
-        transition: background-color 1s;
+        bottom: 6%;
+        height: 6vh;
     }
-
     .Main .bottom-bar .bottom-bar-item{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 5vh;
-        height: 5vh;
-        border-radius: 50vh;
-        background-color: var(--dark);
+        width: 6vh;
+        height: 6vh;
     }
-
     .Main .bottom-bar .bottom-bar-item-icon{
-        color: var(--white);
-        width: 2.5vh;
-        height: 2.5vh;
-    }   
+        width: 3vh;
+        height: 3vh;
+    }
 }
-@media screen and (min-width: 768px) and  (max-width: 899px){
-    .Main{
-        display: flex;
-        position: relative;
-        justify-content: center; 
-        align-items: center;
-        overflow: hidden;
-        width: 100%;
-        min-height: 100%;
-        margin: 0;
-        padding: 0;
-        background-image: url(../Images/Light-1.jpeg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        transition: background-image 1s;
-    }
-
-    .Main .Main-container{
-        z-index: 1;
-        display: flex;
-        padding: 1vh;
-        margin-top: 5vh;
-        width: 90%;
-        height: 90vh;
-        border-radius: 30px;
-        overflow-y: hidden;
-        transition: background-color 1s;
-    }
-
-    .Main .Side-bar{
-        display: none;
-    }
-
+@media screen and (min-width: 650px) and  (max-width: 900px){
     .Main .Feed-container{
-        overflow-y: scroll;
-        position: relative;
-        display: flex;
         width: 100%;
-        height: auto;
-        border-radius: 30px;
-        transition: background-color 1s;
-        margin: 0;
+        margin: 0 ;
     }
-
-    .Main .Feed-container .List{
-        height: fit-content;
-        padding: 5vh;
-        padding-top: 1vh;
-        margin-bottom: 1em;
-        border-radius: 30px;
-        width: 100%;
-        transition: background-color 1s;
-    }
-
-    .Main .Feed-container .Post .Logo{
+    .Main .Side-bar{
         position: absolute;
-        display: inline;
-        left: 1%;
-        top: -5%;
-        width: 4.5vh;
-        height: 4.5vh;
-        background-color: var(--light-green);
-        border-radius: 50%;
-        transition: background-color 1s;
-    }
-
-    .Main .Feed-container .Post .Label{
-        margin: 0;
-        margin-inline-start: 2vh;
-        text-align: left;
-        font-variant: small-caps;
-        font-size: larger;
-        text-transform: capitalize;
-        font-size: 3vh;
-        transition: color 1s;
-    }
-
-    .DropdownModal{
-        display: block;
-        position: absolute;
-        top: 8%;
-        left: 6.5%;
-        width: 10em;
-        min-height: 5vh;
-    }
-    .DropdownModal-icon{
-        color: var(--dark);
-        height: 4.5vh;
-        fill: var(--white);
-    }
-    
-    .DropdownModal .List{
-        background-color: var(--dark-green);
-        display: grid;
-        border-bottom-left-radius: 30px;
-        border-bottom-right-radius: 30px;
-        padding: 1em;
-        width: 100%;
-        max-height: 55vh;
-        gap: 1vh;
-        overflow-y: scroll;
-    }
-    .DropdownModal .List::-webkit-scrollbar{
-        display: none;
-    }
-    .DropdownModal .List .List-item{
-        width: 100%; 
-        max-height: 10vh;
-        border-radius: 10px;
-        transition: background-color 1s;
-    }
-    .DropdownModal .List .List-item.light{
-        background-color: var(--white);
-    }
-    .DropdownModal .List .List-item.dark{
-        background-color: var(--dark-white);
-    }
-    
-    .DropdownModal-items{
+        right: 1vh;
+        height: 70vh;
+        width: 25%;
         visibility: hidden;
-        position: absolute;
-        left:auto;
-        background-color: var(--light-gray);
-        width: 100%;
-        border-radius: 10px;
-        text-align: left;
-        font-size: x-small;
-        height: 0;
-        opacity: 0;
         transition: all 1s;
     }
-    .DropdownModal-item{
-        text-transform: capitalize;
-        font-variant: small-caps;
-        color: var(--white);
-        font-weight: bolder;
-        padding-block: 10%;
-        margin: 0;
-        height: 0;
-        padding-block: 0;
-        transition: all 0.75s ease-in-out;
+    .Main .Side-bar.light{
+        background-color: var(--light-blue);
     }
-    .DropdownModal-item:not(:last-child){
-        border-bottom: 1px solid var(--white);
+    .Main .Side-bar.dark{
+        background-color: var(--dark-green);
     }
-
+    .Main .Side-bar-header{
+        display: none;
+    }
+    .Main .Side-bar .List{
+        visibility: hidden;
+        font-size: 1.7vh;
+        max-height: 65vh;
+        transition: all 1s;
+    }
+    .Main .Side-bar .List .List-item{
+        visibility: hidden;
+        margin-block-end: 1vh;
+        transition: all 1s;
+    }
+    .Main .Side-bar-header-icon-container{
+        display: flex;
+        position: absolute;
+        top: 3vh;
+        right: 1vh;
+        width: 3.2vh;
+        height: 3.2vh;
+    }
+    .Main .Side-bar-header-icon{
+        width: 2vh;
+        height: 2vh;
+    }
     .Main .bottom-bar {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        background-color: var(--light-green);
-        padding: 10px;
-        margin-bottom: 53m;
-        border-radius: 30px;
-        text-align: center;
-        position: fixed;
-        bottom: 4%;
-        left: 13%;
-        width: 70%;
-        height: 7vh;
-        transition: background-color 1s;
+        bottom: 6%;
+        height: 6vh;
     }
-
     .Main .bottom-bar .bottom-bar-item{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 5vh;
-        height: 5vh;
-        border-radius: 50vh;
-        background-color: var(--dark);
+        width: 6vh;
+        height: 6vh;
     }
-
     .Main .bottom-bar .bottom-bar-item-icon{
-        color: var(--white);
-        width: 2.5vh;
-        height: 2.5vh;
-    }   
+        width: 3vh;
+        height: 3vh;
+    }
 }
-
-@media screen and (min-width: 650px) and  (max-width: 767px){
-    .Main{
-        display: flex;
-        position: relative;
-        justify-content: center; 
-        align-items: center;
-        overflow: hidden;
-        width: 100%;
-        min-height: 100%;
-        margin: 0;
-        padding: 0;
-        background-image: url(../Images/Light-1.jpeg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        transition: background-image 1s;
-    }
-
-    .Main .Main-container{
-        z-index: 1;
-        display: flex;
-        padding: 1vh;
-        margin-top: 5vh;
-        width: 90%;
-        height: 90vh;
-        border-radius: 30px;
-        overflow-y: hidden;
-        transition: background-color 1s;
-    }
-
-    .Main .Side-bar{
-        display: none;
-    }
-
+@media screen and (min-width: 450px) and  (max-width: 650px){
     .Main .Feed-container{
-        overflow-y: scroll;
-        position: relative;
-        display: flex;
         width: 100%;
-        height: auto;
-        border-radius: 30px;
-        transition: background-color 1s;
-        margin: 0;
+        margin: 0 ;
     }
-
-    .Main .Feed-container .List{
-        height: fit-content;
-        padding: 5vh;
-        padding-top: 1vh;
-        margin-bottom: 1em;
-        border-radius: 30px;
-        width: 100%;
-        transition: background-color 1s;
-    }
-
-    .Main .Feed-container .Post .Logo{
+    .Main .Side-bar{
         position: absolute;
-        display: inline;
-        left: -4%;
-        top: -7%;
-        width: 4.5vh;
-        height: 4.5vh;
-        background-color: var(--light-green);
-        border-radius: 50%;
-        transition: background-color 1s;
-    }
-
-    .Main .Feed-container .Post .Label{
-        margin: 0;
-        margin-inline-start: 2vh;
-        text-align: left;
-        font-variant: small-caps;
-        font-size: larger;
-        text-transform: capitalize;
-        font-size: 3vh;
-        transition: color 1s;
-    }
-
-    .DropdownModal{
-        display: block;
-        position: absolute;
-        top: 8%;
-        left: 6.5%;
-        width: 10em;
-        min-height: 5vh;
-    }
-    .DropdownModal-icon{
-        color: var(--dark);
-        height: 4.5vh;
-        fill: var(--white);
-    }
-    
-    .DropdownModal .List{
-        background-color: var(--dark-green);
-        display: grid;
-        border-bottom-left-radius: 30px;
-        border-bottom-right-radius: 30px;
-        padding: 1em;
-        width: 100%;
-        max-height: 55vh;
-        gap: 1vh;
-        overflow-y: scroll;
-    }
-    .DropdownModal .List::-webkit-scrollbar{
-        display: none;
-    }
-    .DropdownModal .List .List-item{
-        width: 100%; 
-        max-height: 10vh;
-        border-radius: 10px;
-        transition: background-color 1s;
-    }
-    .DropdownModal .List .List-item.light{
-        background-color: var(--white);
-    }
-    .DropdownModal .List .List-item.dark{
-        background-color: var(--dark-white);
-    }
-    
-    .DropdownModal-items{
+        right: 1vh;
+        height: 40vh !important;
+        width: 35%;
         visibility: hidden;
-        position: absolute;
-        left:auto;
-        background-color: var(--light-gray);
-        width: 100%;
-        border-radius: 10px;
-        text-align: left;
-        font-size: x-small;
-        height: 0;
-        opacity: 0;
         transition: all 1s;
     }
-    .DropdownModal-item{
-        text-transform: capitalize;
-        font-variant: small-caps;
-        color: var(--white);
-        font-weight: bolder;
-        padding-block: 10%;
-        margin: 0;
-        height: 0;
-        padding-block: 0;
-        transition: all 0.75s ease-in-out;
+    .Main .Side-bar.light{
+        background-color: var(--light-blue);
     }
-    .DropdownModal-item:not(:last-child){
-        border-bottom: 1px solid var(--white);
-    }
-
-    .Main .bottom-bar {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        background-color: var(--light-green);
-        padding: 10px;
-        margin-bottom: 53m;
-        border-radius: 30px;
-        text-align: center;
-        position: fixed;
-        bottom: 4%;
-        left: 13%;
-        width: 70%;
-        height: 7vh;
-        transition: background-color 1s;
-    }
-
-    .Main .bottom-bar .bottom-bar-item{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 5vh;
-        height: 5vh;
-        border-radius: 50vh;
-        background-color: var(--dark);
-    }
-
-    .Main .bottom-bar .bottom-bar-item-icon{
-        color: var(--white);
-        width: 2.5vh;
-        height: 2.5vh;
-    }   
-}
-@media screen and (min-width: 450px) and  (max-width: 649px){
-    .Main{
-        display: flex;
-        position: relative;
-        justify-content: center; 
-        align-items: center;
-        overflow: hidden;
-        width: 100%;
-        min-height: 100%;
-        margin: 0;
-        padding: 0;
-        background-image: url(../Images/Light-1.jpeg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        transition: background-image 1s;
-    }
-
-    .Main .Main-container{
-        z-index: 1;
-        display: flex;
-        padding: 1vh;
-        margin-top: 5vh;
-        width: 90%;
-        height: 90vh;
-        border-radius: 30px;
-        overflow-y: hidden;
-        transition: background-color 1s;
-    }
-
-    .Main .Side-bar{
-        display: none;
-    }
-
-    .Main .Feed-container{
-        overflow-y: scroll;
-        position: relative;
-        display: flex;
-        width: 100%;
-        height: auto;
-        border-radius: 30px;
-        transition: background-color 1s;
-        margin: 0;
-    }
-
-    .Main .Feed-container .List{
-        height: fit-content;
-        padding: 5vh;
-        padding-top: 1vh;
-        margin-bottom: 1em;
-        border-radius: 30px;
-        width: 100%;
-        transition: background-color 1s;
-    }
-
-    .Main .Feed-container .Post .Logo{
-        position: absolute;
-        display: inline;
-        left: -6%;
-        top: -7%;
-        width: 4.5vh;
-        height: 4.5vh;
-        background-color: var(--light-green);
-        border-radius: 50%;
-        transition: background-color 1s;
-    }
-
-    .Main .Feed-container .Post .Label{
-        margin: 0;
-        margin-inline-start: 2vh;
-        text-align: left;
-        font-variant: small-caps;
-        font-size: larger;
-        text-transform: capitalize;
-        font-size: 3vh;
-        transition: color 1s;
-    }
-
-    .DropdownModal{
-        display: block;
-        position: absolute;
-        top: 8%;
-        left: 6.5%;
-        width: 10em;
-        min-height: 5vh;
-    }
-    .DropdownModal-icon{
-        color: var(--dark);
-        height: 4.5vh;
-        fill: var(--white);
-    }
-    
-    .DropdownModal .List{
+    .Main .Side-bar.dark{
         background-color: var(--dark-green);
-        display: grid;
-        border-bottom-left-radius: 30px;
-        border-bottom-right-radius: 30px;
-        padding: 1em;
-        width: 100%;
-        max-height: 55vh;
-        gap: 1vh;
-        overflow-y: scroll;
     }
-    .DropdownModal .List::-webkit-scrollbar{
+    .Main .Side-bar-header{
         display: none;
     }
-    .DropdownModal .List .List-item{
-        width: 100%; 
-        max-height: 10vh;
-        border-radius: 10px;
-        transition: background-color 1s;
-    }
-    .DropdownModal .List .List-item.light{
-        background-color: var(--white);
-    }
-    .DropdownModal .List .List-item.dark{
-        background-color: var(--dark-white);
-    }
-    
-    .DropdownModal-items{
+    .Main .Side-bar .List{
         visibility: hidden;
-        position: absolute;
-        left:auto;
-        background-color: var(--light-gray);
-        width: 100%;
-        border-radius: 10px;
-        text-align: left;
-        font-size: x-small;
-        height: 0;
-        opacity: 0;
+        font-size: 1.4vh;
+        max-height: 35vh !important;
         transition: all 1s;
     }
-    .DropdownModal-item{
-        text-transform: capitalize;
-        font-variant: small-caps;
-        color: var(--white);
-        font-weight: bolder;
-        padding-block: 10%;
-        margin: 0;
-        height: 0;
-        padding-block: 0;
-        transition: all 0.75s ease-in-out;
+    .Main .Side-bar .List .List-item{
+        visibility: hidden;
+        margin-block-end: 1vh;
+        transition: all 1s;
     }
-    .DropdownModal-item:not(:last-child){
-        border-bottom: 1px solid var(--white);
+    .Main .Side-bar-header-icon-container{
+        display: flex;
+        position: absolute;
+        top: 3vh;
+        right: 1vh;
+        width: 3.2vh;
+        height: 3.2vh;
     }
-
+    .Main .Side-bar-header-icon{
+        width: 2vh;
+        height: 2vh;
+    }
     .Main .bottom-bar {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        background-color: var(--light-green);
-        padding: 10px;
-        margin-bottom: 53m;
-        border-radius: 30px;
-        text-align: center;
-        position: fixed;
-        bottom: 4%;
-        left: 13%;
-        width: 70%;
-        height: 7vh;
-        transition: background-color 1s;
+        bottom: 7%;
+        height: 5vh;
     }
-
     .Main .bottom-bar .bottom-bar-item{
-        display: flex;
-        justify-content: center;
-        align-items: center;
         width: 5vh;
         height: 5vh;
-        border-radius: 50vh;
-        background-color: var(--dark);
     }
-
     .Main .bottom-bar .bottom-bar-item-icon{
-        color: var(--white);
-        width: 2.5vh;
-        height: 2.5vh;
-    }   
+        width: 2vh;
+        height: 2vh;
+    }
 }
 @media screen and (max-width: 450px) {
-    .Main{
-        display: flex;
-        position: relative;
-        justify-content: center; 
-        align-items: center;
-        overflow: hidden;
-        width: 100%;
-        min-height: 100%;
-        margin: 0;
-        padding: 0;
-        background-image: url(../Images/Light-1.jpeg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        transition: background-image 1s;
-    }
-
-    .Main .Main-container{
-        z-index: 1;
-        display: flex;
-        padding: 1vh;
-        margin-top: 5vh;
-        width: 90%;
-        height: 90vh;
-        border-radius: 30px;
-        overflow-y: hidden;
-        transition: background-color 1s;
-    }
-
-    .Main .Side-bar{
-        display: none;
-    }
-
     .Main .Feed-container{
-        overflow-y: scroll;
-        position: relative;
-        display: flex;
         width: 100%;
-        height: auto;
-        border-radius: 30px;
-        transition: background-color 1s;
-        margin: 0;
+        margin: 0 ;
     }
-
-    .Main .Feed-container .List{
-        height: fit-content;
-        padding: 5vh;
-        padding-top: 1vh;
-        margin-bottom: 1em;
-        border-radius: 30px;
-        width: 100%;
-        transition: background-color 1s;
-    }
-
-    .Main .Feed-container .Post .Logo{
-        position: absolute;
-        display: inline;
-        left: -10%;
-        top: -7%;
-        width: 4.5vh;
-        height: 4.5vh;
-        background-color: var(--light-green);
-        border-radius: 50%;
-        transition: background-color 1s;
-    }
-
-    .Main .Feed-container .Post .Label{
-        margin: 0;
-        margin-inline-start: 2vh;
-        text-align: left;
-        font-variant: small-caps;
-        font-size: larger;
-        text-transform: capitalize;
-        font-size: 3vh;
-        transition: color 1s;
-    }
-
-    .DropdownModal{
-        display: block;
-        position: absolute;
-        top: 8%;
-        left: 7%;
-        width: 10em;
-        min-height: 5vh;
-    }
-    .DropdownModal-icon{
-        color: var(--dark);
-        height: 4.5vh;
-        fill: var(--white);
-    }
-    
-    .DropdownModal .List{
-        background-color: var(--dark-green);
-        display: grid;
-        border-bottom-left-radius: 30px;
-        border-bottom-right-radius: 30px;
-        padding: 1em;
-        width: 100%;
-        max-height: 55vh;
-        gap: 1vh;
-        overflow-y: scroll;
-    }
-    .DropdownModal .List::-webkit-scrollbar{
-        display: none;
-    }
-    .DropdownModal .List .List-item{
-        width: 100%; 
-        max-height: 10vh;
-        border-radius: 10px;
-        transition: background-color 1s;
-    }
-    .DropdownModal .List .List-item.light{
-        background-color: var(--white);
-    }
-    .DropdownModal .List .List-item.dark{
-        background-color: var(--dark-white);
-    }
-    
-    .DropdownModal-items{
-        visibility: hidden;
-        position: absolute;
-        left:auto;
-        background-color: var(--light-gray);
-        width: 100%;
-        border-radius: 10px;
-        text-align: left;
-        font-size: x-small;
-        height: 0;
-        opacity: 0;
-        transition: all 1s;
-    }
-    .DropdownModal-item{
-        text-transform: capitalize;
-        font-variant: small-caps;
-        color: var(--white);
-        font-weight: bolder;
-        padding-block: 10%;
-        margin: 0;
-        height: 0;
-        padding-block: 0;
-        transition: all 0.75s ease-in-out;
-    }
-    .DropdownModal-item:not(:last-child){
-        border-bottom: 1px solid var(--white);
-    }
-
     .Main .bottom-bar {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        background-color: var(--light-green);
-        padding: 10px;
-        margin-bottom: 53m;
-        border-radius: 30px;
-        text-align: center;
-        position: fixed;
-        bottom: 4%;
-        left: 13%;
-        width: 70%;
-        height: 7vh;
-        transition: background-color 1s;
+        bottom: 8%;
+        height: 4vh;
     }
-
     .Main .bottom-bar .bottom-bar-item{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 5vh;
-        height: 5vh;
-        border-radius: 50vh;
-        background-color: var(--dark);
+        width: 4vh;
+        height: 4vh;
     }
-
     .Main .bottom-bar .bottom-bar-item-icon{
-        color: var(--white);
-        width: 2.5vh;
-        height: 2.5vh;
-    }   
+        width: 2vh;
+        height: 2vh;
+    }
 }

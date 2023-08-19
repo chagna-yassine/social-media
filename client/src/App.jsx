@@ -8,6 +8,11 @@ import Signup from './Auth/Signup/Signup';
 import TopMenu from './TopMenu/TopMenu';
 import LoadingScreen from './LoadingScreen/LoadingScreen';
 import { useEffect , useState , useRef } from 'react';
+import Main from './Home/Main/Main';
+import Search from './Home/Search/Search';
+import AddPost from './Home/AddPost/AddPost';
+import Messages from './Home/Messages/Messages';
+import Profile from './Home/Profile/Profile';
 
 function App() {
   const[isLoading,setIsLoading] = useState(true);
@@ -29,7 +34,14 @@ function App() {
         <LoadingScreen/>
       ) : (
         <Routes>
-          <Route path='/' element={<Home />}/>
+          <Route path='/' element={<Home />}>
+            <Route index element={<Main/>}/>
+            <Route path='main' element={<Main/>}/>
+            <Route path='search' element={<Search/>}/>
+            <Route path='addPost' element={<AddPost/>}/>
+            <Route path='messages' element={<Messages/>}/>
+            <Route path='profile' element={<Profile/>}/>
+          </Route>
           <Route path='/login' element={<Login />}/>
           <Route path='/signup' element={<Signup />}/>
         </Routes>

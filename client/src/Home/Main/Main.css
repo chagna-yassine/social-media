@@ -1,0 +1,421 @@
+:root{
+    --dark-green: #233F3C;
+    --light-green: #9DC56B;
+    --dark-blue: #3D748E;
+    --dark-blue-2: #00327e;
+    --light-blue: #B2E6EE;
+    --white: #FFFFFF;
+    --dark-white: #ddddddee;
+    --dark: #000000;
+    --light-gray: #42464A;
+    --light-dark: #23272D;
+    --brown: #ac7548;
+    --dark-brown: #211826;
+    --green-blue: #3A6F7D;
+}
+
+.Main .Feed-container .Post-List{
+    position: relative;
+    height: fit-content;
+    padding: 5vh;
+    margin-bottom: 1em;
+    border-radius: 30px;
+    width: 100%;
+    transition: background-color 1s;
+}
+.Main .Feed-container .Post-List.light{
+    background-color: var(--green-blue);
+}
+.Main .Feed-container .Post-List.dark{
+    background-color: var(--light-gray);
+}
+.Main .Feed-container .Post-List-item{
+    width: 100%;
+    max-height: 55vh;
+    margin-block: 2vh;
+    border-radius: 30px;
+    padding: 0;
+    border: 0 !important;
+}
+.Main .Feed-container .Post{
+    position: relative;
+    width: 100%;
+    height: 55vh;
+    padding: 1em;
+    border-radius: 30px;
+    border: 0 !important;
+    transition: background-color 1s;
+}
+.Main .Feed-container .Post .Post-header{
+    max-height: 10vh;
+}
+.Main .Feed-container .Post.light{
+    background-color: var(--dark-green);
+}
+.Main .Feed-container .Post.dark{
+    background-color: var(--dark-brown); 
+}
+
+.Main .Feed-container .Post .Post-info{
+    background-color: transparent;
+    display: flex;
+    max-height: 5vh;
+}
+.Main .Feed-container .Post .Post-profile{
+    display: flex;
+}
+.Main .Feed-container .Post .Logo-container{
+    width: 6vh !important;
+}
+.Main .Feed-container .Post .Logo{
+    width: 6vh;
+    height: 6vh;
+    background-color: var(--light-green);
+    border-radius: 50%;
+    transition: background-color 1s;
+}
+.Main .Feed-container .Post .Logo.light{
+    background-color: var(--light-green);
+}
+.Main .Feed-container .Post .Logo.dark{
+    background-color: var(--dark-green);
+}
+.Main .Feed-container .Post .Label{
+    margin: 0;
+    margin-inline-start: 2vh;
+    text-align: left;
+    font-variant: small-caps;
+    text-transform: capitalize;
+    font-size: 3vh;
+    transition: color 1s;
+}
+
+.Main .Feed-container .Post .Label.light{
+    color: var(--white);
+}
+.Main .Feed-container .Post .Label.dark{
+    color: var(--dark-white);
+}
+
+.Main .Feed-container .Post .Post-content{
+    width: 100%;
+    min-height: 10vh;
+    border-radius: 30px;
+    border: 0 ;
+    transition: background-color 1s;
+}
+
+.Main .Feed-container .Post .Post-content.light{
+    background-color: var(--dark);
+}
+.Main .Feed-container .Post .Post-content.dark{
+    background-color: var(--light-gray);
+}
+
+.Main .Feed-container .Post .Post-content .Post-content-media{
+    width: 100%;
+    height: 39vh;
+    border-radius: 30px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.Main .Feed-container .Post .CommentModal{
+    visibility: hidden;
+    background-color: var(--dark-blue);
+    position: absolute;
+    width: 20em;
+    height: 80%;
+    border-radius: 30px;
+    top: 15%;
+    left: 0;
+}
+
+.Main .Feed-container .Post .CommentModal .List{
+    display: grid;
+    width: 100%;
+    max-height: 30vh;
+    gap: 1vh;
+    padding: 5vh;
+    height: fit-content;
+    padding: 5vh;
+    margin-bottom: 1em;
+    border-radius: 30px;
+    overflow-y: scroll;
+}
+.Main .Feed-container .Post .CommentModal .List::-webkit-scrollbar{
+    display: none;
+}
+.Main .Feed-container .Post .CommentModal .List .List-item{
+    width: 100%; 
+    max-height: 10vh;
+    border-radius: 10px;
+    margin-top: 0;
+    margin-block: 2vh;
+    padding: 0;
+    padding-left: 2vh;
+    border: 0 !important;
+    transition: background-color 1s;
+}
+.Main .Feed-container .Post .CommentModal .List .List-item.light{
+    background-color: var(--white);
+}
+.Main .Feed-container .Post .CommentModal .List .List-item.dark{
+    background-color: var(--dark-white);
+}
+
+.Main .Feed-container .Post .CommentModal-items{
+    /* visibility: hidden;
+    position: absolute; */
+    left:auto;
+    /* background-color: var(--light-gray); */
+    width: 100%;
+    border-radius: 0px;
+    text-align: left;
+    font-size: medium;
+    height: auto;
+    /* opacity: 0; */
+    transition: all 1s;
+}
+.Main .Feed-container .Post .CommentModal-item{
+    text-transform: capitalize;
+    font-variant: small-caps;
+    color: var(--white);
+    font-weight: bolder;
+    /* padding-left: 1en !important; */
+    margin: 0;
+    height: auto;
+    transition: all 0.75s ease-in-out;
+}
+.Main .Feed-container .Post .CommentModal-item:not(:last-child){
+    border-bottom: 1px solid var(--white);
+}
+
+.Interactions{
+    display: flex !important;
+    justify-content: space-around;
+    position: absolute;
+    bottom: -2vh;
+    border-radius: 50vh !important;
+    width: 10em;
+    padding: 0 !important;
+    padding-block: 0.5% !important;
+    margin-block-start: 1vh;
+    transition: background-color 1s;
+}
+
+.Interactions.light{
+    background-color: var(--light-blue);
+}
+.Interactions.dark{
+    background-color: var(--dark-white);
+}
+
+.Interactions-item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark);
+    width: 4vh;
+    height: 4vh;
+    border-radius: 5vh;
+}
+
+.Interactions-item-icon{
+    color: var(--white);
+    width: 90%;
+}
+
+/* Responsive design */
+
+@media screen and (min-width: 650px) and  (max-width: 900px){
+    .Interactions{
+        bottom: -2vh;
+        width: 9em;
+        padding-block: 0.2% !important;
+    }
+    .Interactions-item{
+        width: 3.5vh;
+        height: 3.5vh;
+    }
+    
+    .Interactions-item-icon{
+        width: 2vh;
+        height: 2vh;
+    }
+}
+@media screen and (min-width: 450px) and  (max-width: 650px){
+    .Main .Feed-container .Post .Label{
+        font-size: 2.5vh;
+    }
+    .Interactions{
+        bottom: -2vh;
+        width: 8em;
+        height: 3.2vh;
+        padding-block: 0.2% !important;
+    }
+    .Interactions-item{
+        width: 2.5vh;
+        height: 2.5vh;
+    }
+    
+    .Interactions-item-icon{
+        width: 1.5vh;
+        height: 1.5vh;
+    }
+}
+@media screen and (min-width: 400px) and (max-width: 450px) {
+    .Main .Feed-container{
+        width: 100%;
+        margin: 0 ;
+    }
+    .Main .Side-bar{
+        position: absolute;
+        right: 1vh;
+        height: 40vh !important;
+        width: 40%;
+        visibility: hidden;
+        transition: all 1s;
+    }
+    .Main .Side-bar.light{
+        background-color: var(--light-blue);
+    }
+    .Main .Side-bar.dark{
+        background-color: var(--dark-green);
+    }
+    .Main .Side-bar-header{
+        display: none;
+    }
+    .Main .Side-bar .List{
+        visibility: hidden;
+        font-size: 1.4vh;
+        max-height: 35vh !important;
+        transition: all 1s;
+    }
+    .Main .Side-bar .List .List-item{
+        visibility: hidden;
+        margin-block-end: 1vh;
+        transition: all 1s;
+    }
+    .Main .Side-bar-header-icon-container{
+        display: flex;
+        position: absolute;
+        top: 3vh;
+        right: 1vh;
+        width: 3.2vh;
+        height: 3.2vh;
+    }
+    .Main .Side-bar-header-icon{
+        width: 2vh;
+        height: 2vh;
+    }
+
+    .Main .Feed-container .Post-List{
+            padding: 2vh;
+    }
+    .Main .Feed-container .Post{
+        width: 100%;
+    }
+    .Main .Feed-container .Post .Logo{
+        width: 4.5vh;
+        height: 4.5vh;
+    }
+    .Main .Feed-container .Post .Label{
+        font-size: 1.7vh;
+        margin: 0;
+    }
+    .Interactions{
+        bottom: -2vh;
+        width: 8em;
+        height: 3.2vh;
+        padding-block: 0.2% !important;
+    }
+    .Interactions-item{
+        width: 2.5vh;
+        height: 2.5vh;
+    }
+    
+    .Interactions-item-icon{
+        width: 1.5vh;
+        height: 1.5vh;
+    }
+}
+@media screen and (max-width: 400px) {
+    .Main .Feed-container{
+        width: 100%;
+        margin: 0 ;
+    }
+    .Main .Side-bar{
+        position: absolute;
+        right: 1vh;
+        height: 25vh !important;
+        width: 40%;
+        visibility: hidden;
+        transition: all 1s;
+    }
+    .Main .Side-bar.light{
+        background-color: var(--light-blue);
+    }
+    .Main .Side-bar.dark{
+        background-color: var(--dark-green);
+    }
+    .Main .Side-bar-header{
+        display: none;
+    }
+    .Main .Side-bar .List{
+        visibility: hidden;
+        font-size: 1.4vh;
+        max-height: 20vh !important;
+        transition: all 1s;
+    }
+    .Main .Side-bar .List .List-item{
+        visibility: hidden;
+        margin-block-end: 1vh;
+        transition: all 1s;
+    }
+    .Main .Side-bar-header-icon-container{
+        display: flex;
+        position: absolute;
+        top: 3vh;
+        right: 1vh;
+        width: 3.2vh;
+        height: 3.2vh;
+    }
+    .Main .Side-bar-header-icon{
+        width: 2vh;
+        height: 2vh;
+    }
+    .Main .Feed-container .Post-List{
+            padding: 2vh;
+    }
+    .Main .Feed-container .Post{
+        width: 100%;
+        height: 35vh;
+    }
+    .Main .Feed-container .Post .Logo-container{
+        width: 4vh !important;
+    }
+    .Main .Feed-container .Post .Logo{
+        width: 3.5vh;
+        height: 3.5vh;
+    }
+    .Main .Feed-container .Post .Label{
+        font-size: 1vh;
+        margin: 0;
+    }
+    .Interactions{
+        bottom: -1vh;
+        width: 5em;
+        height: 2.5vh;
+        padding-block: 0.2% !important;
+    }
+    .Interactions-item{
+        width: 2vh;
+        height: 2vh;
+    }
+    
+    .Interactions-item-icon{
+        width: 1.2vh;
+        height: 1.2vh;
+    }
+}
