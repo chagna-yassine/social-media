@@ -7,9 +7,24 @@ import { useCookies } from 'react-cookie'
 import { handleBgImgs } from '../../HandleBgImgs/handleBgImgs'
 import { handleViewPassword } from '../AuthFunctionalities'
 import { useTranslation } from 'react-i18next'
+import login from '../../api';
 
 
 const Login = () => {
+  // variable for the usename and paswword input
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  // function that send data to the api file for authentification
+  const handleLogin = async () => {
+    try {
+      const response = await login({ username, password });
+      console.log(response); // Handle success or display error message
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   const [ t ] = useTranslation("global")
 
   const [eyeIcon,setEyeIcon] = useState(faEye);
@@ -42,19 +57,19 @@ const Login = () => {
               <div>
                   <label className={`Form-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} htmlFor="username">{t("login.form-label-user")}</label>
                   <div className='Input-container'>
-                    <input className={`Form-input ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} id='username' type="text" />
+                    <input className={`Form-input ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} id='username' type="text" value={username} onChange={(e) => setUsername(e.target.value)}/>
                   </div>
               </div>
               <div>
                   <label className={`Form-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} htmlFor="login-password">{t("login.form-label-pwd")}</label>
                   <div className='Input-container'>
-                    <input className={`Form-input ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} id='login-password' type="password" />
+                    <input className={`Form-input ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} id='login-password' type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                     <FontAwesomeIcon className='Input-icon' icon={eyeIcon} onClick={()=>{setEyeIcon(handleViewPassword("login-password"))}}/>
                   </div>
               </div>
               <div className='Submition'>
                  <a className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} href="/login">{t("login.forgot-pwd")}</a>
-                 <input className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} type="submit" value={t("login.submit")}/>
+                 <input className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} type="submit" value={t("login.submit")} onClick={handleLogin}/>
                  <Link className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} to="/signup">{t("login.link")}</Link>
               </div>
             </form>
