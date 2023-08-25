@@ -23,7 +23,7 @@ const AddPost = () => {
       navigate("/login");
     }
     document.title = t("home.addPost.label");
-  },[t])
+  },[t,navigate,userCookies.token])
 
   return (
     <div className='AddPost'>

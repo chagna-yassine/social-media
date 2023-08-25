@@ -26,7 +26,7 @@ const Profile = () => {
         navigate("/login");
       }
     document.title = t("home.profile.label");
-  },[t])
+  },[t,navigate,userCookies.token])
 
   return (
     <div className='Profile-container'>

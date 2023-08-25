@@ -21,7 +21,7 @@ const Search = () => {
       navigate("/login");
     }
     document.title = t("home.search");
-  },[t])
+  },[t,navigate,userCookies.token])
 
   return (
     <div className='Search'>

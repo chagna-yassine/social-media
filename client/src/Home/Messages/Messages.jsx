@@ -28,7 +28,7 @@ const Messages = () => {
     if (messagesRef.current) {
       messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
     }
-  }, [t]);
+  }, [t,navigate,userCookies.token]);
   return (
     <div className='Messages'>
         <div className={`Messages-header ${i18n.language === "ar" ? "ar" : null}`}>

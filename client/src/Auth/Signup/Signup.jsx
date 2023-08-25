@@ -2,7 +2,7 @@ import React, { useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Signup.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faEye, faPhoneFlip} from '@fortawesome/free-solid-svg-icons'
+import {faEye} from '@fortawesome/free-solid-svg-icons'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import { handleBgImgs } from '../../HandleBgImgs/handleBgImgs'
@@ -58,7 +58,7 @@ const Signup = () => {
     if(userCookies.token){
       navigate("/");
   }
-  },[t])
+  },[t,navigate,userCookies.token])
 
   
 

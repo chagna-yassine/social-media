@@ -58,7 +58,7 @@ const Login = () => {
     if(userCookies.token){
         navigate("/");
     }
-  },[t])
+  },[t,navigate,userCookies.token])
 
   return (
     <div className='Login'>

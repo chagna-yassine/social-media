@@ -10,6 +10,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.3.1",
+    "concurrently": "^8.2.1",
     "i18next": "^23.4.4",
     "react": "^18.2.0",
     "react-cookie": "^4.1.1",
@@ -23,7 +24,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "cd ../server && npm start",
+    "dev": "concurrently -n client,server -c red,yellow \"npm start\" \"npm run server\" "
   },
   "eslintConfig": {
     "extends": [

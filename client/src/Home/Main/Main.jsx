@@ -25,7 +25,7 @@ const Main = () => {
             navigate("/login");
         }
         document.title = t("home.main.label");
-    },[t])
+    },[t,navigate,userCookies.token])
 
   return (
     <ul className={`list-group Post-List ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>

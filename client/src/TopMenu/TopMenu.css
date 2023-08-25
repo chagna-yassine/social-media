@@ -7,20 +7,24 @@
     --dark: #000000;
     --light-gray: #42464A;
     --light-dark: #23272D;
+    --dark-white: #ddddddee;
 }
 .TopMenu{
     width: 100%;
     min-height: 5vh;
     position: absolute;
+    display: flex;
+    justify-content: flex-end;
     top: 0;
     left: 0;
     z-index: 2;
 }
 .DisplayMode{
-    position: absolute;
-    top: 50%;
-    right: 10%;
     width: 4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-inline: 1vh;
 }
 .DisplayMode .Switch-container{
     width: 100%;
@@ -77,11 +81,13 @@
     transform: translateX(100%);
 }
 .Dropdown{
-    position: absolute;
-    top: 35%;
-    right: 0%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     width: 7%;
     min-height: 5vh;
+    margin-inline: 1vh;
 }
 .Dropdown-icon{
     height: 4.5vh;
@@ -90,7 +96,8 @@
 .Dropdown-items{
     visibility: hidden;
     position: absolute;
-    left: -30%;
+    top: 80%;
+    left: 0%;
     width: 100%;
     border-radius: 10px;
     text-align: center;
@@ -117,6 +124,20 @@
 }
 .Dropdown-item:not(:last-child){
     border-bottom: 1px solid var(--white);
+}
+
+.Logout-btn{
+    margin: 1vh;
+    font-weight: bolder;
+    transition: all 1s;
+}
+.Logout-btn.light{
+    background-color: var(--light-green) !important;
+    color: var(--white) !important;
+}
+.Logout-btn.dark{
+    background-color: var(--light-dark) !important;
+    color: var(--dark-white) !important;
 }
 /* Responsive design */
 @media screen and (min-width: 950px) and  (max-width: 1150px){

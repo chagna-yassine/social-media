@@ -27,7 +27,7 @@ const Home = () => {
         navigate("/login");
       }
       handleBgImgs(currentDisplayMode,"Main-img","Main");
-  },[currentDisplayMode])
+  },[currentDisplayMode,navigate,userCookies.token])
 
   return (
     <div id='Main' className='Main'>

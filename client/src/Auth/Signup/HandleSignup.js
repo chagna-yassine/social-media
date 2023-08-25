@@ -4,9 +4,9 @@ export const handleDataValidation = (firstName,setFirstNameErr,lastName,setLastN
     //Declare patterns
     const namePattern = /^[A-Za-z]{3,}$/; //name should have at least 3 characters
     const phonePattern = /^0(5|6|7)\d{8}$/; //name should be in these forms 05******** || 06******** || 07********
-    const emailPattern = /^\w+([\.\-_]?\w+)*@\w+([\.\-_]?\w+)*(\.\w{2,3})+$/; //universal email pattern (I guess)
-    const userPattern = /^[A-Za-z]+([\.\-_@# 0-9]?[A-Za-z]+)+$/; //username could be any character but at least 2 characters not end with a number or a special character
-    const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#&\.-\_]).{8,16}$/ //password should be at least 8 character and at maximum 16 character and shud have 1 lowerCase 1 upperCase 1 number and 1 special character
+    const emailPattern = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/; //universal email pattern (I guess)
+    const userPattern = /^[A-Za-z]+([.\-_@# 0-9]?[A-Za-z]+)+$/; //username could be any character but at least 2 characters not end with a number or a special character
+    const passwordPattern = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#&.\-_]).{8,16}$/ //password should be at least 8 character and at maximum 16 character and shud have 1 lowerCase 1 upperCase 1 number and 1 special character
 
     //First name validation
     if(!firstName){
