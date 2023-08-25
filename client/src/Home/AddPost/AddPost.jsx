@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faPhotoVideo, faUserTag } from '@fortawesome/free-solid-svg-icons'
 import { useCookies } from 'react-cookie'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 
 const AddPost = () => {
 
@@ -12,7 +13,15 @@ const AddPost = () => {
   const [cookies] = useCookies(['displayMode']);
   const currentDisplayMode = cookies.displayMode || 'light';
 
+  //Declare user cookies
+  const [userCookies] = useCookies(['token']);
+  const navigate = useNavigate();
+
   useEffect(()=>{
+    //Check if the user not loged in and rederect him to the login
+    if(!userCookies.token){
+      navigate("/login");
+    }
     document.title = t("home.addPost.label");
   },[t])
 

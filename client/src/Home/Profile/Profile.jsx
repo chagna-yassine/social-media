@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import testImg from "../../Images/Light-5.jpeg"
 import testImg_2 from "../../Images/Light-6.jpeg"
 import testImg_3 from "../../Images/Dark-6.jpeg"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const Profile = () => {
@@ -16,7 +16,15 @@ const Profile = () => {
   const [cookies] = useCookies(['displayMode']);
   const currentDisplayMode = cookies.displayMode || 'light';
 
+  //Declare user cookies
+  const [userCookies] = useCookies(['token']);
+  const navigate = useNavigate();
+
   useEffect(()=>{
+    //Check if the user not loged in and rederect him to the login
+    if(!userCookies.token){
+        navigate("/login");
+      }
     document.title = t("home.profile.label");
   },[t])
 

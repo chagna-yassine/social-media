@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { useCookies } from 'react-cookie';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 const Messages = () => {
 
@@ -14,7 +15,15 @@ const Messages = () => {
 
   const messagesRef = useRef(null);
 
+  //Declare user cookies
+  const [userCookies] = useCookies(['token']);
+  const navigate = useNavigate();
+
   useEffect(() => {
+    //Check if the user not loged in and rederect him to the login
+    if(!userCookies.token){
+      navigate("/login");
+    }
     document.title = t("home.msgs");
     if (messagesRef.current) {
       messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
