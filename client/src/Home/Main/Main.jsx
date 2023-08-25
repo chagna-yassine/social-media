@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import testImg from "../../Images/Light-5.jpeg"
 import { useTranslation } from 'react-i18next';
 import { handleCommentModal } from './comment';
+import { useNavigate } from 'react-router-dom';
 
 const Main = () => {
 
@@ -14,7 +15,15 @@ const Main = () => {
     const [cookies] = useCookies(['displayMode']);
     const currentDisplayMode = cookies.displayMode || 'light';
 
+    //Declare user cookies
+    const [userCookies] = useCookies(['token']);
+    const navigate = useNavigate();
+
     useEffect(()=>{
+        //Check if the user not loged in and rederect him to the login
+        if(!userCookies.token){
+            navigate("/login");
+        }
         document.title = t("home.main.label");
     },[t])
 

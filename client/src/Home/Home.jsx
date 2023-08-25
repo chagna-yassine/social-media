@@ -6,7 +6,7 @@ import { handleBgImgs } from '../HandleBgImgs/handleBgImgs'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faMessage, faSquarePlus, faUser  } from '@fortawesome/free-regular-svg-icons';
 import { faHouse, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { handleNotifications } from './HomeFonctionalities';
 import { useTranslation } from 'react-i18next';
 
@@ -17,7 +17,15 @@ const Home = () => {
   const [cookies] = useCookies(['displayMode']);
   const currentDisplayMode = cookies.displayMode || 'light';
 
+  //Declare user cookies
+  const [userCookies] = useCookies(['token']);
+  const navigate = useNavigate();
+
   useEffect(()=>{
+      //Check if the user not loged in and rederect him to the login
+      if(!userCookies.token){
+        navigate("/login");
+      }
       handleBgImgs(currentDisplayMode,"Main-img","Main");
   },[currentDisplayMode])
 

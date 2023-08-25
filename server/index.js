@@ -11,6 +11,7 @@ import fanoutRoutes from "./routes/fanout.js";
 import metadataRoutes from "./routes/metadata.js";
 import likeRoutes from "./routes/like.js";
 import commentRoutes from "./routes/comment.js";
+import authRoutes from "./routes/auth.js";
 
 
 /* CONFIGURATION */
@@ -31,15 +32,25 @@ app.use("/Fanout", fanoutRoutes);
 app.use("/Metadata", metadataRoutes);
 app.use("/Like", likeRoutes);
 app.use("/Comment", commentRoutes);
+app.use('/auth', authRoutes);
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000;
-mongoose
-  .connect(process.env.MONGO_URL, {
+
+mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-  })
-  .then(() => {
-    app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
-  })
-  .catch((error) => console.log(`${error} did not connect`));
+})
+.then(() => {
+app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+})
+.catch((error) => console.log(`${error} did not connect`));
+
+const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+  console.log('Connected to MongoDB');
+});
+
+//module.exports = db;

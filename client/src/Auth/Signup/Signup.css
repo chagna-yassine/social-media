@@ -110,6 +110,11 @@
 .Signup .Info{
     display: flex;
     width: 100%;
+    max-height: 50vh;
+    overflow-y: scroll;
+}
+.Signup .Info::-webkit-scrollbar{
+    display: none;
 }
 .Signup .Col{
     width: 50%;
@@ -201,6 +206,14 @@
 .Signup .Submition input.light{
     background-color: var(--dark-blue);
     color: var(--white);
+}
+.Signup .err{
+    width: 70%;
+    margin: auto;
+    margin-block: 1vh;
+    padding-inline: 5px;
+    padding-block: 1vh;
+    text-align: center;
 }
 
 /* Responsive design */
