@@ -14,6 +14,7 @@ import Search from './Home/Search/Search';
 import AddPost from './Home/AddPost/AddPost';
 import Messages from './Home/Messages/Messages';
 import Profile from './Home/Profile/Profile';
+import SearchedProfile from './Home/SearchedProfile/SearchedProfile';
 
 function App() {
   const[isLoading,setIsLoading] = useState(true);
@@ -42,6 +43,7 @@ function App() {
             <Route path='addPost' element={<AddPost/>}/>
             <Route path='messages' element={<Messages/>}/>
             <Route path='profile' element={<Profile/>}/>
+            <Route path=':username' element={<SearchedProfile/>}/>
           </Route>
           <Route path='/login' element={<Login />}/>
           <Route path='/signup' element={<Signup />}/>

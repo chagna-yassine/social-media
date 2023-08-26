@@ -12,6 +12,7 @@ import metadataRoutes from "./routes/metadata.js";
 import likeRoutes from "./routes/like.js";
 import commentRoutes from "./routes/comment.js";
 import authRoutes from "./routes/auth.js";
+import searchRoutes from "./routes/search.js";
 
 
 /* CONFIGURATION */
@@ -33,6 +34,8 @@ app.use("/Metadata", metadataRoutes);
 app.use("/Like", likeRoutes);
 app.use("/Comment", commentRoutes);
 app.use('/auth', authRoutes);
+app.use('/Search', searchRoutes);
+
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000;
