@@ -12,6 +12,7 @@
     --brown: #ac7548;
     --dark-brown: #211826;
     --green-blue: #3A6F7D;
+    --red: #ff0000;
 }
 .Main .Feed-container .Profile{
     position: relative;
@@ -157,6 +158,16 @@
 
 .Main .Feed-container .Profile-container .Post-List{
     padding-top: 0;
+}
+
+.Unfollow.dark{
+    background-color: var(--dark-white) !important;
+    color: var(--red) !important;
+}
+
+.Unfollow.light{
+    background-color: var(--light-dark) !important;
+    color: var(--red) !important;
 }
 
 /* Responsive design */

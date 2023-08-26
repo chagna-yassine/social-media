@@ -26,6 +26,8 @@ const Login = () => {
 
   //Declare user cookies
   const [userCookies,setUserCookies] = useCookies(['token']);
+  const [userIdCookies,setUserIdCookies] = useCookies(['userId']);
+  const [userNameCookies,setUserNameCookies] = useCookies(['username']);
 
   // function that send data to the api file for authentification
   //Use a callback hook to prevend multiple rerender in the useEffect hook
@@ -37,13 +39,15 @@ const Login = () => {
         setAuthErr(<p className='alert alert-danger err'>{t('login.Errs.authErr')}</p>);
       }else{ // create user cookies and rederect him to the main if there is no err
           setUserCookies('token',response.token);
+          setUserIdCookies('userId',response.id);
+          setUserNameCookies('username',response.username)
           navigate('/');
       }
       console.log(response); // Handle success or display error message
     } catch (error) {
       console.error(error);
     }
-  },[username,password,setAuthErr,t,setUserCookies,navigate])
+  },[username,password,setAuthErr,t,setUserCookies,setUserIdCookies,setUserNameCookies,navigate])
 
   const [eyeIcon,setEyeIcon] = useState(faEye);
 
@@ -60,12 +64,12 @@ const Login = () => {
   useEffect(()=>{
     document.title = t("login.label");
     //Check if the user loged in and rederect him to the main
-    if(userCookies.token){
+    if(userCookies.token && userIdCookies.userId && userNameCookies.username){
         navigate("/");
     }
     //Call the handleLogin function when the user click the login button to handle language change on render
     isClicked && handleLogin();
-  },[t,navigate,userCookies.token,handleLogin,isClicked])
+  },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username,handleLogin,isClicked])
 
   return (
     <div className='Login'>

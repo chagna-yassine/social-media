@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
-import { getUser } from '../../api';
+import { checkFollow, follow, getUser, unFollow } from '../../api';
 
 const SearchedProfile = () => {
     //get the username from the ur param
@@ -21,7 +21,13 @@ const SearchedProfile = () => {
   
     //Declare user cookies
     const [userCookies] = useCookies(['token']);
+    const [userIdCookies] = useCookies(['userId']);
+    const [userNameCookies] = useCookies(['username']);
+
     const navigate = useNavigate();
+
+    //follow states
+    const [ followStatus , setFollowStatus ] = useState('');
   
     // function that send the username to the api and get his data
     //Use a callback hook to prevend multiple rerender in the useEffect hook
@@ -29,17 +35,51 @@ const SearchedProfile = () => {
         setUser(await getUser({username}));
     },[username,setUser])
 
+    // function that check the follow status and set it to following or notFollowing
+    //Use a callback hook to prevend multiple rerender in the useEffect hook
+    const handleCheckFollow = useCallback(async()=>{
+        const response = await checkFollow({
+            follower : userIdCookies.userId, 
+            following : user._id
+        })
+        setFollowStatus(response.message)
+    },[setFollowStatus,userIdCookies.userId,user._id]);
+
     //a useEffect hook that handle the document title and the existens of the userCookies 
     useEffect(()=>{
       //Check if the user not loged in and rederect him to the login
-      if(!userCookies.token){
-          navigate("/login");
-        }
+      if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
+        navigate("/login");
+      }
       //set the document title to the username
       document.title = username;
       //call the function handeUserData when the component render and fetch the data
       handeUserData();
-    },[t,navigate,userCookies.token,username,handeUserData])
+      //call the function handleCheckFollow when the component render to see the follow status
+      handleCheckFollow();
+    },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username,username,handeUserData,handleCheckFollow])
+
+    //function that create a new follow by sending the id of the follower and the following
+    const handleFollow = async()=>{
+        await follow({
+            follower : userIdCookies.userId, 
+            following : user._id
+        })
+
+        //call the function handleCheckFollow to update the follow status
+        handleCheckFollow();
+    }
+
+    //function that delete a follow by sending the id of the follower and the following
+    const handleUnFollow = async()=>{
+        await unFollow({
+            follower : userIdCookies.userId, 
+            following : user._id
+        })
+
+        //call the function handleCheckFollow to update the follow status
+        handleCheckFollow();
+    }
   
     return (
       <div className='Profile-container'>
@@ -55,7 +95,15 @@ const SearchedProfile = () => {
             <p className={`Profile-bio ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>This is my bio</p>
           </div>
           <div className={`Profile-actions ${i18n.language === "ar" ? "ar" : i18n.language === "fr" ? "fr" : null}`}>
-             <button className={`Add-post ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>Follow</button>
+             {
+                // if the follow status is notFollowing show the following btn else show the unFollow btn
+                followStatus === 'notFollowing' || followStatus === '' ? (
+                    <button className={`Add-post Follow ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} onClick={handleFollow}>Follow</button>
+                )
+                :(
+                    <button className={`Add-post Unfollow ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} onClick={handleUnFollow}>Unfollow</button>
+                )
+             }
              <button className={`Edit-Profile ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>Message</button>
           </div>
         </div>

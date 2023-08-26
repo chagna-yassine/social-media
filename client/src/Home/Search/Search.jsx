@@ -19,6 +19,9 @@ const Search = () => {
 
   //Declare user cookies
   const [userCookies] = useCookies(['token']);
+  const [userIdCookies] = useCookies(['userId']);
+  const [userNameCookies] = useCookies(['username']);
+
   const navigate = useNavigate();
 
   //search states
@@ -41,11 +44,11 @@ const Search = () => {
 
   useEffect(()=>{
     //Check if the user not loged in and rederect him to the login
-    if(!userCookies.token){
+    if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
       navigate("/login");
     }
     document.title = t("home.search");
-  },[t,navigate,userCookies.token])
+  },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username])
 
   return (
     <div className='Search'>

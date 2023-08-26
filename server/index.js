@@ -13,6 +13,7 @@ import likeRoutes from "./routes/like.js";
 import commentRoutes from "./routes/comment.js";
 import authRoutes from "./routes/auth.js";
 import searchRoutes from "./routes/search.js";
+import followRoutes from "./routes/follow.js";
 
 
 /* CONFIGURATION */
@@ -35,6 +36,8 @@ app.use("/Like", likeRoutes);
 app.use("/Comment", commentRoutes);
 app.use('/auth', authRoutes);
 app.use('/Search', searchRoutes);
+app.use('/Follow', followRoutes);
+
 
 
 /* MONGOOSE SETUP */

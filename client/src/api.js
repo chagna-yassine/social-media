@@ -64,3 +64,51 @@ export const getUser = async (username) => {
     throw error;
   }
 };
+
+export const follow = async (followData) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/follow`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(followData),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const checkFollow = async (followData) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/follow/checkFollow`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(followData),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const unFollow = async (followData) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/follow/unFollow`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(followData),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};

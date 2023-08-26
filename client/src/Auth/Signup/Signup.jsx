@@ -50,6 +50,8 @@ const Signup = () => {
 
   //Declare user cookies
   const [userCookies] = useCookies(['token']);
+  const [userIdCookies] = useCookies(['userId']);
+  const [userNameCookies] = useCookies(['username']);
 
   //handle the bg imgs when the component rerender
   useEffect(()=>{
@@ -97,12 +99,12 @@ const Signup = () => {
   useEffect(()=>{
     document.title = t("signup.label");
     //Check if the user loged in and rederect him to the main
-    if(userCookies.token){
+    if(userCookies.token && userIdCookies.userId && userNameCookies.username){
       navigate("/");
-    }
+  }
     //Call the handleSignup function when the user click the signup button to handle language change on render
     isClicked && handleSignup();
-  },[t,navigate,userCookies.token,handleSignup,isClicked])
+  },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username,handleSignup,isClicked])
   
   return (
     <div id='Signup-container' className='Signup'>

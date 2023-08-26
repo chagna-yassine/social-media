@@ -18,6 +18,9 @@ const TopMenu = () => {
 
     //Declare user cookies
     const userCookies = useCookies(['token']);
+    const userIdCookies = useCookies(['userId']);
+    const userNameCookies = useCookies(['username']);
+
     const navigate = useNavigate();
 
     const handleDisplayMode = ()=>{
@@ -34,6 +37,8 @@ const TopMenu = () => {
     const handleLogout = ()=>{
         //remove user cookies and rederict him to the login page
         userCookies[1]('token','');
+        userIdCookies[1]('userId','');
+        userNameCookies[1]('username','');
         navigate('/login')
     }
     

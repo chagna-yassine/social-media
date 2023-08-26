@@ -17,18 +17,21 @@ const Messages = () => {
 
   //Declare user cookies
   const [userCookies] = useCookies(['token']);
+  const [userIdCookies] = useCookies(['userId']);
+  const [userNameCookies] = useCookies(['username']);
+
   const navigate = useNavigate();
 
   useEffect(() => {
     //Check if the user not loged in and rederect him to the login
-    if(!userCookies.token){
+    if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
       navigate("/login");
     }
     document.title = t("home.msgs");
     if (messagesRef.current) {
       messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
     }
-  }, [t,navigate,userCookies.token]);
+  }, [t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username,]);
   return (
     <div className='Messages'>
         <div className={`Messages-header ${i18n.language === "ar" ? "ar" : null}`}>
