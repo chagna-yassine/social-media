@@ -1,5 +1,5 @@
 //function that handle the data validation 
-export const handleDataValidation = (firstName,setFirstNameErr,lastName,setLastNameErr,age,setAgeErr,phone,setPhoneErr,email,setEmailErr,username,setUsernameErr,password,setPasswordErr,confirmedPassword,setConfirmedPasswordErr,isErr,setIsErr)=>{
+export const handleDataValidation = (firstName,setFirstNameErr,lastName,setLastNameErr,age,setAgeErr,phone,setPhoneErr,email,setEmailErr,username,setUsernameErr,password,setPasswordErr,confirmedPassword,setConfirmedPasswordErr,isErr,setIsErr,t)=>{
 
     //Declare patterns
     const namePattern = /^[A-Za-z]{3,}$/; //name should have at least 3 characters
@@ -10,10 +10,10 @@ export const handleDataValidation = (firstName,setFirstNameErr,lastName,setLastN
 
     //First name validation
     if(!firstName){
-      setFirstNameErr(<p className='alert alert-danger err'>First Name Required</p>);
+      setFirstNameErr(<p className='alert alert-danger err'>{t('signup.Errs.firstNameErr')}</p>);
       setIsErr(true);
     }else if(!namePattern.test(firstName)){
-      setFirstNameErr(<p className='alert alert-danger err'>Enter A Real Name</p>);
+      setFirstNameErr(<p className='alert alert-danger err'>{t('signup.Errs.invalidNameErr')}</p>);
       setIsErr(true);
     }else{
       setFirstNameErr("");
@@ -22,13 +22,13 @@ export const handleDataValidation = (firstName,setFirstNameErr,lastName,setLastN
 
     //Age validation
     if(!age){
-      setAgeErr(<p className='alert alert-danger err'>Age Required</p>);
+      setAgeErr(<p className='alert alert-danger err'>{t('signup.Errs.ageErr')}</p>);
       setIsErr(true);
     }else if(age < 13){
-      setAgeErr(<p className='alert alert-danger err'>You Are Under The Legal Age</p>);
+      setAgeErr(<p className='alert alert-danger err'>{t('signup.Errs.underAgeErr')}</p>);
       setIsErr(true);
     }else if(age > 99){
-      setAgeErr(<p className='alert alert-danger err'>Enter A Valid Age</p>);
+      setAgeErr(<p className='alert alert-danger err'>{t('signup.Errs.invalidAErr')}</p>);
       setIsErr(true);
     }else{
       setAgeErr("");
@@ -37,10 +37,10 @@ export const handleDataValidation = (firstName,setFirstNameErr,lastName,setLastN
 
     //Last name validation
     if(!lastName){
-      setLastNameErr(<p className='alert alert-danger err'>Last Name Required</p>);
+      setLastNameErr(<p className='alert alert-danger err'>{t('signup.Errs.lastNameErr')}</p>);
       setIsErr(true);
     }else if(!namePattern.test(lastName)){
-      setLastNameErr(<p className='alert alert-danger err'>Enter A Real Name</p>);
+      setLastNameErr(<p className='alert alert-danger err'>{t('signup.Errs.invalidNameErr')}</p>);
       setIsErr(true);
     }else{
       setLastNameErr("");
@@ -49,10 +49,10 @@ export const handleDataValidation = (firstName,setFirstNameErr,lastName,setLastN
 
     //Phone validation
     if(!phone){
-      setPhoneErr(<p className='alert alert-danger err'>Phone Required</p>);
+      setPhoneErr(<p className='alert alert-danger err'>{t('signup.Errs.phoneErr')}</p>);
       setIsErr(true);
     }else if(!phonePattern.test(phone)){
-      setPhoneErr(<p className='alert alert-danger err'>Enter A Valid Phone</p>);
+      setPhoneErr(<p className='alert alert-danger err'>{t('signup.Errs.invalidPhoneErr')}</p>);
       setIsErr(true);
     }else{
       setPhoneErr("");
@@ -61,10 +61,10 @@ export const handleDataValidation = (firstName,setFirstNameErr,lastName,setLastN
 
     //Email validation
     if(!email){
-      setEmailErr(<p className='alert alert-danger err'>Email Required</p>);
+      setEmailErr(<p className='alert alert-danger err'>{t('signup.Errs.emailErr')}</p>);
       setIsErr(true);
     }else if(!emailPattern.test(email)){
-      setEmailErr(<p className='alert alert-danger err'>Enter A Valid Email</p>);
+      setEmailErr(<p className='alert alert-danger err'>{t('signup.Errs.invalidEmailErr')}</p>);
       setIsErr(true);
     }else{
       setEmailErr("");
@@ -73,10 +73,10 @@ export const handleDataValidation = (firstName,setFirstNameErr,lastName,setLastN
 
     //Username validation
     if(!username){
-      setUsernameErr(<p className='alert alert-danger err'>User Required</p>);
+      setUsernameErr(<p className='alert alert-danger err'>{t('signup.Errs.usernameErr')}</p>);
       setIsErr(true);
     }else if(!userPattern.test(username)){
-      setUsernameErr(<p className='alert alert-danger err'>Enter A Valid Username</p>);
+      setUsernameErr(<p className='alert alert-danger err'>{t('signup.Errs.invalidUsernameErr')}</p>);
       setIsErr(true);
     }else{
       setUsernameErr("");
@@ -85,10 +85,10 @@ export const handleDataValidation = (firstName,setFirstNameErr,lastName,setLastN
 
     //Password validation
     if(!password){
-      setPasswordErr(<p className='alert alert-danger err'>Password Required</p>);
+      setPasswordErr(<p className='alert alert-danger err'>{t('signup.Errs.passwordErr')}</p>);
       setIsErr(true);
     }else if(!passwordPattern.test(password)){
-      setPasswordErr(<p className='alert alert-danger err'>Enter A Valid Password</p>);
+      setPasswordErr(<p className='alert alert-danger err'>{t('signup.Errs.invalidPasswordErr')}</p>);
       setIsErr(true);
     }else{
       setPasswordErr("");
@@ -97,10 +97,10 @@ export const handleDataValidation = (firstName,setFirstNameErr,lastName,setLastN
 
     //Confirmed password validation
     if(!confirmedPassword){
-      setConfirmedPasswordErr(<p className='alert alert-danger err'>Confirmation Required</p>);
+      setConfirmedPasswordErr(<p className='alert alert-danger err'>{t('signup.Errs.confirmedPasswordErr')}</p>);
       setIsErr(true);
     }else if(password !== confirmedPassword){
-      setConfirmedPasswordErr(<p className='alert alert-danger err'>Passwords Should Be Identical</p>);
+      setConfirmedPasswordErr(<p className='alert alert-danger err'>{t('signup.Errs.indenticalPasswordErr')}</p>);
       setIsErr(true);
     }else{
       setConfirmedPasswordErr("");

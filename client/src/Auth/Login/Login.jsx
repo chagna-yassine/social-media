@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
@@ -17,19 +17,24 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [authErr, setAuthErr] = useState('');
 
+  const [ t ] = useTranslation("global")
+
   const navigate = useNavigate();
+
+  //To handle if the user click the login button or not
+  const [isClicked,setIsClicked] = useState(false);
 
   //Declare user cookies
   const [userCookies,setUserCookies] = useCookies(['token']);
 
   // function that send data to the api file for authentification
-  const handleLogin = async () => {
+  //Use a callback hook to prevend multiple rerender in the useEffect hook
+  const handleLogin = useCallback(async () => {
     try {
       const response = await login({ username, password });
-
       //Check if there is an err 
       if(response.errName === "Incorrect"){
-        setAuthErr(<p className='alert alert-danger err'>Username Or Password Incorrect</p>);
+        setAuthErr(<p className='alert alert-danger err'>{t('login.Errs.authErr')}</p>);
       }else{ // create user cookies and rederect him to the main if there is no err
           setUserCookies('token',response.token);
           navigate('/');
@@ -38,27 +43,29 @@ const Login = () => {
     } catch (error) {
       console.error(error);
     }
-  };
-
-  const [ t ] = useTranslation("global")
+  },[username,password,setAuthErr,t,setUserCookies,navigate])
 
   const [eyeIcon,setEyeIcon] = useState(faEye);
 
+  //Handle displayMode
   const [cookies] = useCookies(['displayMode']);
   const currentDisplayMode = cookies.displayMode || 'light';
 
+   //handle the bg imgs when the component rerender
   useEffect(()=>{
       handleBgImgs(currentDisplayMode,"Login","Login");
   },[currentDisplayMode])
 
+  //a useEffect hook that handle the document title and the existens of the userCookies 
   useEffect(()=>{
     document.title = t("login.label");
-
     //Check if the user loged in and rederect him to the main
     if(userCookies.token){
         navigate("/");
     }
-  },[t,navigate,userCookies.token])
+    //Call the handleLogin function when the user click the login button to handle language change on render
+    isClicked && handleLogin();
+  },[t,navigate,userCookies.token,handleLogin,isClicked])
 
   return (
     <div className='Login'>
@@ -90,7 +97,7 @@ const Login = () => {
               </div>
               <div className='Submition'>
                  <a className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} href="/login">{t("login.forgot-pwd")}</a>
-                 <input className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} type="button" value={t("login.submit")} onClick={handleLogin}/>
+                 <input className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} type="button" value={t("login.submit")} onClick={()=>{setIsClicked(true);handleLogin()}}/>
                  <Link className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} to="/signup">{t("login.link")}</Link>
               </div>
             </form>

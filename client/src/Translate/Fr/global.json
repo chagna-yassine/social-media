@@ -1,17 +1,20 @@
 {
-    "loading":"chargement...",
+    "loading":"Chargement...",
     "welcome":"bienvenue",
     "to":"à",
     "login":{
-        "label":"connexion",
+        "label":"Connexion",
         "form-label-user":"nom d'utilisateur",
         "form-label-pwd":"mot de passe",
         "forgot-pwd":"Mot de passe oublié?",
         "submit":"connecter",
-        "link":"Vous n'avez pas de compte ?"
+        "link":"Vous n'avez pas de compte ?",
+        "Errs":{
+            "authErr":"Nom d'utilisateur ou mot de passe incorrect"
+        }
     },
     "signup":{
-        "label":"inscription",
+        "label":"Inscription",
         "form-label-fname":"prénom",
         "form-label-lname":"nom",
         "form-label-age":"âge",
@@ -21,7 +24,28 @@
         "form-label-pwd-1":"mot de passe",
         "form-label-pwd-2":"confirmer le mot de passe",
         "submit":"s'inscrire",
-        "link":"Vous avez déjà un compte ?"
+        "link":"Vous avez déjà un compte ?",
+        "Errs":{
+            "firstNameErr":"Prénom Obligatoire",
+            "lastNameErr":"Nom Obligatoire",
+            "invalidNameErr":"Entrez Un Vrai Nom",
+            "ageErr":"Âge Obligatoire",
+            "underAgeErr":"Vous N'avez Pas L'âge Légal",
+            "invalidAErr":"Entrez An Âge Valide",
+            "phoneErr":"Téléphone Obligatoire",
+            "invalidPhoneErr":"Entrez Un Téléphone Valide",
+            "emailErr":"Email Obligatoire",
+            "invalidEmailErr":"Entrer Un Email Valide",
+            "usernameErr":"Nom D'utilisateur Obligatoire",
+            "invalidUsernameErr":"Entrez Un Nom D'utilisateur Valide",
+            "passwordErr":"Mot De Passe Obligatoire",
+            "invalidPasswordErr":"Entrez Un Mot De Passe Valide",
+            "confirmedPasswordErr":"Confirmation Obligatoire",
+            "indenticalPasswordErr":"Les Mots De Passe Doivent Être Identiques",
+            "existedPhoneErr":"Téléphone Déjà Existant",
+            "existedEmailErr":"Email Déjà Existant",
+            "existedUsernameErr":"Nom D'utilisateur Déjà Existant"
+        }
     },
     "home":{
         "main":{
