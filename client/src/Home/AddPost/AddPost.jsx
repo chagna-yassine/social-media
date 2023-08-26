@@ -1,14 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./AddPost.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faPhotoVideo, faUserTag } from '@fortawesome/free-solid-svg-icons'
 import { useCookies } from 'react-cookie'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import { uploadPost } from '../../api'
 
 const AddPost = () => {
 
   const [ t , i18n ] = useTranslation("global");
+
+  //post stat
+  const [caption, setCaption] = useState('');
+  const [text, setText] = useState('');
 
   const [cookies] = useCookies(['displayMode']);
   const currentDisplayMode = cookies.displayMode || 'light';
@@ -25,15 +30,29 @@ const AddPost = () => {
     document.title = t("home.addPost.label");
   },[t])
 
+  // function that handle adding a post (only text post for now)
+  const handleAddPost = async () => {
+    // add a value to the caption just for test
+    setCaption('default caption');
+    const newPost = {caption, text};
+    try {
+      //send the new post to the signup api
+      const response = await uploadPost(newPost);
+      console.log(response); // Handle success or display error message
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className='AddPost'>
         <div className={`AddPost-header ${i18n.language === "ar" ? "ar" : null}`}>
           <h4 className={`AddPost-header-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{t("home.addPost.create")}</h4>
-          <button className={`AddPost-header-send ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{t("home.addPost.post")}</button>
+          <button className={`AddPost-header-send ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} onClick={handleAddPost}>{t("home.addPost.post")}</button>
         </div>
         <div className="Post-data">
             <div className={`Post-data-text ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>
-              <textarea placeholder={t("home.addPost.postText")}></textarea>
+              <textarea placeholder={t("home.addPost.postText")} value={text} onChange={(e)=>{setText(e.target.value)}}></textarea>
             </div>
             <div className={`Post-data-features ${i18n.language === "ar" ? "ar" : null}`}>
                 <div className={`feature ${i18n.language === "ar" ? "ar" : null}`}>

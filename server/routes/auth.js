@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { User } from "../metadatServise/user.js";
@@ -26,6 +27,7 @@ router.post('/signup', async (req, res) => {
     }else{// If there is no err hashed the password and create a new user in the db
       const hashedPassword = bcrypt.hashSync(password, 10);
       const user = new User({
+        user_id: new mongoose.Types.ObjectId,
         firstName,
         lastName,
         age,

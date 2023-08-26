@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Signup.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"

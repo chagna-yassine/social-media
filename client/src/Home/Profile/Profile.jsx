@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Profile.css";
 import { useCookies } from 'react-cookie';
 import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
