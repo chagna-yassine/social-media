@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import "./Profile.css";
 import { useCookies } from 'react-cookie';
 import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
@@ -18,15 +18,18 @@ const Profile = () => {
 
   //Declare user cookies
   const [userCookies] = useCookies(['token']);
+  const [userIdCookies] = useCookies(['userId']);
+  const [userNameCookies] = useCookies(['username']);
+
   const navigate = useNavigate();
 
   useEffect(()=>{
     //Check if the user not loged in and rederect him to the login
-    if(!userCookies.token){
+    if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
         navigate("/login");
-      }
+    }
     document.title = t("home.profile.label");
-  },[t])
+  },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username])
 
   return (
     <div className='Profile-container'>

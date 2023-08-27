@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Signup.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faEye, faPhoneFlip} from '@fortawesome/free-solid-svg-icons'
+import {faEye} from '@fortawesome/free-solid-svg-icons'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import { handleBgImgs } from '../../HandleBgImgs/handleBgImgs'
@@ -31,7 +31,7 @@ const Signup = () => {
   const [confirmedPassword,setConfirmedPassword] = useState('');
 
   //Signup states Errs
-  const [isErr,setIsErr] = useState(false);
+  const [isErr,setIsErr] = useState(true);
   const [firstNameErr,setFirstNameErr] = useState('');
   const [lastNameErr,setLastNameErr] = useState('');
   const [ageErr,setAgeErr] = useState('');
@@ -41,30 +41,26 @@ const Signup = () => {
   const [passwordErr,setPasswordErr] = useState('');
   const [confirmedPasswordErr,setConfirmedPasswordErr] = useState('');
 
+  //To handle if the user click the signup button or not
+  const [isClicked,setIsClicked] = useState(false);
+
   //Handle displayMode
   const [cookies] = useCookies(['displayMode']);
   const currentDisplayMode = cookies.displayMode || 'light';
 
   //Declare user cookies
   const [userCookies] = useCookies(['token']);
+  const [userIdCookies] = useCookies(['userId']);
+  const [userNameCookies] = useCookies(['username']);
 
+  //handle the bg imgs when the component rerender
   useEffect(()=>{
     handleBgImgs(currentDisplayMode,"Signup","Signup");
   },[currentDisplayMode]);
 
-  useEffect(()=>{
-    document.title = t("signup.label");
-    //Check if the user loged in and rederect him to the main
-    if(userCookies.token){
-      navigate("/");
-  }
-  },[t])
-
-  
-
   //function that handle the signup
-  const handleSignup = async()=>{
-
+  //Use a callback hook to prevend multiple rerender in the useEffect hook
+  const handleSignup = useCallback(async()=>{
     //Check if there is not an err by calling the validation function  to send data
     if(!handleDataValidation(
       firstName , setFirstNameErr,
@@ -75,7 +71,7 @@ const Signup = () => {
       username , setUsernameErr,
       password ,setPasswordErr,
       confirmedPassword , setConfirmedPasswordErr,
-      isErr , setIsErr
+      isErr , setIsErr,t
     )){
       //create a new user
       const  newUser = {firstName,lastName,age,phone,email,username,password};
@@ -84,11 +80,11 @@ const Signup = () => {
         const response = await signup(newUser);
         //Check if there is an err 
         if(response.errName === "PhoneErr"){
-          setPhoneErr(<p className='alert alert-danger err'>Phone Already Existed</p>);
+          setPhoneErr(<p className='alert alert-danger err'>{t('signup.Errs.existedPhoneErr')}</p>);
         }else if(response.errName === "EmailErr"){
-          setEmailErr(<p className='alert alert-danger err'>Email Already Existed</p>);
+          setEmailErr(<p className='alert alert-danger err'>{t('signup.Errs.existedEmailErr')}</p>);
         }else if(response.errName === "UsernameErr"){
-          setUsernameErr(<p className='alert alert-danger err'>Username Already Existed</p>);
+          setUsernameErr(<p className='alert alert-danger err'>{t('signup.Errs.existedUsernameErr')}</p>);
         }else{// Rederect user to the login if there is no err
             navigate('/login')
         }
@@ -97,7 +93,18 @@ const Signup = () => {
         console.error(error);
       }
     }
+  },[firstName,setFirstNameErr,lastName,setLastNameErr,age,setAgeErr,phone,setPhoneErr,email,setEmailErr,username,setUsernameErr,password,setPasswordErr,confirmedPassword,setConfirmedPasswordErr,isErr,setIsErr,t,navigate])
+
+  //a useEffect hook that handle the document title and the existens of the userCookies 
+  useEffect(()=>{
+    document.title = t("signup.label");
+    //Check if the user loged in and rederect him to the main
+    if(userCookies.token && userIdCookies.userId && userNameCookies.username){
+      navigate("/");
   }
+    //Call the handleSignup function when the user click the signup button to handle language change on render
+    isClicked && handleSignup();
+  },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username,handleSignup,isClicked])
   
   return (
     <div id='Signup-container' className='Signup'>
@@ -178,7 +185,7 @@ const Signup = () => {
                 </div>
               </div>
               <div className='Submition'>
-                 <input className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} type="button" value={t("signup.submit")} onClick={handleSignup}/>
+                 <input className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} type="button" value={t("signup.submit")} onClick={()=>{setIsClicked(true);handleSignup()}}/>
                  <Link className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} to="/login">{t("signup.link")}</Link>
               </div>
             </form>
@@ -187,4 +194,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default Signup;

@@ -5,6 +5,7 @@ import { faMoon, faSun } from '@fortawesome/free-regular-svg-icons'
 import {useCookies} from 'react-cookie';
 import { handleDropdown } from './topMenuFonctionalities';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 const TopMenu = () => {
 
@@ -15,6 +16,13 @@ const TopMenu = () => {
 
     const translate = useTranslation();
 
+    //Declare user cookies
+    const userCookies = useCookies(['token']);
+    const userIdCookies = useCookies(['userId']);
+    const userNameCookies = useCookies(['username']);
+
+    const navigate = useNavigate();
+
     const handleDisplayMode = ()=>{
         const newDisplayMode = currentDisplayMode === 'light' ? 'dark' : 'light';
         setCookie('displayMode', newDisplayMode, { path: '/' });
@@ -24,6 +32,14 @@ const TopMenu = () => {
         translate.i18n.changeLanguage(lang);
         const newLanguage = lang;
         setLangCookie('language', newLanguage, { path: '/' });
+    }
+
+    const handleLogout = ()=>{
+        //remove user cookies and rederict him to the login page
+        userCookies[1]('token','');
+        userIdCookies[1]('userId','');
+        userNameCookies[1]('username','');
+        navigate('/login')
     }
     
   return (
@@ -53,6 +69,13 @@ const TopMenu = () => {
                 </div>
             </div>
         </div>
+        {
+            userCookies[0].token && (
+                <div className="Logout">
+                    <button className={`btn Logout-btn ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} onClick={handleLogout}>Logout</button>
+                </div>
+            )
+        }
     </div>
   )
 }

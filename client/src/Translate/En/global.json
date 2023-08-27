@@ -1,17 +1,20 @@
 {
-    "loading":"loading...",
+    "loading":"Loading...",
     "welcome":"welcome",
     "to":"to",
     "login":{
-        "label":"login",
+        "label":"Login",
         "form-label-user":"username",
         "form-label-pwd":"password",
         "forgot-pwd":"Forgot password?",
         "submit":"login",
-        "link":"Don't have an account?"
+        "link":"Don't have an account?",
+        "Errs":{
+            "authErr":"Username Or Password Incorrect"
+        }
     },
     "signup":{
-        "label":"signup",
+        "label":"Signup",
         "form-label-fname":"first name",
         "form-label-lname":"last name",
         "form-label-age":"age",
@@ -21,7 +24,28 @@
         "form-label-pwd-1":"password",
         "form-label-pwd-2":"confirm password",
         "submit":"signup",
-        "link":"Aready have an account?"
+        "link":"Aready have an account?",
+        "Errs":{
+            "firstNameErr":"First Name Required",
+            "lastNameErr":"Last Name Required",
+            "invalidNameErr":"Enter A Real Name",
+            "ageErr":"Age Required",
+            "underAgeErr":"You Are Under The Legal Age",
+            "invalidAErr":"Enter A Valid Age",
+            "phoneErr":"Phone Required",
+            "invalidPhoneErr":"Enter A Valid Phone",
+            "emailErr":"Email Required",
+            "invalidEmailErr":"Enter A Valid Email",
+            "usernameErr":"Username Required",
+            "invalidUsernameErr":"Enter A Valid Username",
+            "passwordErr":"Password Required",
+            "invalidPasswordErr":"Enter A Valid Password",
+            "confirmedPasswordErr":"Confirmation Required",
+            "indenticalPasswordErr":"Passwords Should Be Identical",
+            "existedPhoneErr":"Phone Already Existed",
+            "existedEmailErr":"Email Already Existed",
+            "existedUsernameErr":"Username Already Existed"
+        }
     },
     "home":{
         "main":{

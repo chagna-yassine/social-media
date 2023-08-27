@@ -49,3 +49,149 @@ export const uploadPost = async (postData) => {
     throw error;
   }
 };
+
+export const search = async (searchQuery) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/search?username=${searchQuery}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getUser = async (username) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/search/users`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(username),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const follow = async (followData) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/follow`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(followData),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const checkFollow = async (followData) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/follow/checkFollow`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(followData),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const unFollow = async (followData) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/follow/unFollow`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(followData),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+
+export const createConversation = async (conversationData) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Message/createConversation`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(conversationData),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const sendMessage = async (messageData) => {
+  console.log(messageData);
+  try {
+    const response = await fetch(`${API_BASE_URL}/Message/sendMessage`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(messageData),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const getConversations = async (userId) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Message/getConversations`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userId),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getMessages = async (senderId) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Message/getMessages`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(senderId),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};

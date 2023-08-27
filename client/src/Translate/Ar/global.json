@@ -8,7 +8,10 @@
         "form-label-pwd":"كلمة المرور",
         "forgot-pwd":"نسيت كلمة المرور؟",
         "submit":"تسجيل الدخول",
-        "link":"أليس لديك حساب؟"
+        "link":"أليس لديك حساب؟",
+        "Errs":{
+            "authErr":"اسم المستخدم او الرقم السري غير صحيح"
+        }
     },
     "signup":{
         "label":"الاشتراك",
@@ -21,7 +24,28 @@
         "form-label-pwd-1":"كلمة المرور",
         "form-label-pwd-2":"تأكيد كلمة المرور",
         "submit":"الاشتراك",
-        "link":"هل لديك حساب بالفعل؟"
+        "link":"هل لديك حساب بالفعل؟",
+        "Errs":{
+            "firstNameErr":"الاسم ضروري",
+            "lastNameErr":"الاسم ضروري",
+            "invalidNameErr":"أدخل إسما حقيقيا",
+            "ageErr":"السن ضروري",
+            "underAgeErr":"أنت تحت السن القانوني",
+            "invalidAErr":"أدخل عمرا صحيحا",
+            "phoneErr":"الهاتف ضروري",
+            "invalidPhoneErr":"أدخل هاتفًا صالحًا",
+            "emailErr":"البريد الإلكتروني ضروري",
+            "invalidEmailErr":"أدخل بريدا إلكترونيا صالحًا",
+            "usernameErr":"اسم المستخدم ضروري",
+            "invalidUsernameErr":"أدخل اسم مستخدم صالح",
+            "passwordErr":"كلمة المرور ضرورية",
+            "invalidPasswordErr":"أدخل كلمة مرور صالحة",
+            "confirmedPasswordErr":"التأكيد ضروري",
+            "indenticalPasswordErr":"يجب أن تكون كلمات المرور متطابقة",
+            "existedPhoneErr":"هذا الهاتف موجود بالفعل",
+            "existedEmailErr":"هذا البريد الإلكتروني موجود بالفعل",
+            "existedUsernameErr":"اسم المستخدم هذا الموجود بالفعل"
+        }
     },
     "home":{
         "main":{

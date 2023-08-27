@@ -12,6 +12,9 @@ import metadataRoutes from "./routes/metadata.js";
 import likeRoutes from "./routes/like.js";
 import commentRoutes from "./routes/comment.js";
 import authRoutes from "./routes/auth.js";
+import searchRoutes from "./routes/search.js";
+import followRoutes from "./routes/follow.js";
+import messageRoutes from "./routes/message.js";
 
 
 /* CONFIGURATION */
@@ -33,6 +36,9 @@ app.use("/Metadata", metadataRoutes);
 app.use("/Like", likeRoutes);
 app.use("/Comment", commentRoutes);
 app.use('/auth', authRoutes);
+app.use('/Search', searchRoutes);
+app.use('/Follow', followRoutes);
+app.use('/Message', messageRoutes);
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000;
@@ -53,4 +59,4 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
-//module.exports = db;
+export default db;

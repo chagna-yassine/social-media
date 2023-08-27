@@ -60,11 +60,11 @@
 }
 
 .Main .Feed-container .Messages .Messages-container .Friends{
-    display: grid;
     width: 30%;
     max-height: 55vh;
-    gap: 1.5vh;
+    min-height: 55vh;
     padding: 2vh;
+    border-right: 1px solid var(--dark-white);
     overflow-y: scroll;
 }
 
@@ -87,11 +87,13 @@
     display: flex;
     align-items: center;
     min-height: 9vh;
+    max-height: 9vh;
+    margin-block-end: 1.5vh;
     border-radius: 10px;
     transition: background-color 1s;
 }
 
-.Main .Feed-container .Messages .Messages-container .Friends .Friends-item{
+.Main .Feed-container .Messages .Messages-container .Friends .Friends-item.ar{
     flex-direction: row-reverse;
 }
 
@@ -197,6 +199,7 @@
 
 .Main .Feed-container .Messages .Messages-container .Messages-box .Conversation{
     width: 100%;
+    min-height: 43vh;
     max-height: 43vh;
     overflow-y: scroll;
 }

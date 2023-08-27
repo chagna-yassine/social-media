@@ -17,15 +17,18 @@ const Main = () => {
 
     //Declare user cookies
     const [userCookies] = useCookies(['token']);
+    const [userIdCookies] = useCookies(['userId']);
+    const [userNameCookies] = useCookies(['username']);
+
     const navigate = useNavigate();
 
     useEffect(()=>{
         //Check if the user not loged in and rederect him to the login
-        if(!userCookies.token){
+        if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
             navigate("/login");
-        }
+          }
         document.title = t("home.main.label");
-    },[t])
+    },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username,])
 
   return (
     <ul className={`list-group Post-List ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
