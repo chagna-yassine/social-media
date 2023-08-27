@@ -114,24 +114,24 @@ social media application
 
  - ### Upload image:
 	 
-		◦ The user send a queries to upload an image by the ui.
-       
-		◦ the geteway api perform a security check of accessibility … .
-    
-		◦ the api send it to the image services.
-        
-		◦ the image service store the image in the blob store and generate an url and an id return to image service.
-        
-		◦ image service store the information in the database passing by the metadata service.
-        
-		◦ The image service send a queries to the fanout servicce to handle distributing the events to the follower.
-        
-		◦ The fanout get the data from the metadata and he is connected to cash.
-        
-		◦ Create notifications for each follower and send it to the message Q.
-        
-		◦ the message Q check the like and comment services and send the a queries to the feed services
-        
-		◦ the feed services get data from the metadata and process of generating new feed according to the following and like
-	
-		◦ the image service return to the user by the api that the image was uploaded successfully.
+	◦ The user send a queries to upload an image by the ui.
+
+	◦ the geteway api perform a security check of accessibility … .
+
+	◦ the api send it to the image services.
+
+	◦ the image service store the image in the blob store and generate an url and an id return to image service.
+
+	◦ image service store the information in the database passing by the metadata service.
+
+	◦ The image service send a queries to the fanout servicce to handle distributing the events to the follower.
+
+	◦ The fanout get the data from the metadata and he is connected to cash.
+
+	◦ Create notifications for each follower and send it to the message Q.
+
+	◦ the message Q check the like and comment services and send the a queries to the feed services
+
+	◦ the feed services get data from the metadata and process of generating new feed according to the following and like
+
+	◦ the image service return to the user by the api that the image was uploaded successfully.
