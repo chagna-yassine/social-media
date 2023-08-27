@@ -1,5 +1,19 @@
 # social-media
+
 social media application
+
+To start the poject:
+
+go to the server folder and run the following command :
+
+`npm install`
+`npm start`
+
+then go to the client folder and run the following command :
+
+`npm install`
+`npm start`
+
 # Front-End
 
 # Back-End
