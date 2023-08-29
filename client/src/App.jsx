@@ -16,6 +16,9 @@ import Messages from './Home/Messages/Messages';
 import Profile from './Home/Profile/Profile';
 import SearchedProfile from './Home/SearchedProfile/SearchedProfile';
 import DirectMessages from './Home/Messages/DirectMessages';
+import DefaultOutlet from './Home/Messages/DefaultOutlet';
+import { Provider } from 'react-redux'
+import { store } from './Home/Messages/MessageStore/store';
 
 function App() {
   const[isLoading,setIsLoading] = useState(true);
@@ -36,21 +39,24 @@ function App() {
       {isLoading ? (
         <LoadingScreen/>
       ) : (
-        <Routes>
-          <Route path='/' element={<Home />}>
-            <Route index element={<Main/>}/>
-            <Route path='main' element={<Main/>}/>
-            <Route path='search' element={<Search/>}/>
-            <Route path='addPost' element={<AddPost/>}/>
-            <Route path='messages' element={<Messages/>}>
-              <Route path=':username' element={<DirectMessages/>}/>
+        <Provider store={store}>
+          <Routes>
+            <Route path='/' element={<Home />}>
+              <Route index element={<Main/>}/>
+              <Route path='main' element={<Main/>}/>
+              <Route path='search' element={<Search/>}/>
+              <Route path='addPost' element={<AddPost/>}/>
+              <Route path='messages' element={<Messages/>}>
+                <Route index element={<DefaultOutlet/>}/>
+                <Route path=':username/:id' element={<DirectMessages/>}/>
+              </Route>
+              <Route path='profile' element={<Profile/>}/>
+              <Route path=':username' element={<SearchedProfile/>}/>
             </Route>
-            <Route path='profile' element={<Profile/>}/>
-            <Route path=':username' element={<SearchedProfile/>}/>
-          </Route>
-          <Route path='/login' element={<Login />}/>
-          <Route path='/signup' element={<Signup />}/>
-        </Routes>
+            <Route path='/login' element={<Login />}/>
+            <Route path='/signup' element={<Signup />}/>
+          </Routes>
+        </Provider>
       )}
     </Router>
   );

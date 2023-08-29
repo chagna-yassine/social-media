@@ -26,12 +26,15 @@ const Profile = () => {
 
   const navigate = useNavigate();
 
+  const [isLoading,setIsLoading] = useState(true);
+
   useEffect(()=>{
     //Check if the user not loged in and rederect him to the login
     if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
         navigate("/login");
     }
     document.title = t("home.profile.label");
+    setIsLoading(false)
   },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username])
   
   // geting all the post for the user 
@@ -53,7 +56,8 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className='Profile-container'>
+     !isLoading && (
+        <div className='Profile-container'>
       <div className="Profile">
         <div className="Profile-cover">
             <img src={testImg_2} alt="" />
@@ -62,7 +66,7 @@ const Profile = () => {
           <img src={testImg_3} alt="" />
         </div>
         <div className={`Profile-info ${i18n.language === "ar" ? "ar" : null}`}>
-          <h3 className={`Profile-name ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>UserName</h3>
+          <h3 className={`Profile-name ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{userNameCookies.username}</h3>
           <p className={`Profile-bio ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>This is my bio</p>
         </div>
         <div className={`Profile-actions ${i18n.language === "ar" ? "ar" : i18n.language === "fr" ? "fr" : null}`}>
@@ -135,6 +139,7 @@ const Profile = () => {
           </li> */}
       </ul>
     </div>
+     )
   )
 }
 

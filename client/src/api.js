@@ -65,13 +65,14 @@ export const getPost = async (user_id) => {
   }
 };
 
-export const search = async (searchQuery) => {
+export const search = async (searchData) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/search?username=${searchQuery}`, {
-      method: 'GET',
+    const response = await fetch(`${API_BASE_URL}/search`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify(searchData),
     });
     const data = await response.json();
     return data;
@@ -162,7 +163,6 @@ export const createConversation = async (conversationData) => {
 };
 
 export const sendMessage = async (messageData) => {
-  console.log(messageData);
   try {
     const response = await fetch(`${API_BASE_URL}/Message/sendMessage`, {
       method: 'POST',
@@ -174,7 +174,6 @@ export const sendMessage = async (messageData) => {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.log(error);
     throw error;
   }
 };
@@ -191,6 +190,7 @@ export const getConversations = async (userId) => {
     const data = await response.json();
     return data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };

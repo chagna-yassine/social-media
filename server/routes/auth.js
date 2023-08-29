@@ -1,5 +1,4 @@
 import express from "express";
-import mongoose from "mongoose";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { User } from "../metadatServise/user.js";
@@ -27,7 +26,6 @@ router.post('/signup', async (req, res) => {
     }else{// If there is no err hashed the password and create a new user in the db
       const hashedPassword = bcrypt.hashSync(password, 10);
       const user = new User({
-        user_id: new mongoose.Types.ObjectId,
         firstName,
         lastName,
         age,
@@ -68,8 +66,8 @@ router.post('/login', async (req, res) => {
 
     //Cnnect the user to his account and create his token if there isn't an err
     const token = jwt.sign({ userId: user._id }, 'your-secret-key');
-    const id = user._id
-    res.json({ token, id });
+
+    res.json({ token , username , id : user._id });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
