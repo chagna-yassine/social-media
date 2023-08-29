@@ -37,10 +37,12 @@ const AddPost = () => {
   const handleAddPost = async () => {
     // add a value to the caption just for test
     setCaption('default caption');
-    const newPost = {caption, text};
+    
+    const newPost = {user_id: userIdCookies.userId, caption, text};
+    console.log("newPost :", newPost);
     try {
       //send the new post to the signup api
-      const response = await uploadPost(newPost);
+      const response = await uploadPost({user_id: userIdCookies.userId, caption, text});
       console.log(response); // Handle success or display error message
     } catch (error) {
       console.error(error);

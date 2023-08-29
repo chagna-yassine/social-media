@@ -68,7 +68,8 @@ router.post('/login', async (req, res) => {
 
     //Cnnect the user to his account and create his token if there isn't an err
     const token = jwt.sign({ userId: user._id }, 'your-secret-key');
-    res.json({ token });
+    const id = user._id
+    res.json({ token, id });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Profile.css";
 import { useCookies } from 'react-cookie';
 import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
@@ -8,6 +8,7 @@ import testImg_2 from "../../Images/Light-6.jpeg"
 import testImg_3 from "../../Images/Dark-6.jpeg"
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { getPost } from '../../api';
 
 const Profile = () => {
 
@@ -21,6 +22,8 @@ const Profile = () => {
   const [userIdCookies] = useCookies(['userId']);
   const [userNameCookies] = useCookies(['username']);
 
+  const [posts, setPosts] = useState([{}]);
+
   const navigate = useNavigate();
 
   useEffect(()=>{
@@ -30,6 +33,24 @@ const Profile = () => {
     }
     document.title = t("home.profile.label");
   },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username])
+  
+  // geting all the post for the user 
+  const handleGetPost = async () => {
+    try {
+        const user_id = userIdCookies.userId;
+        
+        const response = await getPost(user_id);
+
+        // return the result in the post variable to be used later
+        setPosts(response)
+    } catch (error) {
+        console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    handleGetPost(); 
+  }, []);
 
   return (
     <div className='Profile-container'>
@@ -66,7 +87,8 @@ const Profile = () => {
                       </div>
                   </div>
                   <div className={`card Post-content ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                      <img src={testImg} className="card-img-top Post-content-media" alt="Post" />
+                      {/* <img src={testImg} className="card-img-top Post-content-media" alt="Post" /> */}
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias, commodi voluptates. Est saepe mollitia aut omnis vero quae labore quasi modi veritatis consequuntur maxime iste tempore aspernatur voluptas, eaque voluptate?</p>
                   </div>
                   <div className={`list-group-item Interactions ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                       <div className="Interactions-item">
@@ -81,7 +103,7 @@ const Profile = () => {
                   </div>
               </div>
           </li>
-          <li className={`list-group-item Post-List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+          {/* <li className={`list-group-item Post-List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
               <div className={`card Post ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                   <div className="card-body Post-header">
                       <div className={`card border-0 mb-3 Post-info ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
@@ -110,37 +132,7 @@ const Profile = () => {
                       </div>
                   </div>
               </div>
-          </li>
-          <li className={`list-group-item Post-List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-              <div className={`card Post ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                  <div className="card-body Post-header">
-                      <div className={`card border-0 mb-3 Post-info ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                          <div className="row g-0">
-                              <div className="Logo-container">
-                                  <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}></div>
-                              </div>
-                              <div className="w-50 d-flex align-items-center">
-                                  <h2 className={`Label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>User Name</h2>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-                  <div className={`card Post-content ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                      <img src={testImg} className="card-img-top Post-content-media" alt="Post" />
-                  </div>
-                  <div className={`list-group-item Interactions ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                      <div className="Interactions-item">
-                          <FontAwesomeIcon className="Interactions-item-icon" icon={faHeart}/>
-                      </div>
-                      <div className="Interactions-item">
-                          <FontAwesomeIcon className="Interactions-item-icon" icon={faComment}/>
-                      </div>
-                      <div className="Interactions-item">
-                          <FontAwesomeIcon className="Interactions-item-icon" icon={faPaperPlane}/>
-                      </div>
-                  </div>
-              </div>
-          </li>
+          </li> */}
       </ul>
     </div>
   )
