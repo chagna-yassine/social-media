@@ -79,7 +79,7 @@ const Profile = () => {
       <h4 className='Post-Label'>{t("home.profile.posts")}</h4>
       <ul className={`list-group Post-List ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
       {
-      posts.map((dictionary, index) => (
+        posts.map((dictionary, index) => (
 
             <li key={index} id={dictionary._id} className={`list-group-item Post-List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                 <div className={`card Post ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
