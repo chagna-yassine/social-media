@@ -7,12 +7,13 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
-import { checkFollow, follow, getUser, unFollow } from '../../api';
+import { checkFollow, createConversation, follow, getUser, unFollow } from '../../api';
 
 const SearchedProfile = () => {
     //get the username from the ur param
     const {username} = useParams();
     const [user , setUser] = useState([]);
+    const [conversation , setConversation] = useState([]);
 
     const [ t , i18n ] = useTranslation("global");
 
@@ -28,11 +29,14 @@ const SearchedProfile = () => {
 
     //follow states
     const [ followStatus , setFollowStatus ] = useState('');
+
+    const [isLoading,setIsLoading] = useState(true);
   
     // function that send the username to the api and get his data
     //Use a callback hook to prevend multiple rerender in the useEffect hook
     const handeUserData = useCallback(async()=>{
         setUser(await getUser({username}));
+        setIsLoading(false)
     },[username,setUser])
 
     // function that check the follow status and set it to following or notFollowing
@@ -52,13 +56,23 @@ const SearchedProfile = () => {
         navigate("/login");
       }
       //set the document title to the username
-      document.title = username;
+      document.title = `${username} - Profile`;
       //call the function handeUserData when the component render and fetch the data
       handeUserData();
       //call the function handleCheckFollow when the component render to see the follow status
-      handleCheckFollow();
-    },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username,username,handeUserData,handleCheckFollow])
+      !isLoading && handleCheckFollow();
 
+      //function tha creat an conversation btween the user and searched user
+      const handleConversation = async()=>{
+        setConversation(await createConversation({
+            first : userIdCookies.userId, 
+            second : user._id
+        }));
+      }
+      //call the handleConversation when the component is loaded
+      !isLoading && handleConversation();
+
+    },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username,username,handeUserData,handleCheckFollow,isLoading,user._id])
     //function that create a new follow by sending the id of the follower and the following
     const handleFollow = async()=>{
         await follow({
@@ -80,9 +94,16 @@ const SearchedProfile = () => {
         //call the function handleCheckFollow to update the follow status
         handleCheckFollow();
     }
-  
+
+     //function that redirect the user to the searched user conversation
+     const handleMessage = async()=>{
+        conversation && navigate(`/messages/${await conversation.username}/${await conversation.id}`)
+    };
+    
     return (
-      <div className='Profile-container'>
+        //Handle if the component is Fully loading
+        !isLoading && (
+            <div className='Profile-container'>
         <div className="Profile">
           <div className="Profile-cover">
               <img src={testImg_2} alt="" />
@@ -97,14 +118,14 @@ const SearchedProfile = () => {
           <div className={`Profile-actions ${i18n.language === "ar" ? "ar" : i18n.language === "fr" ? "fr" : null}`}>
              {
                 // if the follow status is notFollowing show the following btn else show the unFollow btn
-                followStatus === 'notFollowing' || followStatus === '' ? (
+                !isLoading && followStatus === 'notFollowing' ? (
                     <button className={`Add-post Follow ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} onClick={handleFollow}>Follow</button>
                 )
                 :(
                     <button className={`Add-post Unfollow ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} onClick={handleUnFollow}>Unfollow</button>
                 )
              }
-             <button className={`Edit-Profile ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>Message</button>
+             <button className={`Edit-Profile ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} onClick={handleMessage}>Message</button>
           </div>
         </div>
         <h4 className='Post-Label'>{t("home.profile.posts")}</h4>
@@ -201,6 +222,7 @@ const SearchedProfile = () => {
             </li>
         </ul>
       </div>
+        )
     )
 }
 

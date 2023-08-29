@@ -137,7 +137,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding-inline: 5%;
+    padding-inline-end: 5%;
     min-height: 4vh;
     padding-block: 1vh;
     margin-block-end: 1vh;
@@ -158,6 +158,21 @@
 .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header.ar .Messages-box-header-info{
     flex-direction: row-reverse;
     justify-content: end;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Messages-box-header-info .Back-icon{
+    margin-inline-end: 1vh;
+    width: 4vh;
+    height: 3vh;
+    transition: color 1s;
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Messages-box-header-info .Back-icon.dark{
+    color: var(--dark);
+}
+
+.Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Messages-box-header-info .Back-icon.light{
+    color: var(--dark-white);
 }
 
 .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-box-header .Messages-box-header-info .Logo{
@@ -312,6 +327,66 @@
 
 .Main .Feed-container .Messages .Messages-container .Messages-box .Messages-form .Input-container .Img-icon.dark{
     color: var(--dark-green);
+}
+
+.NoConversation{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    height: 30vh;
+    transition: color 1s;
+}
+
+.NoConversation.dark{
+    color: var(--dark-white);
+}
+ 
+.NoConversation.dark h5{
+    color: var(--dark-blue);
+}
+
+.NoConversation.light{
+    color: var(--white);
+}
+
+.NoConversation.light h5{
+    color: var(--light-green);
+}
+
+.NoConversation h5{
+    font-weight: bolder;
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 2.7vh;
+    margin-block-end: 2vh;
+}
+
+.NoConversation p{
+    text-transform: capitalize;
+    font-size: 2vh;
+}
+
+.DefaultOutlet{
+    display: flex;
+    height: 55vh;
+    width: 70%;
+    align-items: center;
+    justify-content: center;
+    transition: color 1s;
+}
+
+.DefaultOutlet.dark{
+    color: var(--dark-white);
+}
+
+.DefaultOutlet.light{
+    color: var(--white);
+}
+
+.DefaultOutlet .Container{
+    text-align: center;
+    text-transform: capitalize;
 }
 
 /* Responsive design */

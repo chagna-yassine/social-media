@@ -4,20 +4,23 @@ import { User } from "../metadatServise/user.js";
 const router = express.Router();
 
 
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
       //Get the username query
-      const { username } = req.query;
+      const { searchQuery , userId } = req.body
       //create a new pattern for the query
-      const regex = new RegExp(`^${username}`,'i')
+      const regex = new RegExp(`^${searchQuery}`,'i')
       //get the users that have the same username pattern
-      const users = await User.find({ username : regex });
+      const users = await User.find({ 
+        username : regex ,
+        _id : { $ne: userId }
+      });
       //send an err if there is no users with the pattern
       if (!users) {
         return res.status(401).json({ errName: 'NotFound'});
       }
       //send the users
-      res.json(users);
+      res.status(201).json(users);
     }catch (error) {
       res.status(500).json({ error: error.message });
     }
@@ -34,7 +37,7 @@ router.post('/users', async (req, res) => {
         return res.status(401).json({ errName: 'NotFound'});
       }
       //send the user
-      res.json(user);
+      res.status(201).json(user);
     }catch (error) {
       res.status(500).json({ error: error.message });
     }

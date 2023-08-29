@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import "./Main.css";
 import { useCookies } from 'react-cookie';
 import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
@@ -22,16 +22,23 @@ const Main = () => {
 
     const navigate = useNavigate();
 
+    //Handle loading state
+    const [isLoading,setIsLoading] = useState(true);
+
     useEffect(()=>{
         //Check if the user not loged in and rederect him to the login
         if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
             navigate("/login");
           }
         document.title = t("home.main.label");
+        //Set the loading state to false when the component load
+        setIsLoading(false)
     },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username,])
 
   return (
-    <ul className={`list-group Post-List ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+    //Handle if the component is Fully loading
+    !isLoading && (
+        <ul className={`list-group Post-List ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
         <li className={`list-group-item Post-List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
             <div className={`card Post ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                 <div className="card-body Post-header">
@@ -183,6 +190,7 @@ const Main = () => {
             </div>
         </li>
     </ul>
+    )
   )
 }
 export default Main;
