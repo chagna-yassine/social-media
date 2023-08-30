@@ -14,7 +14,7 @@ const TopMenu = () => {
 
     const [langCookies, setLangCookie] = useCookies(['language']);
 
-    const translate = useTranslation();
+    const [ t , i18n ] = useTranslation("global");
 
     //Declare user cookies
     const userCookies = useCookies(['token']);
@@ -29,7 +29,7 @@ const TopMenu = () => {
     } 
 
     const handleLanguage = (lang = langCookies.language)=>{
-        translate.i18n.changeLanguage(lang);
+        i18n.changeLanguage(lang);
         const newLanguage = lang;
         setLangCookie('language', newLanguage, { path: '/' });
     }
@@ -72,7 +72,7 @@ const TopMenu = () => {
         {
             userCookies[0].token && (
                 <div className="Logout">
-                    <button className={`btn Logout-btn ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} onClick={handleLogout}>Logout</button>
+                    <button className={`btn Logout-btn ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} onClick={handleLogout}>{t('menu.logout')}</button>
                 </div>
             )
         }

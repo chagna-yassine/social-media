@@ -6,7 +6,9 @@ import { useCookies } from 'react-cookie';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getMessages , sendMessage } from '../../api';
 import { useDispatch, useSelector } from 'react-redux';
-import { sendMsg } from './MessageStore/actions';
+import { receiveMsg, sendMsg } from './MessageStore/actions';
+import { addDoc, collection, onSnapshot, query, where } from 'firebase/firestore';
+import { db } from '../../firebase-config';
 
 const DirectMessages = () => {
 
@@ -51,27 +53,49 @@ const DirectMessages = () => {
   //The sent message content
     const [content,setContent] = useState('');
 
+  //Ref to the collection in firestore
+  const messagesRef = collection(db,'messages');
+
   // function that send the msg when the user click the enter btn and call the handleMessages to re-render the msg data
     const handleSendMessages = async (e)=>{
         if (e.key === 'Enter') {
+            //send msg to db
             content && sendMessage({ conversationId: id , senderId : userIdCookies.userId , content});
+            //Send msg to store to re-render the page when user send  msg
             content && dispatch(sendMsg({
               from: userIdCookies.userId,
               to: messages.otherParticipant,
               msg: content
             }))
+            //Send msg to fireStore 
+            content && await addDoc(messagesRef,{
+              from: userIdCookies.userId,
+              to: messages.otherParticipant,
+              msg: content
+            });
             setContent('');
         }
     }
 
+    //if the sender id is not empty
+    useEffect(()=>{
+        if(messages.otherParticipant){
+          //create the query to listen to
+          const queryMessages = query(messagesRef,where("to","==", userIdCookies.userId ) , where("from","==", messages.otherParticipant));
+          //if there is any change on the query grap the data frm the doc and send it to stor as a receiveMsg action
+          onSnapshot(queryMessages,(data)=>{
+             data.forEach((doc)=>{
+                dispatch(receiveMsg(doc.data()))
+             })
+          })
+        }
+    },[messages.otherParticipant])
   
     useEffect(() => {
       //Check if the user not loged in and rederect him to the login
       if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
         navigate("/login");
       }
-
-      document.title = `${username} - DM`;
       //call the handleMessages when the component load to fetch msg data
       handleMessages();
     }, [t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username,username,handleMessages,isLoading,msg]);

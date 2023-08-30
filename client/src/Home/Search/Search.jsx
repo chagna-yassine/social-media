@@ -51,7 +51,7 @@ const Search = () => {
     if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
       navigate("/login");
     }
-    document.title = t("home.search");
+    document.title = t("home.search.title");
     setIsLoading(false)
   },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username])
 
@@ -60,7 +60,7 @@ const Search = () => {
       <div className='Search'>
         <div className={`Search-bar ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>
           <div className='w-75 position-relative'>
-            <input type="text" placeholder={t("home.search")} onChange={(e)=>{setSearchQuery(e.target.value)}} onKeyPress={(e)=>{searchQuery && handleKeyPress(e)}}/>
+            <input type="text" placeholder={t("home.search.title")} onChange={(e)=>{setSearchQuery(e.target.value)}} onKeyPress={(e)=>{searchQuery && handleKeyPress(e)}}/>
             <FontAwesomeIcon className={`search-icon ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} icon={faSearch} onClick={()=>{searchQuery && handleSearch();setIsClicked(true);}}/>
           </div>
         </div>
@@ -75,11 +75,11 @@ const Search = () => {
               ))
               : isClicked && !isDataLoading ? (
                 <div className={`Results-item justify-content-center ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>
-                  <h3 className="Results-item-label text-center">User Not Found</h3>
+                  <h3 className="Results-item-label text-center">{t('home.search.notFound')}</h3>
                 </div>
               )
               : (
-                <h1 className={`useSearchBar ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`} >use the search bar to search for friends</h1>
+                <h1 className={`useSearchBar ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`} >{t('home.search.info')}</h1>
               )
             }
         </div>

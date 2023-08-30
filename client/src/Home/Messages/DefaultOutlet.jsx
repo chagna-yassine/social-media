@@ -13,8 +13,8 @@ const DefaultOutlet = () => {
   return (
     <div className={`DefaultOutlet ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>
         <div className='Container'>
-            <h2>your messages</h2>
-            <p>click on a user and your messages will appear here</p>
+            <h2>{t('home.msgs.defaultOutlet.heading')}</h2>
+            <p>{t('home.msgs.defaultOutlet.par')}</p>
         </div>
     </div>
   )

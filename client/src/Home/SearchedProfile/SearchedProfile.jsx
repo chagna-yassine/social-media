@@ -56,7 +56,7 @@ const SearchedProfile = () => {
         navigate("/login");
       }
       //set the document title to the username
-      document.title = `${username} - Profile`;
+      document.title = `${username} - ${t("home.search.searchedProfil.title")}`;
       //call the function handeUserData when the component render and fetch the data
       handeUserData();
       //call the function handleCheckFollow when the component render to see the follow status
@@ -119,13 +119,13 @@ const SearchedProfile = () => {
              {
                 // if the follow status is notFollowing show the following btn else show the unFollow btn
                 !isLoading && followStatus === 'notFollowing' ? (
-                    <button className={`Add-post Follow ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} onClick={handleFollow}>Follow</button>
+                    <button className={`Add-post Follow ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} onClick={handleFollow}>{t("home.search.searchedProfil.follow")}</button>
                 )
                 :(
-                    <button className={`Add-post Unfollow ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} onClick={handleUnFollow}>Unfollow</button>
+                    <button className={`Add-post Unfollow ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} onClick={handleUnFollow}>{t("home.search.searchedProfil.unfollow")}</button>
                 )
              }
-             <button className={`Edit-Profile ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} onClick={handleMessage}>Message</button>
+             <button className={`Edit-Profile ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} onClick={handleMessage}>{t("home.search.searchedProfil.msg")}</button>
           </div>
         </div>
         <h4 className='Post-Label'>{t("home.profile.posts")}</h4>

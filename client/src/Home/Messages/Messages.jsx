@@ -38,7 +38,7 @@ const msg = useSelector((state)=> state.data);
     if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
       navigate("/login");
     }
-    document.title = t("home.msgs");
+    document.title = t("home.msgs.title");
 
   // function that get the conversations that the user participate in and set the loading state to false when the conversations loaded
     const handleUsers = async()=>{
@@ -54,7 +54,7 @@ const msg = useSelector((state)=> state.data);
     !isLoading && (
       <div className='Messages'>
         <div className={`Messages-header ${i18n.language === "ar" ? "ar" : null}`}>
-          <h4 className={`Messages-header-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{t("home.msgs")}</h4>
+          <h4 className={`Messages-header-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{t("home.msgs.title")}</h4>
         </div>
         <div className={`Messages-container ${i18n.language === "ar" ? "ar" : null}`}>
           <div className={`Friends ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>
@@ -70,8 +70,8 @@ const msg = useSelector((state)=> state.data);
                 )): (
                   <div className={`NoConversation ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>
                     <div>
-                      <h5>no conversations?</h5>
-                      <p>find friends to start conversations with them</p>
+                      <h5>{t('home.msgs.noConv.heading')}</h5>
+                      <p>{t('home.msgs.noConv.par')}</p>
                     </div>
                   </div>
                 )

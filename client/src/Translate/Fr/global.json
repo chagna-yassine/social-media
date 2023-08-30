@@ -56,7 +56,17 @@
             "share":"partagez votre publication",
             "msg":"Vous avez un message de"
         },
-        "search":"Chercher",
+        "search":{
+            "title" : "Recherche",
+            "notFound":"Utilisateur Non Trouvé",
+            "info":"utilisez la barre de recherche pour rechercher des amis",
+            "searchedProfil":{
+                "title": "Profil",
+                "follow":"Abonner",
+                "unfollow":"Désabonner",
+                "msg":"Message"
+            }
+        },
         "addPost":{
             "label":"Ajouter publication",
             "create":"créer publication",
@@ -66,13 +76,25 @@
             "location":"ajouter un emplacement",
             "post":"publication"
         },
-        "msgs":"Messages",
+        "msgs":{
+            "title" : "Messages",
+            "defaultOutlet":{
+                "heading":"tes messages",
+                "par":"cliquez sur un utilisateur et vos messages apparaîtront ici"
+            },
+            "noConv":{
+                "heading":"Pas de conversation?",
+                "par":"Trouver des amis pour entamer des conversations avec eux"
+            }
+        },
         "profile":{
             "label":"Profil",
             "add":"ajouter publication",
             "edit":"modifier le profil",
             "posts":"publications"
         }
-        
+    },
+    "menu":{
+        "logout":"Déconnecter"
     }
 }

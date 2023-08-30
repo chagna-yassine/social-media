@@ -18,6 +18,14 @@ export const reducer = (state  = initialState , action)=>{
                     msg : action.playload.msg,
                 }
             };
-        default : return state;
+            case RECEIVE_MESSAGE:
+                return {
+                    data:{
+                        from : action.playload.from,
+                        to : action.playload.to,
+                        msg : action.playload.msg,
+                    }
+                };
+                default : return state;
     }
 }

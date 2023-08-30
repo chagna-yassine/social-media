@@ -56,7 +56,17 @@
             "share":"share your post",
             "msg":"You have a message from"
         },
-        "search":"Search",
+        "search":{
+            "title" : "Search",
+            "notFound":"User Not Found",
+            "info":"use the search bar to search for friends",
+            "searchedProfil":{
+                "title": "Profile",
+                "follow":"Follow",
+                "unfollow":"Unfollow",
+                "msg":"Message"
+            }
+        },
         "addPost":{
             "label":"Add Post",
             "create":"create post",
@@ -66,13 +76,25 @@
             "location":"add location",
             "post":"post"
         },
-        "msgs":"Messages",
+        "msgs":{
+            "title" : "Messages",
+            "defaultOutlet":{
+                "heading":"your messages",
+                "par":"click on a user and your messages will appear here"
+            },
+            "noConv":{
+                "heading":"no conversations?",
+                "par":"find friends to start conversations with them"
+            }
+        },
         "profile":{
             "label":"Profile",
             "add":"add post",
             "edit":"edit profile",
             "posts":"posts"
         }
-        
+    },
+    "menu":{
+        "logout":"Logout"
     }
 }
