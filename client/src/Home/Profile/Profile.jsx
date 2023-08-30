@@ -8,7 +8,7 @@ import testImg_2 from "../../Images/Light-6.jpeg"
 import testImg_3 from "../../Images/Dark-6.jpeg"
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { getPost } from '../../api';
+import { getPost, Like } from '../../api';
 
 const Profile = () => {
 
@@ -45,7 +45,7 @@ const Profile = () => {
         const response = await getPost(user_id);
 
         // return the result in the post variable to be used later
-        setPosts(response)
+        setPosts(response.reverse());
     } catch (error) {
         console.error(error);
     }
@@ -55,7 +55,17 @@ const Profile = () => {
     handleGetPost(); 
   }, []);
 
-//   console.log(posts)
+  // add like   
+  const handleLike = async (user_id, post_id) => {
+    try {  
+        const response = await Like(user_id, post_id);
+
+        // hundle the success or err 
+        console.log(response)
+    } catch (error) {
+        console.error(error);
+    }
+  };
 
   return (
      !isLoading && (
@@ -100,7 +110,7 @@ const Profile = () => {
                     </div>
                     <div className={`list-group-item Interactions ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                         <div className="Interactions-item">
-                            <FontAwesomeIcon className="Interactions-item-icon" icon={faHeart}/>
+                            <FontAwesomeIcon className="Interactions-item-icon" icon={faHeart} onClick={()=>{handleLike(dictionary.user_id, dictionary._id)}}/>
                         </div>
                         <div className="Interactions-item">
                             <FontAwesomeIcon className="Interactions-item-icon" icon={faComment}/>
