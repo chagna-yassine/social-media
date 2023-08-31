@@ -229,12 +229,27 @@ export const Like = async (user_id, post_id) => {
 
 export const Comment = async (user_id, post_id, text) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/Comment/?user_id=${user_id}&post_id=${post_id}`, {
+    const response = await fetch(`${API_BASE_URL}/Comment`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(text),
+      body: JSON.stringify({user_id, post_id, text}),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getComment = async () => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Comment/Get`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
     const data = await response.json();
     return data;

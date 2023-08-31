@@ -7,7 +7,7 @@ import testImg_2 from "../../Images/Light-6.jpeg"
 import testImg_3 from "../../Images/Dark-6.jpeg"
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { getPost, Like, Comment } from '../../api';
+import { getPost, getComment, Like, Comment } from '../../api';
 import { handleCommentModal } from '../Main/comment';
 
 const Profile = () => {
@@ -24,6 +24,8 @@ const Profile = () => {
 
   //Declare user post   
   const [posts, setPosts] = useState([{}]);
+  //Declare user comments
+  const [comments, setComments] = useState([{}]);
 
   //comment variable
   const [comment, setComment] = useState('')
@@ -55,8 +57,21 @@ const Profile = () => {
     }
   };
 
+  // geting all the comment for the user 
+  const handleGetComment = async () => {
+    try {        
+        const response = await getComment();
+
+        // return the result in the post variable to be used later
+        setComments(response.reverse());
+    } catch (error) {
+        console.error(error);
+    }
+  };
+
   useEffect(() => {
     handleGetPost(); 
+    handleGetComment();
   }, []);
 
   // add like   
@@ -130,22 +145,15 @@ const Profile = () => {
                       <div className="CommentModal-list">
                           <div className="CommentModal-items"> 
                             <ul className="list-group List">
-                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>random comment for this post</li>
-                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>somthing about the post wich user like or not</li>
-                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>nice ppicture</li>
-                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>just passing by</li>
-                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>random comment for this post</li>
-                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>somthing about the post wich user like or not</li>
-                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>nice ppicture</li>
-                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>just passing by</li>
-                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>random comment for this post</li>
-                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>somthing about the post wich user like or not</li>
-                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>nice ppicture</li>
-                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>just passing by</li>
+                            {comments.map((cmnt, key) => (
+                                // cmnt.post_id == dictionary.post_id ? console.log("commnt"): null
+                                <li key={key} className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{cmnt.text}</li>
+                                ))
+                            }
                             </ul>
                             <form >
                                 <input type="text" value={comment} onChange={(e) => setComment(e.target.value)}/>
-                                <input type="submit" value="submit" onClick={()=>{handleComment(dictionary.user_id, dictionary._id, comment)}}/>
+                                <button onClick={()=>{handleComment(dictionary.user_id, dictionary._id, comment)}}>send</button>
                             </form>
                           </div>
                       </div>
