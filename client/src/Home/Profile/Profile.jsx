@@ -7,7 +7,8 @@ import testImg_2 from "../../Images/Light-6.jpeg"
 import testImg_3 from "../../Images/Dark-6.jpeg"
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { getPost, Like } from '../../api';
+import { getPost, Like, Comment } from '../../api';
+import { handleCommentModal } from '../Main/comment';
 
 const Profile = () => {
 
@@ -21,8 +22,12 @@ const Profile = () => {
   const [userIdCookies] = useCookies(['userId']);
   const [userNameCookies] = useCookies(['username']);
 
+  //Declare user post   
   const [posts, setPosts] = useState([{}]);
 
+  //comment variable
+  const [comment, setComment] = useState('')
+  
   const navigate = useNavigate();
 
   const [isLoading,setIsLoading] = useState(true);
@@ -58,6 +63,18 @@ const Profile = () => {
   const handleLike = async (user_id, post_id) => {
     try {  
         const response = await Like(user_id, post_id);
+
+        // hundle the success or err 
+        console.log(response)
+    } catch (error) {
+        console.error(error);
+    }
+  };
+
+  // add Comment   
+  const handleComment = async (user_id, post_id, text) => {
+    try {  
+        const response = await Comment(user_id, post_id, text);
 
         // hundle the success or err 
         console.log(response)
@@ -104,15 +121,42 @@ const Profile = () => {
                             </div>
                         </div>
                     </div>
+                   
                     <div className={`style card Post-content ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                         <p>{dictionary.text}</p>
                     </div>
+
+                    <div id={`Comment-Modal-${dictionary._id}`} className="CommentModal">
+                      <div className="CommentModal-list">
+                          <div className="CommentModal-items"> 
+                            <ul className="list-group List">
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>random comment for this post</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>somthing about the post wich user like or not</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>nice ppicture</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>just passing by</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>random comment for this post</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>somthing about the post wich user like or not</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>nice ppicture</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>just passing by</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>random comment for this post</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>somthing about the post wich user like or not</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>nice ppicture</li>
+                              <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>just passing by</li>
+                            </ul>
+                            <form >
+                                <input type="text" value={comment} onChange={(e) => setComment(e.target.value)}/>
+                                <input type="submit" value="submit" onClick={()=>{handleComment(dictionary.user_id, dictionary._id, comment)}}/>
+                            </form>
+                          </div>
+                      </div>
+                    </div>
+                   
                     <div className={`list-group-item Interactions ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                         <div className="Interactions-item">
                             <FontAwesomeIcon className="Interactions-item-icon" icon={faHeart} onClick={()=>{handleLike(dictionary.user_id, dictionary._id)}}/>
                         </div>
                         <div className="Interactions-item">
-                            <FontAwesomeIcon className="Interactions-item-icon" icon={faComment}/>
+                            <FontAwesomeIcon className="Interactions-item-icon" icon={faComment} onClick={()=>{handleCommentModal(dictionary._id)}}/>
                         </div>
                         <div className="Interactions-item">
                             <FontAwesomeIcon className="Interactions-item-icon" icon={faPaperPlane}/>
