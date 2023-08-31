@@ -43,26 +43,28 @@ const Home = () => {
                 <FontAwesomeIcon className='Side-bar-header-icon' icon={faBell} onClick={handleNotifications}/>
             </div>
             <div id='Notification' className={`Side-bar ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-              <div className="Side-bar-header">
-                  <div className="Side-bar-header-label"><h5>{t("home.main.notif")}</h5></div>
-                  <div className="Side-bar-header-icon-container">
-                      <FontAwesomeIcon className='Side-bar-header-icon' icon={faBell}/>
-                  </div>
+              <div className='Side-bar-content'>
+                <div className="Side-bar-header">
+                    <div className="Side-bar-header-label"><h5>{t("home.main.notif")}</h5></div>
+                    <div className="Side-bar-header-icon-container">
+                        <FontAwesomeIcon className='Side-bar-header-icon' icon={faBell}/>
+                    </div>
+                </div>
+                <ul id='Notification-list' className="list-group List">
+                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.like")}</li>
+                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.cmnt")}</li>
+                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.share")}</li>
+                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>{t("home.main.msg")} User</li>
+                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.like")}</li>
+                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.cmnt")}</li>
+                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.share")}</li>
+                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>{t("home.main.msg")} User</li>
+                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.like")}</li>
+                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.cmnt")}</li>
+                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.share")}</li>
+                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>{t("home.main.msg")} User</li>
+                </ul>
               </div>
-              <ul id='Notification-list' className="list-group List">
-                <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.like")}</li>
-                <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.cmnt")}</li>
-                <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.share")}</li>
-                <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>{t("home.main.msg")} User</li>
-                <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.like")}</li>
-                <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.cmnt")}</li>
-                <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.share")}</li>
-                <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>{t("home.main.msg")} User</li>
-                <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.like")}</li>
-                <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.cmnt")}</li>
-                <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.share")}</li>
-                <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>{t("home.main.msg")} User</li>
-              </ul>
             </div>
             <div className={`bottom-bar ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
               <div className="bottom-bar-item">
