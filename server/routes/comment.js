@@ -21,9 +21,22 @@ router.post('/', async (req, res) => {
 
 router.get('/Get', async (req, res) => {
   try {
-      const comments = await Comment.find({});
+      const comments = await Comment.find({}).sort({created_at : -1});
 
       res.json(comments);
+  }catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.post('/countComment', async (req, res) => {
+  try {
+      //get the data
+      const { post_id } = req.body;
+      //search for the like and delete it
+      const commentCount =  await Comment.find({ post_id }).count({post_id});
+      //Send a msg that the comment deleted successfully else send an err msg
+      res.status(201).json(commentCount);
   }catch (error) {
     res.status(500).json({ error: error.message });
   }

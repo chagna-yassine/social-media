@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import "./Profile.css";
 import { useCookies } from 'react-cookie';
 import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
@@ -7,7 +7,7 @@ import testImg_2 from "../../Images/Light-6.jpeg"
 import testImg_3 from "../../Images/Dark-6.jpeg"
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { getPost, getComment, Like, Comment } from '../../api';
+import { getPost, getComment, Like, Comment, checkLike, unLike, countLike, countComment } from '../../api';
 import { handleCommentModal } from '../Main/comment';
 
 const Profile = () => {
@@ -41,21 +41,32 @@ const Profile = () => {
     }
     document.title = `${userNameCookies.username} - ${t("home.profile.label")}`;
     setIsLoading(false)
-  },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username])
+  },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username,comments])
   
   // geting all the post for the user 
   const handleGetPost = async () => {
     try {
         const user_id = userIdCookies.userId;
-        
         const response = await getPost(user_id);
-
+        const newPosts =  await Promise.all(
+            response.map(async(post)=>{
+                const isLiked = await checkLike({
+                    user_id, 
+                    post_id : post._id
+                })
+                const likeCount = await countLike({ post_id : post._id});
+                const commentCount = await countComment({ post_id : post._id});
+                return { ...post , likeStatus : isLiked.message , likeCount , commentCount}
+            })
+        ) 
         // return the result in the post variable to be used later
-        setPosts(response.reverse());
+        setPosts(newPosts);
     } catch (error) {
         console.error(error);
     }
   };
+
+  console.log(posts);
 
   // geting all the comment for the user 
   const handleGetComment = async () => {
@@ -63,7 +74,9 @@ const Profile = () => {
         const response = await getComment();
 
         // return the result in the post variable to be used later
-        setComments(response.reverse());
+        setComments(response);
+        handleGetPost();
+        console.log(response);
     } catch (error) {
         console.error(error);
     }
@@ -71,14 +84,23 @@ const Profile = () => {
 
   useEffect(() => {
     handleGetPost(); 
-    handleGetComment();
   }, []);
 
   // add like   
   const handleLike = async (user_id, post_id) => {
     try {  
         const response = await Like(user_id, post_id);
-
+        handleGetPost();
+        // hundle the success or err 
+        console.log(response)
+    } catch (error) {
+        console.error(error);
+    }
+  };
+  const handleUnLike = async (user_id, post_id) => {
+    try {  
+        const response = await unLike({user_id, post_id});
+        handleGetPost();
         // hundle the success or err 
         console.log(response)
     } catch (error) {
@@ -93,6 +115,7 @@ const Profile = () => {
 
         // hundle the success or err 
         console.log(response)
+        setComment('')
     } catch (error) {
         console.error(error);
     }
@@ -121,7 +144,6 @@ const Profile = () => {
       <ul className={`list-group Post-List ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
       {
         posts.map((dictionary, index) => (
-
             <li key={index} id={dictionary._id} className={`list-group-item Post-List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                 <div className={`card Post ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                     <div className="card-body Post-header">
@@ -131,13 +153,13 @@ const Profile = () => {
                                     <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}></div>
                                 </div>
                                 <div className="w-50 d-flex align-items-center">
-                                    <h2 className={`Label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>User Name</h2>
+                                    <h2 className={`Label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{userNameCookies.username}</h2>
                                 </div>
                             </div>
                         </div>
                     </div>
                    
-                    <div className={`style card Post-content ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                    <div className={`style card Post-content d-flex justify-content-center align-items-center ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                         <p>{dictionary.text}</p>
                     </div>
 
@@ -146,26 +168,33 @@ const Profile = () => {
                           <div className="CommentModal-items"> 
                             <ul className="list-group List">
                             {comments.map((cmnt, key) => (
-                                // cmnt.post_id == dictionary.post_id ? console.log("commnt"): null
-                                <li key={key} className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{cmnt.text}</li>
+                                cmnt.post_id === dictionary._id &&
+                                <li key={key} className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{ cmnt.text}</li>
                                 ))
                             }
                             </ul>
-                            <form >
+                            <form onSubmit={(e)=>{e.preventDefault();handleGetComment();}}>
                                 <input type="text" value={comment} onChange={(e) => setComment(e.target.value)}/>
-                                <button onClick={()=>{handleComment(dictionary.user_id, dictionary._id, comment)}}>send</button>
+                                <button onClick={()=>{handleComment(dictionary.user_id, dictionary._id, comment);handleGetComment();}}>send</button>
                             </form>
                           </div>
                       </div>
                     </div>
-                   
                     <div className={`list-group-item Interactions ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                         <div className="Interactions-item">
-                            <FontAwesomeIcon className="Interactions-item-icon" icon={faHeart} onClick={()=>{handleLike(dictionary.user_id, dictionary._id)}}/>
+                            {
+                                dictionary.likeStatus === 'notLiked' ? (
+                                    <FontAwesomeIcon className="Interactions-item-icon " icon={faHeart} onClick={()=>{handleLike(dictionary.user_id, dictionary._id)}}/>
+                                ) : (
+                                    <FontAwesomeIcon className="Interactions-item-icon text-danger" icon={faHeart} onClick={()=>{handleUnLike(dictionary.user_id, dictionary._id)}}/>
+                                )
+                            }
                         </div>
+                        <p className="LikeCount m-0">{dictionary.likeCount}</p>
                         <div className="Interactions-item">
-                            <FontAwesomeIcon className="Interactions-item-icon" icon={faComment} onClick={()=>{handleCommentModal(dictionary._id)}}/>
+                            <FontAwesomeIcon className="Interactions-item-icon" icon={faComment} onClick={()=>{handleCommentModal(dictionary._id);handleGetComment();}}/>
                         </div>
+                        <p className="CommentCount m-0">{dictionary.commentCount}</p>
                         <div className="Interactions-item">
                             <FontAwesomeIcon className="Interactions-item-icon" icon={faPaperPlane}/>
                         </div>

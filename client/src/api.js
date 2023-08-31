@@ -211,6 +211,22 @@ export const getMessages = async (senderId) => {
   }
 };
 
+export const checkLike = async (likeData) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Like/checkLike`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(likeData),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const Like = async (user_id, post_id) => {
   try {
     const response = await fetch(`${API_BASE_URL}/Like/?user_id=${user_id}&post_id=${post_id}`, {
@@ -219,6 +235,38 @@ export const Like = async (user_id, post_id) => {
         'Content-Type': 'application/json',
       },
       // body: JSON.stringify(user_id, post_id),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const unLike = async (Data) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Like/unLike`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(Data),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const countLike = async (Data) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Like/countLike`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(Data),
     });
     const data = await response.json();
     return data;
@@ -250,6 +298,22 @@ export const getComment = async () => {
       headers: {
         'Content-Type': 'application/json',
       },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const countComment = async (Data) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Comment/countComment`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(Data),
     });
     const data = await response.json();
     return data;

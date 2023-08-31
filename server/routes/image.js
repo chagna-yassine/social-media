@@ -33,7 +33,7 @@ router.get('/', async (req, res) => {
 
         // const regex = new RegExp(`^${id}`);
 
-        const posts = await Post.find({ user_id: id });
+        const posts = await Post.find({ user_id: id }).sort({created_at : -1});
 
         // console.log('req.body');
 
