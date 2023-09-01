@@ -201,6 +201,10 @@
     transition: color 1s;
 }
 
+.file-input{
+    display: none;
+}
+
 /* Responsive design */
 
 @media screen and (min-width: 900px) and  (max-width: 1150px){

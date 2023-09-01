@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import testImg from "../../Images/Light-5.jpeg"
 import testImg_2 from "../../Images/Light-6.jpeg"
 import testImg_3 from "../../Images/Dark-6.jpeg"
 import { useCookies } from 'react-cookie';
@@ -7,7 +6,9 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
-import { checkFollow, createConversation, follow, getUser, unFollow } from '../../api';
+import { Comment, Like, checkFollow, checkLike, countComment, countLike, createConversation, follow, getComment, getPost, getUser, unFollow, unLike } from '../../api';
+import { IMG_BASE } from '../../App';
+import { handleCommentModal } from '../Main/comment';
 
 const SearchedProfile = () => {
     //get the username from the ur param
@@ -31,6 +32,15 @@ const SearchedProfile = () => {
     const [ followStatus , setFollowStatus ] = useState('');
 
     const [isLoading,setIsLoading] = useState(true);
+    const [isLoadedPost,setIsLoadedPost] = useState(false);
+
+     //Declare user post   
+    const [posts, setPosts] = useState([{}]);
+    //Declare user comments
+    const [comments, setComments] = useState([{}]);
+
+    //comment variable
+    const [comment, setComment] = useState('')
   
     // function that send the username to the api and get his data
     //Use a callback hook to prevend multiple rerender in the useEffect hook
@@ -99,6 +109,82 @@ const SearchedProfile = () => {
      const handleMessage = async()=>{
         conversation && navigate(`/messages/${await conversation.username}/${await conversation.id}`)
     };
+
+    const handleGetPost = async () => {
+        try {
+            const user_id = user._id;
+            const response = await getPost(user_id);
+            const newPosts =  await Promise.all(
+                response.map(async(post)=>{
+                    const isLiked = await checkLike({
+                        user_id, 
+                        post_id : post._id
+                    })
+                    const likeCount = await countLike({ post_id : post._id});
+                    const commentCount = await countComment({ post_id : post._id});
+                    return { ...post , likeStatus : isLiked.message , likeCount , commentCount}
+                })
+            ) 
+            // return the result in the post variable to be used later
+            setPosts(newPosts);
+            setIsLoadedPost(true)
+        } catch (error) {
+            console.error(error);
+        }
+      };
+    
+      // geting all the comment for the user 
+      const handleGetComment = async () => {
+        try {        
+            const response = await getComment();
+    
+            // return the result in the post variable to be used later
+            setComments(response);
+            handleGetPost();
+            console.log(response);
+        } catch (error) {
+            console.error(error);
+        }
+      };
+    
+      useEffect(() => {
+        !isLoading && handleGetPost(); 
+      }, [isLoading]);
+    
+      // add like   
+      const handleLike = async (user_id, post_id) => {
+        try {  
+            const response = await Like(user_id, post_id);
+            handleGetPost();
+            // hundle the success or err 
+            console.log(response)
+        } catch (error) {
+            console.error(error);
+        }
+      };
+      const handleUnLike = async (user_id, post_id) => {
+        try {  
+            const response = await unLike({user_id, post_id});
+            handleGetPost();
+            // hundle the success or err 
+            console.log(response)
+        } catch (error) {
+            console.error(error);
+        }
+      };
+    
+      // add Comment   
+      const handleComment = async (user_id, post_id, text) => {
+        try {  
+            const response = await Comment(user_id, post_id, text);
+    
+            // hundle the success or err 
+            console.log(response)
+            setComment('')
+        } catch (error) {
+            console.error(error);
+        }
+      };
     
     return (
         //Handle if the component is Fully loading
@@ -130,96 +216,78 @@ const SearchedProfile = () => {
         </div>
         <h4 className='Post-Label'>{t("home.profile.posts")}</h4>
         <ul className={`list-group Post-List ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-            <li className={`list-group-item Post-List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                <div className={`card Post ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                    <div className="card-body Post-header">
-                        <div className={`card border-0 mb-3 Post-info ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                            <div className="row g-0">
-                                <div className="Logo-container">
-                                    <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}></div>
-                                </div>
-                                <div className="w-50 d-flex align-items-center">
-                                    <h2 className={`Label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>User Name</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={`card Post-content ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                        <img src={testImg} className="card-img-top Post-content-media" alt="Post" />
-                    </div>
-                    <div className={`list-group-item Interactions ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                        <div className="Interactions-item">
-                            <FontAwesomeIcon className="Interactions-item-icon" icon={faHeart}/>
-                        </div>
-                        <div className="Interactions-item">
-                            <FontAwesomeIcon className="Interactions-item-icon" icon={faComment}/>
-                        </div>
-                        <div className="Interactions-item">
-                            <FontAwesomeIcon className="Interactions-item-icon" icon={faPaperPlane}/>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li className={`list-group-item Post-List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                <div className={`card Post ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                    <div className="card-body Post-header">
-                        <div className={`card border-0 mb-3 Post-info ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                            <div className="row g-0">
-                                <div className="Logo-container">
-                                    <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}></div>
-                                </div>
-                                <div className="w-50 d-flex align-items-center">
-                                    <h2 className={`Label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>User Name</h2>
+        {
+        isLoadedPost && posts.length > 0 && posts.map((post,index)=>(
+                <li loading="lazy" key={index} id={post._id} className={`list-group-item Post-List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                    <div className={`card Post ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                        <div className="card-body Post-header">
+                            <div className={`card border-0 mb-3 Post-info ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                                <div className="row g-0">
+                                    <div className="Logo-container">
+                                        <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}></div>
+                                    </div>
+                                    <div className="w-50 d-flex align-items-center">
+                                        <h2 className={`Label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{username}</h2>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={`card Post-content ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                        <img src={testImg} className="card-img-top Post-content-media" alt="Post" />
-                    </div>
-                    <div className={`list-group-item Interactions ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                        <div className="Interactions-item">
-                            <FontAwesomeIcon className="Interactions-item-icon" icon={faHeart}/>
-                        </div>
-                        <div className="Interactions-item">
-                            <FontAwesomeIcon className="Interactions-item-icon" icon={faComment}/>
-                        </div>
-                        <div className="Interactions-item">
-                            <FontAwesomeIcon className="Interactions-item-icon" icon={faPaperPlane}/>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li className={`list-group-item Post-List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                <div className={`card Post ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                    <div className="card-body Post-header">
-                        <div className={`card border-0 mb-3 Post-info ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                            <div className="row g-0">
-                                <div className="Logo-container">
-                                    <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}></div>
-                                </div>
-                                <div className="w-50 d-flex align-items-center">
-                                    <h2 className={`Label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>User Name</h2>
+                        <div className={`card Post-content ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                            {
+                                post.media.status === 'noMedia' ? (
+                                    <p className="card-img-top Post-content-text bg-dark text-white d-flex justify-content-center align-items-center">{post.text}</p>
+                                ):(
+                                    <>
+                                        <p className='m-0 text-white ms-4 fw-bold fs-5 text-small-caps'>{post.text}</p>
+                                        <img src={IMG_BASE+post.media.url} className="card-img-top Post-content-media" alt={post.media.name}/>
+                                    </>
+                                )
+                            }
+                            <div id={`Comment-Modal-${post._id}`} className="CommentModal">
+                                <div className="CommentModal-list">
+                                    <div className="CommentModal-items"> 
+                                        <ul className="list-group List">
+                                            { comments && comments.map((cmnt, key) => (
+                                                cmnt.post_id === post._id &&
+                                                <li key={key} className='list-group-item bg-transparent border-0 p-0'>
+                                                    <p className='text-white fw-bold mb-1 ms-2'>{cmnt.user_id.username}</p>
+                                                    <p className={`List-item m-0 mb-2 ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{ cmnt.text}</p>
+                                                </li>
+                                                ))
+                                            }
+                                        </ul>
+                                        <form onSubmit={(e)=>{e.preventDefault();handleGetComment();}}>
+                                            <input type="text" value={comment} onChange={(e) => setComment(e.target.value)}/>
+                                            <button onClick={()=>{handleComment(userIdCookies.userId, post._id, comment , index);handleGetComment();}}>send</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div className={`card Post-content ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                        <img src={testImg} className="card-img-top Post-content-media" alt="Post" />
-                    </div>
-                    <div className={`list-group-item Interactions ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                        <div className="Interactions-item">
-                            <FontAwesomeIcon className="Interactions-item-icon" icon={faHeart}/>
+                        <div className={`list-group-item Interactions ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                            <div className="Interactions-item">
+                                {
+                                    post.likeStatus === 'notLiked' ? (
+                                        <FontAwesomeIcon className="Interactions-item-icon " icon={faHeart} onClick={()=>{handleLike(userIdCookies.userId, post._id , index)}}/>
+                                    ) : (
+                                        <FontAwesomeIcon className="Interactions-item-icon text-danger" icon={faHeart} onClick={()=>{handleUnLike(userIdCookies.userId, post._id , index)}}/>
+                                    )
+                                }
+                            </div>
+                            <p className="LikeCount m-0 text-white">{post.likeCount}</p>
+                            <div className="Interactions-item">
+                                <FontAwesomeIcon className="Interactions-item-icon" icon={faComment} onClick={()=>{handleCommentModal(post._id);handleGetComment();}}/>
+                            </div>
+                            <p className="CommentCount m-0 text-white">{post.commentCount}</p>
+                            <div className="Interactions-item">
+                                <FontAwesomeIcon className="Interactions-item-icon" icon={faPaperPlane}/>
+                            </div>
+                            <p className="ShaireCount m-0 text-white">0</p>
                         </div>
-                        <div className="Interactions-item">
-                            <FontAwesomeIcon className="Interactions-item-icon" icon={faComment}/>
-                        </div>
-                        <div className="Interactions-item">
-                            <FontAwesomeIcon className="Interactions-item-icon" icon={faPaperPlane}/>
-                        </div>
                     </div>
-                </div>
-            </li>
+                </li>
+            ))
+        }
         </ul>
       </div>
         )

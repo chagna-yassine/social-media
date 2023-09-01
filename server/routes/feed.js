@@ -9,18 +9,20 @@ const router = express.Router();
 router.post('/', async (req, res) => {
     try {
       const {user_id} = req.body; // Replace with your actual user ID
+
+      const likedPost = await Like.find({user_id}).distinct('post_id')
   
       // Step 1: Retrieve the users you are following
       const followingUsers = await Follow.find({ follower: user_id }).distinct('following');
   
       // Step 2: Retrieve posts of the followed users
-      const postsOfFollowing = await Post.find({ user_id: { $in: followingUsers } }).populate('user_id', 'username');
+      const postsOfFollowing = await Post.find({ user_id: { $in: followingUsers } , _id: { $nin: likedPost} }).populate('user_id', 'username');
   
-      const userPosts = await Post.find({ user_id }).populate('user_id', 'username'); // Find all posts for the specified user
+      const userPosts = await Post.find({ user_id , _id: { $nin: likedPost} }).populate('user_id', 'username'); // Find all posts for the specified user
   
       const meAndMyFollower = userPosts.concat(postsOfFollowing).sort(() => Math.random() - 0.5);
   
-      const otherPosts = await Post.find({ user_id: { $ne: user_id, $nin: followingUsers } }).populate('user_id', 'username'); // Find posts for other users
+      const otherPosts = await Post.find({ user_id: { $ne: user_id, $nin: followingUsers } , _id: { $nin: likedPost} }).populate('user_id', 'username'); // Find posts for other users
   
       // Shuffle the posts for other users
       const shuffledOtherPosts =  otherPosts.sort(() => Math.random() - 0.5);

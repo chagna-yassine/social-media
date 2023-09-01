@@ -21,6 +21,7 @@ import messageRoutes from "./routes/message.js";
 dotenv.config();
 const app = express();
 app.use(express.json());
+app.use(express.static('Blob'))
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));

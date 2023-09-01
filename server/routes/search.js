@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
       //Get the username query
       const { searchQuery , userId } = req.body
       //create a new pattern for the query
-      const regex = new RegExp(`^${searchQuery}`,'i')
+      const regex = new RegExp(`${searchQuery}`,'i')
       //get the users that have the same username pattern
       const users = await User.find({ 
         username : regex ,

@@ -19,6 +19,7 @@ import DirectMessages from './Home/Messages/DirectMessages';
 import DefaultOutlet from './Home/Messages/DefaultOutlet';
 import { Provider } from 'react-redux'
 import { store } from './DataStore/store';
+export const IMG_BASE = "http://localhost:5001/ImageBlob/";
 
 function App() {
   const[isLoading,setIsLoading] = useState(true);

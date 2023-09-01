@@ -25,6 +25,8 @@ const AddPost = () => {
 
   const navigate = useNavigate();
 
+  const [img,setImg] = useState(null);
+
   useEffect(()=>{
     //Check if the user not loged in and rederect him to the login
     if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
@@ -37,18 +39,21 @@ const AddPost = () => {
   const handleAddPost = async () => {
     // add a value to the caption just for test
     setCaption('default caption');
-    
-    const newPost = {user_id: userIdCookies.userId, caption, text};
-    console.log("newPost :", newPost);
     try {
       //send the new post to the signup api
-      const response = await uploadPost({user_id: userIdCookies.userId, caption, text});
+      const postData = new FormData();
+      postData.append('user_id', userIdCookies.userId);
+      postData.append('caption', caption);
+      postData.append('text', text);
+      postData.append('media', img);
+      const response = await uploadPost(postData);
+      navigate('/')
       console.log(response); // Handle success or display error message
     } catch (error) {
       console.error(error);
     }
   };
-
+  console.log(img);
   return (
     <div className='AddPost'>
         <div className={`AddPost-header ${i18n.language === "ar" ? "ar" : null}`}>
@@ -62,9 +67,10 @@ const AddPost = () => {
             <div className={`Post-data-features ${i18n.language === "ar" ? "ar" : null}`}>
                 <div className={`feature ${i18n.language === "ar" ? "ar" : null}`}>
                   <div className="feature-icon-container">
-                      <FontAwesomeIcon className='feature-icon media' icon={faPhotoVideo}/>
+                      <label className='cursor-pointer' htmlFor="Upload"><FontAwesomeIcon className='feature-icon media' icon={faPhotoVideo}/></label>
+                      <input type="file" accept='.jpeg , .png , .jpg' className='file-input' id='Upload' onChange={(e)=>{setImg(e.target.files[0])}}/>
                   </div>
-                  <p className={`feature-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{t("home.addPost.media")}</p>
+                  <label className='cursor-pointer' htmlFor="Upload"><p className={`feature-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{t("home.addPost.media")}</p></label>
                 </div>
                 <div className={`feature ${i18n.language === "ar" ? "ar" : null}`}>
                   <div className="feature-icon-container">

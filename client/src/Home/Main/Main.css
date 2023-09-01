@@ -119,6 +119,15 @@
 
 .Main .Feed-container .Post .Post-content .Post-content-media{
     width: 65%;
+    height: 40vh;
+    border-radius: 30px;
+    object-fit: cover;
+    object-position: center;
+    
+}
+
+.Main .Feed-container .Post .Post-content .Post-content-text{
+    width: 65%;
     height: 45vh;
     border-radius: 30px;
     object-fit: cover;
@@ -154,7 +163,7 @@
 }
 .Main .Feed-container .Post .CommentModal .List .List-item{
     width: 100%; 
-    max-height: 10vh;
+    max-height: 100vh;
     border-radius: 10px;
     margin-top: 0;
     margin-block: 2vh;
@@ -231,6 +240,13 @@
 .Interactions-item-icon{
     color: var(--white);
     width: 90%;
+}
+
+.text-small-caps{
+    font-variant: small-caps;
+}
+.text-small-caps::first-letter{
+    text-transform: uppercase;
 }
 
 /* Responsive design */

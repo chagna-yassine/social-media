@@ -1,21 +1,41 @@
 import express from "express";
 import { Post } from "../metadatServise/post.js";
+import multer, {diskStorage} from 'multer'
 
 const router = express.Router();
 
+const imageStorage = diskStorage({
+    destination: (req,file,cb)=>{
+        cb(null,'./Blob/ImageBlob')
+    },
+    filename: (req,file,cb)=>{
+        cb(null, Date.now() + "--" + file.originalname)
+    },
+})
+
+const upload = multer({storage : imageStorage});
+
 // uploding just a tet post for now
-router.post('/upload', async (req, res) => {
+router.post('/upload', upload.single('media') , async (req, res) => {
     try {
         // get the text that the user want to post
         const {user_id, caption, text} = req.body;
-        
-        // check if the text is secure no sql injection
-        // TODO
+
+        const mediaData = req.file
+            ? {
+                url: req.file.filename,
+                type: req.file.mimetype,
+                name: req.file.originalname,
+                status: req.file.fieldname,
+                }
+            : {
+                status: 'noMedia',
+            };
 
         const post = new Post({
             user_id: user_id,
             caption: caption,
-            image_url: undefined,
+            media: mediaData,
             text: text
         });
         await post.save();
