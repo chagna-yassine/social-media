@@ -1,0 +1,156 @@
+:root{
+    --dark-green: #233F3C;
+    --light-green: #9DC56B;
+    --dark-blue: #3D748E;
+    --dark-blue-2: #00327e;
+    --light-blue: #B2E6EE;
+    --white: #FFFFFF;
+    --dark-white: #ddddddee;
+    --dark: #000000;
+    --light-gray: #42464A;
+    --light-dark: #23272D;
+    --brown: #ac7548;
+    --dark-brown: #211826;
+    --green-blue: #3A6F7D;
+    --red: #ff0000;
+}
+
+.EditProfil-container{
+    position: fixed !important;
+    background-color: var(--light-gray);
+    min-width: 100vh;
+    min-height: 85vh;
+    border-radius: 30px;
+    top: 1vh;
+    left: 10%;
+    z-index: 2;
+    box-shadow: 0px 0px 100px black;
+}
+
+.close{
+    position: absolute;
+    top: 2vh;
+    right: 3vh;
+    z-index: inherit;
+    color: var(--dark-blue);
+    cursor: pointer;
+}
+
+.cover-container{
+    position: relative;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    max-width: 100%;
+    max-height: 35vh;
+}
+
+.cover-img{
+    width: 100%;
+    max-height: 35vh;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.edit-cover-container{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 1vh;
+    right: 1vh;
+}
+
+.edit-cover{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark-blue);
+    padding: 1vh;
+    border-radius: 10px;
+    color: var(--dark-white);
+}
+.edit-cover P{
+    margin: 0;
+    margin-left: 1vh;
+    font-weight: bold;
+}
+
+.edit-cover p::first-letter{
+    text-transform: capitalize;
+}
+
+.Pic{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pic-container{
+    border-radius: 50vh;
+    width: 15vh;
+    height: 15vh;
+    padding: 0.5vh;
+    margin-top: 1vh;
+    margin-left: 1vh;
+    background-color: var(--light-dark);
+}
+
+.pic-img{
+    width: 100%;
+    height: 14vh;
+    border-radius: 100vh;
+    object-fit: cover;
+    object-position: center;
+}
+
+.edit-pic-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    margin-bottom: 1vh;
+    margin-right: 1vh;
+}
+
+.edit-pic{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--dark-blue);
+    padding: 1vh;
+    border-radius: 10px;
+    color: var(--dark-white);
+}
+.edit-pic P{
+    margin: 0;
+    margin-left: 1vh;
+    font-weight: bold;
+}
+
+.edit-pic p::first-letter{
+    text-transform: capitalize;
+}
+
+.input-container{
+    width: 40%;
+    margin-left: 2vh;
+    margin-block: 2vh;
+}
+
+.input-container label{
+    font-weight: bold;
+    color: var(--white);
+    margin-left: 1vh;
+}
+
+.input-container label::first-letter{
+    text-transform: capitalize;
+}
+
+.submit-container{
+    position: absolute;
+    bottom: 2vh;
+    right: 3vh;
+}

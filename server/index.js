@@ -15,6 +15,7 @@ import authRoutes from "./routes/auth.js";
 import searchRoutes from "./routes/search.js";
 import followRoutes from "./routes/follow.js";
 import messageRoutes from "./routes/message.js";
+import userRoutes from "./routes/user.js";
 
 
 /* CONFIGURATION */
@@ -40,6 +41,7 @@ app.use('/auth', authRoutes);
 app.use('/Search', searchRoutes);
 app.use('/Follow', followRoutes);
 app.use('/Message', messageRoutes);
+app.use('/User',userRoutes)
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000;

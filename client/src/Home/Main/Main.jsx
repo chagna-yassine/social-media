@@ -134,7 +134,9 @@ const Main = () => {
                                 <div className={`card border-0 mb-3 Post-info ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                                     <div className="row g-0">
                                         <div className="Logo-container">
-                                            <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}></div>
+                                            <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                                                <img className='Logo-img' src={IMG_BASE+post.user_id.profilePic} alt={post.user_id.username} />
+                                            </div>
                                         </div>
                                         <div className="w-50 d-flex align-items-center">
                                             <h2 className={`Label ${currentDisplayMode === 'dark' ? 'dark' : 'light'} cursor-pointer`} onClick={()=>{navigate(`/${post.user_id.username}`)}}>{post.user_id.username}</h2>
@@ -165,7 +167,18 @@ const Main = () => {
                                                 { comments && comments.map((cmnt, key) => (
                                                     cmnt.post_id === post._id &&
                                                     <li key={key} className='list-group-item bg-transparent border-0 p-0'>
-                                                        <p className='text-white fw-bold mb-1 ms-2'>{cmnt.user_id.username}</p>
+                                                        <div className={`card border-0 mb-3 Post-info ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                                                            <div className="row g-0">
+                                                                <div className="Logo-container">
+                                                                    <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                                                                        <img className='Logo-img' src={IMG_BASE+cmnt.user_id.profilePic} alt={cmnt.user_id.username} />
+                                                                    </div>
+                                                                </div>
+                                                                <div className="w-50 d-flex align-items-center">
+                                                                    <h2 className={`Label ${currentDisplayMode === 'dark' ? 'dark' : 'light'} cursor-pointer`} onClick={()=>{navigate(`/${cmnt.user_id.username}`)}}>{cmnt.user_id.username}</h2>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <p className={`List-item m-0 mb-2 ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{ cmnt.text}</p>
                                                     </li>
                                                     ))

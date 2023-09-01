@@ -111,7 +111,7 @@ router.get('/', async (req, res) => {
 
         // const regex = new RegExp(`^${id}`);
 
-        const posts = await Post.find({ user_id: id }).sort({created_at : -1});
+        const posts = await Post.find({ user_id: id }).sort({created_at : -1}).populate('user_id', 'username profilePic');
 
         // console.log('req.body');
 
