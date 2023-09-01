@@ -6,7 +6,7 @@ import { useCookies } from 'react-cookie';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getMessages , sendMessage } from '../../api';
 import { useDispatch, useSelector } from 'react-redux';
-import { receiveMsg, sendMsg } from './MessageStore/actions';
+import { receiveMsg, sendMsg } from '../../DataStore/Messages/actions';
 import { addDoc, collection, onSnapshot, query, where } from 'firebase/firestore';
 import { db } from '../../firebase-config';
 
@@ -41,7 +41,7 @@ const DirectMessages = () => {
     const [isLoading,setIsLoading] = useState(true);
 
   //get msg from store
-  const msg = useSelector((state)=> state.data);
+  const msg = useSelector((state)=> state.messages);
   const dispatch = useDispatch();
 
   // function that get the conversation messages and Set the loading state to false when the messages loaded

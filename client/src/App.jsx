@@ -18,7 +18,7 @@ import SearchedProfile from './Home/SearchedProfile/SearchedProfile';
 import DirectMessages from './Home/Messages/DirectMessages';
 import DefaultOutlet from './Home/Messages/DefaultOutlet';
 import { Provider } from 'react-redux'
-import { store } from './Home/Messages/MessageStore/store';
+import { store } from './DataStore/store';
 
 function App() {
   const[isLoading,setIsLoading] = useState(true);

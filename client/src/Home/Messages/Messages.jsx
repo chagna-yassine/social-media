@@ -30,7 +30,7 @@ const Messages = () => {
   const [isLoading,setIsLoading] = useState(true);
 
 //
-const msg = useSelector((state)=> state.data);
+const msg = useSelector((state)=> state.messages);
   
 
   useEffect(() => {
