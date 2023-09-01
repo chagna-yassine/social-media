@@ -5,7 +5,7 @@ import { faLocationDot, faPhotoVideo, faUserTag } from '@fortawesome/free-solid-
 import { useCookies } from 'react-cookie'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { uploadPost } from '../../api'
+import { uploadImgPost, uploadVideoPost } from '../../api'
 
 const AddPost = () => {
 
@@ -25,7 +25,7 @@ const AddPost = () => {
 
   const navigate = useNavigate();
 
-  const [img,setImg] = useState(null);
+  const [media,setMedia] = useState(null);
 
   useEffect(()=>{
     //Check if the user not loged in and rederect him to the login
@@ -45,15 +45,21 @@ const AddPost = () => {
       postData.append('user_id', userIdCookies.userId);
       postData.append('caption', caption);
       postData.append('text', text);
-      postData.append('media', img);
-      const response = await uploadPost(postData);
+      let response;
+      if(media.type === 'video/mp4'){
+        postData.append('video', media);
+        response = await uploadVideoPost(postData);
+      }else{
+        postData.append('image', media);
+        response = await uploadImgPost(postData);
+      }
       navigate('/')
       console.log(response); // Handle success or display error message
     } catch (error) {
       console.error(error);
     }
   };
-  console.log(img);
+
   return (
     <div className='AddPost'>
         <div className={`AddPost-header ${i18n.language === "ar" ? "ar" : null}`}>
@@ -68,7 +74,7 @@ const AddPost = () => {
                 <div className={`feature ${i18n.language === "ar" ? "ar" : null}`}>
                   <div className="feature-icon-container">
                       <label className='cursor-pointer' htmlFor="Upload"><FontAwesomeIcon className='feature-icon media' icon={faPhotoVideo}/></label>
-                      <input type="file" accept='.jpeg , .png , .jpg' className='file-input' id='Upload' onChange={(e)=>{setImg(e.target.files[0])}}/>
+                      <input type="file" accept='.jpeg , .png , .jpg , .mp4' className='file-input' id='Upload' onChange={(e)=>{setMedia(e.target.files[0])}}/>
                   </div>
                   <label className='cursor-pointer' htmlFor="Upload"><p className={`feature-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{t("home.addPost.media")}</p></label>
                 </div>

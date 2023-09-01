@@ -7,6 +7,7 @@ const postSchema = new mongoose.Schema({
         url : {type: String},
         name : {type: String},
         type : {type: String},
+        poster_url : {type: String},
         status: {type: String , default: "noMedia"}
     },
     text: {type: String},

@@ -7,7 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { Comment, Like, checkFollow, checkLike, countComment, countLike, createConversation, follow, getComment, getPost, getUser, unFollow, unLike } from '../../api';
-import { IMG_BASE } from '../../App';
+import { IMG_BASE, VID_BASE } from '../../App';
 import { handleCommentModal } from '../Main/comment';
 
 const SearchedProfile = () => {
@@ -236,10 +236,15 @@ const SearchedProfile = () => {
                             {
                                 post.media.status === 'noMedia' ? (
                                     <p className="card-img-top Post-content-text bg-dark text-white d-flex justify-content-center align-items-center">{post.text}</p>
+                                ): post.media.status === 'image' ?(
+                                    <>
+                                        <p className='m-0 text-white ms-4 fw-bold fs-5 text-small-caps'>{post.text}</p>
+                                        <img src={IMG_BASE+post.media.url} className="card-img-top Post-content-img" alt={post.media.name}/>
+                                    </>
                                 ):(
                                     <>
                                         <p className='m-0 text-white ms-4 fw-bold fs-5 text-small-caps'>{post.text}</p>
-                                        <img src={IMG_BASE+post.media.url} className="card-img-top Post-content-media" alt={post.media.name}/>
+                                        <video className="card-img-top Post-content-video" src={VID_BASE+post.media.url} title={post.media.name} controls loop preload='none' muted poster={IMG_BASE+post.media.poster_url}></video>
                                     </>
                                 )
                             }

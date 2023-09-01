@@ -117,11 +117,21 @@
     background-color: transparent;
 }
 
-.Main .Feed-container .Post .Post-content .Post-content-media{
+.Main .Feed-container .Post .Post-content .Post-content-img{
     width: 65%;
     height: 40vh;
     border-radius: 30px;
     object-fit: cover;
+    object-position: center;
+    
+}
+
+.Main .Feed-container .Post .Post-content .Post-content-video{
+    width: 65%;
+    height: 40vh;
+    border-radius: 30px;
+    object-fit: contain;
+    background-color: var(--dark);
     object-position: center;
     
 }
