@@ -65,13 +65,17 @@
     width: 50%;
     max-height: 80vh;
     border-radius: 30px;
+    padding-bottom: 2em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     transition: background-color 1s;
 }
 .Signup .Auth-container.light{
-    background-color: var(--brown);
+    background-color: transparent;
+    backdrop-filter: blur(5px);
 }
 .Signup .Auth-container.dark{
-    background-color: var(--dark-brown);
+    background-color: transparent;
+    backdrop-filter: blur(5px);
 }
 .Signup .Logo{
     position: absolute;
@@ -170,10 +174,12 @@
 .Signup .Submition{
     width: 60%;
     margin: auto;
+    margin-block: -1.5%;
 }
 .Signup .Submition a{
     display: block;
     text-align: center;
+    margin-block: 7%;
     color: var(--light-blue);
     text-decoration: none;
     transition: color 1s;

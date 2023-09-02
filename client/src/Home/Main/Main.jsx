@@ -171,9 +171,9 @@ const Main = () => {
                                                     ))
                                                 }
                                             </ul>
-                                            <form onSubmit={(e)=>{e.preventDefault();handleGetComment();}}>
+                                            <form className='Submition' onSubmit={(e)=>{e.preventDefault();handleGetComment();}}>
                                                 <input type="text" value={comment} onChange={(e) => setComment(e.target.value)}/>
-                                                <button onClick={()=>{handleComment(userIdCookies.userId, post._id, comment , index);handleGetComment();}}>send</button>
+                                                <button className='button' onClick={()=>{handleComment(userIdCookies.userId, post._id, comment , index);handleGetComment();}}>send</button>
                                             </form>
                                         </div>
                                     </div>

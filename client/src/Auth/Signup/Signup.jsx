@@ -113,11 +113,10 @@ const Signup = () => {
             <h1 className='title'>
               <span>{t("welcome")}</span> 
               <span>{t("to")}</span> 
-              <span className='App-name'>app name</span>
+              <span className='App-name'>Fire Camp</span>
             </h1>
         </div>
         <div className={`Auth-container ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-          <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}></div>
             <h2 className={`Label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{t("signup.label")}</h2>
             <form className='Form'>
               <div className="Info">

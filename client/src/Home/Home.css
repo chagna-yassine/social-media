@@ -24,7 +24,7 @@
     height: 100vh;
     margin: 0;
     padding: 0;
-    background-image: url(../Images/Light-1.jpeg);
+    background-image: url(../Images/firecamp.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -80,6 +80,7 @@
     margin-right: 2em; 
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(5px);
     transition: background-color 1s;
 }
@@ -109,6 +110,7 @@
     visibility: visible;
     background: inherit;
     backdrop-filter: blur(5px);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 2.5);
     position: relative;
     margin-left: 5em;
     width: 20%; 
@@ -236,14 +238,18 @@
 /* Responsive design */
 @media screen and (min-width: 900px) and  (max-width: 1150px){
     .Main .Feed-container{
+        /* backdrop-filter: blur(0px); */
         padding-bottom: 10em;
-        width: 70%;
+        width: 80%;
         height: 100vh;
     }
     .Main .Side-bar{
+        /* backdrop-filter: blur(0px); */
+        height: 100vh !important;
         width: 30%; 
     }
     .Main .Side-bar .List{
+        max-height: 95vh !important;
         font-size: 1.7vh;
     }
     
@@ -258,12 +264,10 @@
         height: 2vh;
     }
     .Main .bottom-bar {
-        transform: rotate(0deg);
-        bottom: 1%;
+        bottom: 45%;        
         height: 7vh;
     }
     .Main .bottom-bar .bottom-bar-item{
-        transform: rotate(360deg);
         width: 5vh;
         height: 5vh;
     }
@@ -280,16 +284,11 @@
     .Main .Side-bar{
         position: absolute;
         right: 1vh;
-        height: 70vh;
+        top: 5%;
+        height: 85vh !important;
         width: 25%;
         visibility: hidden;
         transition: all 1s;
-    }
-    .Main .Side-bar.light{
-        background-color: var(--light-blue);
-    }
-    .Main .Side-bar.dark{
-        background-color: var(--dark-green);
     }
     .Main .Side-bar-header{
         display: none;
@@ -297,7 +296,7 @@
     .Main .Side-bar .List{
         visibility: hidden;
         font-size: 1.7vh;
-        max-height: 65vh;
+        max-height: 85vh !important;
         transition: all 1s;
     }
     .Main .Side-bar .List .List-item{
@@ -308,22 +307,22 @@
     .Main .Side-bar-header-icon-container{
         display: flex;
         position: absolute;
-        top: 3vh;
-        right: 1vh;
+        top: 1vh;
+        right: 12vh;
         width: 3.2vh;
         height: 3.2vh;
     }
     .Main .Side-bar-header-icon{
-        width: 2vh;
-        height: 2vh;
+        width: 3vh;
+        height: 3vh;
     }
     .Main .bottom-bar {
-        bottom: 6%;
+        bottom: 45%;
         height: 6vh;
     }
     .Main .bottom-bar .bottom-bar-item{
-        width: 6vh;
-        height: 6vh;
+        width: 5vh;
+        height: 5vh;
     }
     .Main .bottom-bar .bottom-bar-item-icon{
         width: 3vh;
@@ -333,21 +332,23 @@
 @media screen and (min-width: 450px) and  (max-width: 650px){
     .Main .Feed-container{
         width: 100%;
+        height: 80vh !important;
         margin: 0 ;
     }
     .Main .Side-bar{
         position: absolute;
         right: 1vh;
         height: 40vh !important;
+        border-radius: 30px;
         width: 35%;
         visibility: hidden;
         transition: all 1s;
     }
     .Main .Side-bar.light{
-        background-color: var(--light-blue);
+        background-color: transparent !important;
     }
     .Main .Side-bar.dark{
-        background-color: var(--dark-green);
+        background-color: transparent !important;
     }
     .Main .Side-bar-header{
         display: none;
@@ -376,12 +377,12 @@
         height: 2vh;
     }
     .Main .bottom-bar {
-        bottom: 7%;
+        bottom: 50% !important;
         height: 5vh;
     }
     .Main .bottom-bar .bottom-bar-item{
-        width: 5vh;
-        height: 5vh;
+        width: 3.5vh;
+        height: 3.5vh;
     }
     .Main .bottom-bar .bottom-bar-item-icon{
         width: 2vh;

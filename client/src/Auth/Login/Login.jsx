@@ -78,11 +78,10 @@ const Login = () => {
             <h1 className='title'>
               <span>{t("welcome")}</span> 
               <span>{t("to")}</span> 
-              <span className='App-name'>app name</span>
+              <span className='App-name'>Fire Camp</span>
             </h1>
         </div>
         <div className={`Auth-container ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-          <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}></div>
             <h2 className={`Label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{t("login.label")}</h2>
             <form className='Form'>
               {authErr}
@@ -100,9 +99,9 @@ const Login = () => {
                   </div>
               </div>
               <div className='Submition'>
-                 <a className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} href="/login">{t("login.forgot-pwd")}</a>
-                 <input className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} type="button" value={t("login.submit")} onClick={()=>{setIsClicked(true);handleLogin()}}/>
-                 <Link className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} to="/signup">{t("login.link")}</Link>
+                <a className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} href="/login">{t("login.forgot-pwd")}</a>
+                <input className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} type="button" value={t("login.submit")} onClick={()=>{setIsClicked(true);handleLogin()}}/>
+                <Link className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} to="/signup">{t("login.link")}</Link>
               </div>
             </form>
         </div>

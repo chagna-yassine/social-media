@@ -11,6 +11,8 @@
     --light-dark: #23272D;
     --brown: #ac7548;
     --dark-brown: #211826;
+    --dark-gray: #353B42;
+    --light-gray: #7B858D;
 }
 .Login{
     overflow: hidden;
@@ -65,32 +67,23 @@
     width: 28%;
     max-height: 80vh;
     border-radius: 30px;
+    padding-bottom: 2em;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     transition: background-color 1s;
 }
 .Login .Auth-container.light{
-    background-color: var(--brown);
+    background-color: transparent;
+    backdrop-filter: blur(5px);
 }
 .Login .Auth-container.dark{
-    background-color: var(--dark-brown);
+    background-color: transparent;
+    backdrop-filter: blur(5px);
 }
-.Login .Logo{
-    position: absolute;
-    width: 15vh;
-    height: 15vh;
-    background-color: var(--light-green);
-    border-radius: 50%;
-    top: -6%;
-    left: -8%;
-}
-.Login .Logo.light{
-    background-color: var(--light-green);
-}
-.Login .Logo.dark{
-    background-color: var(--dark-green);
-}
+
 .Login .Label{
     text-align: center;
     font-variant: small-caps;
+    font-size: x-large;
     text-transform: capitalize;
     font-size: 5vh;
     margin-block-start: 15%;
@@ -145,6 +138,7 @@
 }
 .Login .Form-input.dark{
     background-color: var(--dark-blue);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     color: var(--dark-white);
 }
 .Login .Form-input:focus{
@@ -164,7 +158,8 @@
     display: block;
     text-align: center;
     text-decoration: none;
-    margin-block: 15%;
+    margin-block: 10%;
+    margin-top: 1em;
     transition: color 1s;
 }
 .Login .Submition a.light{
@@ -189,10 +184,11 @@
 }
 .Login .Submition input.dark{
     background-color: var(--dark-blue-2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     color: var(--dark-white);
 }
 .Login .Submition input.light{
-    background-color: var(--dark-blue);
+    background-color: var(--dark-gray);
     color: var(--white);
 }
 

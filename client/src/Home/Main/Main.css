@@ -153,6 +153,7 @@
     width: 19em;
     height: 80%;
     border-radius: 10px;
+    padding-left: 1%;
     top: 15%;
     left: 66.5%;
 }
@@ -253,6 +254,36 @@
     width: 90%;
 }
 
+.Submition input{
+    display: block;
+    position: absolute;
+    margin: auto;
+    border: none;
+    font-weight: bolder;
+    border-radius: 5vh;
+    width: 60%;
+    height: 5vh;
+    bottom: 3%;
+    font-size: 3vh;
+    cursor: pointer;
+    font-variant: small-caps;
+    text-transform: capitalize;
+    transition: all 1s;
+}
+
+.button{
+    position: absolute;
+    bottom: 3%;
+    right: 1%;
+    margin: auto;
+    width: 30%;
+    height: 5vh;
+    background-color: var(--dark-blue-2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    color: var(--dark-white);
+    border-radius: 5vh;
+}
+
 .text-small-caps{
     font-variant: small-caps;
 }
@@ -279,8 +310,15 @@
         border: 0 ;
         transition: background-color 1s;
     }
+    .CommentModal{
+        padding-left: 1%;
+        width: 15em;
+        height: 80%;
+        top: 15%;
+        left: 45% !important;
+    }
     .Interactions{
-        bottom: 2vh;
+        bottom: -5vh;
         width: 10em;
         padding-block: 0.2% !important;
     }
@@ -288,11 +326,19 @@
         width: 2.5vh;
         height: 2.5vh;
     }
+    .Submition input{
+        height: 4vh;
+    }
+    .button{
+        text-align: center;
+        align-items: center;
+        height: 4vh;
+    }
 }
 
 @media screen and (min-width: 650px) and  (max-width: 900px){
     .Interactions{
-        bottom: -2vh;
+        bottom: -5vh;
         width: 10em;
         padding-block: 0.2% !important;
     }
@@ -305,13 +351,16 @@
         width: 2vh;
         height: 2vh;
     }
+    .CommentModal{
+        left: 15% !important;
+    }
 }
 @media screen and (min-width: 450px) and  (max-width: 650px){
     .Main .Feed-container .Post .Label{
         font-size: 2.5vh;
     }
     .Interactions{
-        bottom: -2vh;
+        bottom: -5vh;
         width: 8em;
         height: 3.2vh;
         padding-block: 0.2% !important;
