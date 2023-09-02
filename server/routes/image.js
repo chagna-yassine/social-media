@@ -5,6 +5,7 @@ import { Like } from "../metadatServise/like.js";
 import multer, {diskStorage} from 'multer'
 import path from 'path';
 import ffmpeg from "fluent-ffmpeg";
+import fs from 'fs';
 
 const router = express.Router();
 
@@ -122,6 +123,17 @@ router.get('/', async (req, res) => {
 router.post('/deletePost', async (req, res) => {
     try {
         const {id} = req.body;
+
+        const post =  await Post.findOne({_id:id})
+
+        if(post.media.status === 'image'){
+            fs.unlinkSync(`Blob/ImageBlob/${post.media.url}`)
+        }
+
+        if(post.media.status === 'video'){
+            fs.unlinkSync(`Blob/VideoBlob/${post.media.url}`)
+            fs.unlinkSync(`Blob/ImageBlob/${post.media.poster_url}`)
+        }
 
         await Comment.deleteMany({post_id : id})
 

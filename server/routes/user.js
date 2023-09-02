@@ -3,6 +3,7 @@ import multer, {diskStorage} from 'multer'
 import path from 'path';
 import ffmpeg from "fluent-ffmpeg";
 import { User } from "../metadatServise/user.js";
+import  fs from "fs";
 
 const router = express.Router();
 
@@ -22,6 +23,12 @@ router.post('/updateCover', uploadCover.single('cover') , async (req, res) => {
     try {
         // get the text that the user want to post
         const {user_id} = req.body;
+
+        const user = await User.findOne({_id:user_id})
+
+        if(user.cover !== 'DefaultCover.jpeg'){
+            fs.unlinkSync(`Blob/ImageBlob/${user.cover}`)
+        }
 
         await User.findByIdAndUpdate({_id : user_id},{
             cover: req.file.filename
@@ -50,6 +57,12 @@ router.post('/updateProfilePic', uploadProfilePic.single('profilePic') , async (
     try {
         // get the text that the user want to post
         const {user_id} = req.body;
+
+        const user = await User.findOne({_id:user_id})
+
+        if(user.profilePic !== 'DefaultPic.jpeg'){
+            fs.unlinkSync(`Blob/ImageBlob/${user.profilePic}`)
+        }
 
         await User.findByIdAndUpdate({_id : user_id},{
             profilePic: req.file.filename
