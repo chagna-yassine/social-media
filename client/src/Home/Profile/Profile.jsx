@@ -5,10 +5,12 @@ import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { getPost, getComment, Like, Comment, checkLike, unLike, countLike, countComment, getUser, checkExistence } from '../../api';
+import { getPost, getComment, Like, Comment, checkLike, unLike, countLike, countComment, getUser, checkExistence, deletePost } from '../../api';
 import { handleCommentModal } from '../Main/comment';
 import { IMG_BASE, VID_BASE } from '../../App';
 import EditProfil from './EditProfil';
+import { faArrowUpWideShort, faX } from '@fortawesome/free-solid-svg-icons';
+import { handleRemoveModal } from './removeAlert';
 
 const Profile = () => {
 
@@ -139,6 +141,15 @@ const Profile = () => {
     }
   };
 
+  const handleDeletePost = async(id)=>{
+     try{
+        await deletePost({id})
+        window.location.reload();
+     }catch(error){
+        console.error(error);
+     }
+  }
+
   return (
      !isLoading && (
         <div className='Profile-container'>
@@ -182,6 +193,14 @@ const Profile = () => {
                                 </div>
                             </div>
                             <div className={`card Post-content ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                                <FontAwesomeIcon className={`removePost ${post.media.status === 'noMedia' && "text"}`} icon={faX} onClick={()=>{handleRemoveModal(post._id)}}/>
+                                <div id={`Remove-Modal-${post._id}`} className="removeAlert">
+                                    <h2 className='Remove-item'>Are u sure?</h2>
+                                    <div className="controle">
+                                        <button className='btn btn-secondary' onClick={()=>{handleRemoveModal(post._id)}}>Cancel</button>
+                                        <button className='btn btn-danger' onClick={()=>{handleDeletePost(post._id)}}>Delete</button>
+                                    </div>
+                                </div>
                                 {
                                     post.media.status === 'noMedia' ? (
                                         <p className="card-img-top Post-content-text bg-dark text-white d-flex justify-content-center align-items-center">{post.text}</p>

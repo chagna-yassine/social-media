@@ -91,6 +91,22 @@ export const getPost = async (user_id) => {
   }
 };
 
+export const deletePost = async (postId) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Image/deletePost`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(postId),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const search = async (searchData) => {
   try {
     const response = await fetch(`${API_BASE_URL}/search`, {

@@ -1,5 +1,7 @@
 import express from "express";
 import { Post } from "../metadatServise/post.js";
+import { Comment } from "../metadatServise/comment.js";
+import { Like } from "../metadatServise/like.js";
 import multer, {diskStorage} from 'multer'
 import path from 'path';
 import ffmpeg from "fluent-ffmpeg";
@@ -109,13 +111,26 @@ router.get('/', async (req, res) => {
     try {
         const id = req.query.user_id;
 
-        // const regex = new RegExp(`^${id}`);
-
         const posts = await Post.find({ user_id: id }).sort({created_at : -1}).populate('user_id', 'username profilePic');
 
-        // console.log('req.body');
-
         res.json(posts);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+router.post('/deletePost', async (req, res) => {
+    try {
+        const {id} = req.body;
+
+        await Comment.deleteMany({post_id : id})
+
+        await Like.deleteMany({post_id : id})
+
+        await Post.findByIdAndDelete(id);
+
+        res.status(201).json({message: "Post deleted successfully"});
+        
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

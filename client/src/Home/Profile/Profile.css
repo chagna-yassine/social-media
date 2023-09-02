@@ -258,6 +258,43 @@
     border-bottom: 1px solid var(--white);
 }
 
+.removePost{
+    position: absolute;
+    color: var(--white);
+    right: 35%;
+}
+.removePost.text{
+    top: -10%;
+}
+
+.removeAlert{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    background-color: var(--light-gray);
+    top: 20%;
+    left: 5%;
+    height: 25vh;
+    width: 50vh;
+    border-radius: 20px;
+    box-shadow: 0px 0px 50px black;
+    z-index: 2;
+}
+.removeAlert h2{
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    font-weight: bolder;
+}
+.controle{
+    display: flex;
+    width: 50%;
+    margin: auto;
+    justify-content: space-between;
+}
+
 /* Responsive design */
 
 @media screen and (min-width: 1020px) and  (max-width: 1250px){
