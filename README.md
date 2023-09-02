@@ -1,49 +1,31 @@
-# social-media
+**Introducing Fire Camp: Your Digital Haven for Free Expression**
 
-social media application
+Are you ready to join a thriving digital community where free speech and creativity reign supreme? Welcome to Fire Camp, the ultimate social media platform where your voice matters, and your creativity knows no bounds.
 
-# Front-End
+**What is Fire Camp?**
 
-# Back-End
+Fire Camp is your passport to a vibrant online world where you can freely express yourself, connect with kindred spirits, and share your thoughts, art, and ideas with a diverse and welcoming community.
+
+**What Makes Fire Camp Unique?**
+
+- **Visual Expression:** Show the world your unique perspective with our intuitive image upload feature. Whether it's breathtaking photography, captivating artwork, or a simple snapshot of your day, Fire Camp supports a variety of image formats and sizes to help you shine.
+
+- **Engagement:** Connect with like-minded individuals through likes and comments. Feel the pulse of the community with real-time notifications, ensuring you never miss a beat.
+
+- **Community Building:** Grow your network by following others who inspire you. Receive notifications when fellow Fire Campers join your journey, fostering a sense of camaraderie.
+
+- **Fresh Content:** Our intelligent system curates a personalized news feed, delivering the freshest and most relevant content right to your fingertips. Stay inspired by the latest contributions from your connections and the wider Fire Camp family.
+
+- **Private Conversations:** Forge deeper connections with direct messaging. Reach out to fellow Fire Campers and be instantly alerted when you receive new messages.
+
+Fire Camp is where your voice matters, your creativity thrives, and your freedom of expression knows no limits. Join us today and be part of a community that celebrates individuality and encourages you to unleash your inner fire.
 
 # Over View of the system design
-
-## Business Requirements:
-
-- ### Image Upload:
-	Users should be able to upload image from their devices. The system should support different image format and sizes.
-- ### Like and Comment:
-	Users should be able to like and comment on images. View the likes and comments on images. Receive notifications when their images are liked or commented.
-- ### Follow:
-	Users should be able to follow ather user and get notification when others follow them.
-- ### News Feed:
-	System should generate a news feed of images the news feed should be sorted on relevancy and freshness.
-- ### Messaging:     
-	Users should be able to send direct msgs to other user, and get notifications when they receive msgs from other users.
-	
-## Technical Requirements:
-    
--  The system should support image formats such as JPEG, PNG, and GIF.
-- The maximum allowed image size should be 10MB.
-- The system should be able to handle at least 100.000 concurrent uploads.
-- Upload maximum 10 images / day.
-- Handle a least 1 million concurrent likes and comments.
-- Handle at least 1 billion registered users.
-- Users should be able to follow at least 1.000 other users.
 
 ## Database Schema:
 
 
 ![DatabaseSchema](https://github.com/chagna-yassine/social-media/assets/109078003/1d5bad97-b2eb-4820-bbcc-e57117c2b54a)
-
-
-## Queries Exemples:
-- ### Numbers of likes for a post:
-	`SELECT COUNT(*) FROM Like WHERE post_id = [post_id];`
-- ### Get all thhe posts for a specific user:
-	`SELECT * FROM Post WHERE user_id = [user_id];`
-- ### Get all the follower for a specific user:
-	`SELECT * FROM Follow WHERE following_user_id = [user_id];`
 	
 ## Architecture Over View:
 
@@ -66,23 +48,8 @@ social media application
 - ### Blob store: 
 	where images are stored. (NOTE: the database only have the image url).
 
-## API Wndpoints:
-
-- > ### POST `/image/upload`  - to upload an image.
-- > ### GET `/image/{image_id}` - to retrieve a specific image.
-- > ### POST `/user/{user_id}/follow` - to follow another user.
-- > ### POST `/image/{image_id}/like` - to like a specific image.
-- > ### POST `/image/{image_id}/comment` - to add comment to a specific image.
-- > ### GET `/feed` - to retrieve a user's news feed.
-
 
 ## Micro services Over View:
-
-
-
-![microservices](https://github.com/chagna-yassine/social-media/assets/109078003/76f9e61f-0267-429c-8798-7b03c8087b43)
-
-
 
 - ### Image service: 
 	connect with the database to handle add and remove of images.
