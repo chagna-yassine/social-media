@@ -19,6 +19,8 @@ import DirectMessages from './Home/Messages/DirectMessages';
 import DefaultOutlet from './Home/Messages/DefaultOutlet';
 import { Provider } from 'react-redux'
 import { store } from './DataStore/store';
+export const IMG_BASE = "http://localhost:5001/ImageBlob/";
+export const VID_BASE = "http://localhost:5001/VideoBlob/";
 
 function App() {
   const[isLoading,setIsLoading] = useState(true);

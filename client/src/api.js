@@ -34,14 +34,24 @@ export const login = async (userData) => {
   }
 };
 
-export const uploadPost = async (postData) => {
+export const uploadImgPost = async (postData) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/Image/upload`, {
+    const response = await fetch(`${API_BASE_URL}/Image/uploadImg`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(postData),
+      body: postData,
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const uploadVideoPost = async (postData) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Image/uploadVideo`, {
+      method: 'POST',
+      body: postData,
     });
     const data = await response.json();
     return data;

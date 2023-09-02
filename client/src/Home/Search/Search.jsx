@@ -32,8 +32,8 @@ const Search = () => {
   const [isDataLoading,setIsDataLoading] = useState(true);
 
   // function that get searched users from the api
-  const handleSearch = async ()=>{
-      const data = await search({searchQuery , userId : userIdCookies.userId});
+  const handleSearch = async (searchQuery)=>{
+      const data =  searchQuery && await search({searchQuery , userId : userIdCookies.userId});
       setUsers(data);
       setIsDataLoading(false)
   }
@@ -41,7 +41,7 @@ const Search = () => {
   //call the handleSearch when the user click enter
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      handleSearch();
+      handleSearch(searchQuery);
       setIsClicked(true)
     }
   };
@@ -60,8 +60,8 @@ const Search = () => {
       <div className='Search'>
         <div className={`Search-bar ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>
           <div className='w-75 position-relative'>
-            <input type="text" placeholder={t("home.search.title")} onChange={(e)=>{setSearchQuery(e.target.value)}} onKeyPress={(e)=>{searchQuery && handleKeyPress(e)}}/>
-            <FontAwesomeIcon className={`search-icon ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} icon={faSearch} onClick={()=>{searchQuery && handleSearch();setIsClicked(true);}}/>
+            <input type="text" placeholder={t("home.search.title")} onChange={(e)=>{setSearchQuery(e.target.value); handleSearch(e.target.value) ; setIsClicked(true);}} onKeyPress={(e)=>{searchQuery && handleKeyPress(e)}}/>
+            <FontAwesomeIcon className={`search-icon ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} icon={faSearch} onClick={()=>{searchQuery && handleSearch(searchQuery);setIsClicked(true);}}/>
           </div>
         </div>
         <div className="Results">
@@ -73,7 +73,7 @@ const Search = () => {
                   <p className="Results-item-label">{username}</p>
                 </div>
               ))
-              : isClicked && !isDataLoading ? (
+              : isClicked && searchQuery && !isDataLoading ? (
                 <div className={`Results-item justify-content-center ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>
                   <h3 className="Results-item-label text-center">{t('home.search.notFound')}</h3>
                 </div>

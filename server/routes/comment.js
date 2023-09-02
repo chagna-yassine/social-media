@@ -21,7 +21,7 @@ router.post('/', async (req, res) => {
 
 router.get('/Get', async (req, res) => {
   try {
-      const comments = await Comment.find({}).sort({created_at : -1});
+      const comments = await Comment.find({}).sort({created_at : -1}).populate('user_id','username');
 
       res.json(comments);
   }catch (error) {

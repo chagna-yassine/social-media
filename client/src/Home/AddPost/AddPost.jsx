@@ -5,7 +5,7 @@ import { faLocationDot, faPhotoVideo, faUserTag } from '@fortawesome/free-solid-
 import { useCookies } from 'react-cookie'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { uploadPost } from '../../api'
+import { uploadImgPost, uploadVideoPost } from '../../api'
 
 const AddPost = () => {
 
@@ -25,6 +25,8 @@ const AddPost = () => {
 
   const navigate = useNavigate();
 
+  const [media,setMedia] = useState(null);
+
   useEffect(()=>{
     //Check if the user not loged in and rederect him to the login
     if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
@@ -37,12 +39,21 @@ const AddPost = () => {
   const handleAddPost = async () => {
     // add a value to the caption just for test
     setCaption('default caption');
-    
-    const newPost = {user_id: userIdCookies.userId, caption, text};
-    console.log("newPost :", newPost);
     try {
       //send the new post to the signup api
-      const response = await uploadPost({user_id: userIdCookies.userId, caption, text});
+      const postData = new FormData();
+      postData.append('user_id', userIdCookies.userId);
+      postData.append('caption', caption);
+      postData.append('text', text);
+      let response;
+      if(media.type === 'video/mp4'){
+        postData.append('video', media);
+        response = await uploadVideoPost(postData);
+      }else{
+        postData.append('image', media);
+        response = await uploadImgPost(postData);
+      }
+      navigate('/')
       console.log(response); // Handle success or display error message
     } catch (error) {
       console.error(error);
@@ -62,9 +73,10 @@ const AddPost = () => {
             <div className={`Post-data-features ${i18n.language === "ar" ? "ar" : null}`}>
                 <div className={`feature ${i18n.language === "ar" ? "ar" : null}`}>
                   <div className="feature-icon-container">
-                      <FontAwesomeIcon className='feature-icon media' icon={faPhotoVideo}/>
+                      <label className='cursor-pointer' htmlFor="Upload"><FontAwesomeIcon className='feature-icon media' icon={faPhotoVideo}/></label>
+                      <input type="file" accept='.jpeg , .png , .jpg , .mp4' className='file-input' id='Upload' onChange={(e)=>{setMedia(e.target.files[0])}}/>
                   </div>
-                  <p className={`feature-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{t("home.addPost.media")}</p>
+                  <label className='cursor-pointer' htmlFor="Upload"><p className={`feature-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{t("home.addPost.media")}</p></label>
                 </div>
                 <div className={`feature ${i18n.language === "ar" ? "ar" : null}`}>
                   <div className="feature-icon-container">

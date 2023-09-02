@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router-dom';
 import { Comment, Like, getComment, getFeed, unLike } from '../../api';
 import { useDispatch, useSelector } from 'react-redux';
 import { addLike, removeLike } from '../../DataStore/Likes/actions'
+import { IMG_BASE, VID_BASE } from '../../App';
+
 
 const Main = () => {
 
@@ -135,20 +137,37 @@ const Main = () => {
                                             <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}></div>
                                         </div>
                                         <div className="w-50 d-flex align-items-center">
-                                            <h2 className={`Label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{post.user_id.username}</h2>
+                                            <h2 className={`Label ${currentDisplayMode === 'dark' ? 'dark' : 'light'} cursor-pointer`} onClick={()=>{navigate(`/${post.user_id.username}`)}}>{post.user_id.username}</h2>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div className={`card Post-content ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-                                <p className="card-img-top Post-content-media bg-dark text-white d-flex justify-content-center align-items-center">{post.text}</p>
+                                {
+                                    post.media.status === 'noMedia' ? (
+                                        <p className="card-img-top Post-content-text bg-dark text-white d-flex justify-content-center align-items-center">{post.text}</p>
+                                    ): post.media.status === 'image' ?(
+                                        <>
+                                          <p className='m-0 text-white ms-4 fw-bold fs-5 text-small-caps'>{post.text}</p>
+                                          <img src={IMG_BASE+post.media.url} className="card-img-top Post-content-img" alt={post.media.name}/>
+                                        </>
+                                    ):(
+                                        <>
+                                          <p className='m-0 text-white ms-4 fw-bold fs-5 text-small-caps'>{post.text}</p>
+                                          <video className="card-img-top Post-content-video" src={VID_BASE+post.media.url} title={post.media.name} controls loop preload='none' muted poster={IMG_BASE+post.media.poster_url}></video>
+                                        </>
+                                    )
+                                }
                                 <div id={`Comment-Modal-${post._id}`} className="CommentModal">
                                     <div className="CommentModal-list">
                                         <div className="CommentModal-items"> 
                                             <ul className="list-group List">
                                                 { comments && comments.map((cmnt, key) => (
                                                     cmnt.post_id === post._id &&
-                                                    <li key={key} className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{ cmnt.text}</li>
+                                                    <li key={key} className='list-group-item bg-transparent border-0 p-0'>
+                                                        <p className='text-white fw-bold mb-1 ms-2'>{cmnt.user_id.username}</p>
+                                                        <p className={`List-item m-0 mb-2 ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{ cmnt.text}</p>
+                                                    </li>
                                                     ))
                                                 }
                                             </ul>
