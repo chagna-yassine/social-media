@@ -2,6 +2,7 @@ import express from "express";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { User } from "../metadatServise/user.js";
+import mongoose from "mongoose";
 
 const router = express.Router();
 
@@ -68,6 +69,34 @@ router.post('/login', async (req, res) => {
     const token = jwt.sign({ userId: user._id }, 'your-secret-key');
 
     res.json({ token , username , id : user._id });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.post('/checkExistence', async (req, res) => {
+  try {
+    //get the data
+    const { userId , username} = req.body;
+
+    if(!mongoose.Types.ObjectId.isValid(userId)){
+      return res.status(404).json({ isExist: false });
+    }
+    
+    const idExistence = await User.findById(userId);
+
+    if (!idExistence) {
+      return res.status(404).json({ isExist: false });
+    }
+
+    const usernameExistence = await User.findOne({ username });
+
+    if (!usernameExistence) {
+      return res.status(404).json({ isExist: false });
+    }
+
+    res.status(201).json({ isExist: true });
+
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

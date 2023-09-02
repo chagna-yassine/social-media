@@ -5,7 +5,7 @@ import { faLocationDot, faPhotoVideo, faUserTag } from '@fortawesome/free-solid-
 import { useCookies } from 'react-cookie'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { uploadImgPost, uploadVideoPost } from '../../api'
+import { checkExistence, uploadImgPost, uploadVideoPost } from '../../api'
 
 const AddPost = () => {
 
@@ -29,9 +29,18 @@ const AddPost = () => {
 
   useEffect(()=>{
     //Check if the user not loged in and rederect him to the login
-    if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
-      navigate("/login");
+    const checkUserInfo = async()=>{
+      if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
+        navigate("/login");
+      }else{
+          const response = await checkExistence({userId: userIdCookies.userId , username : userNameCookies.username})
+          console.log(response);
+        if(!response.isExist){
+          navigate("/login");
+        }
+      }
     }
+  checkUserInfo();
     document.title = t("home.addPost.label");
   },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username,])
 

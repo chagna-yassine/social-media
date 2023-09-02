@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'react-i18next';
 import { handleCommentModal } from './comment';
 import { useNavigate } from 'react-router-dom';
-import { Comment, Like, getComment, getFeed, unLike } from '../../api';
+import { Comment, Like, checkExistence, getComment, getFeed, unLike } from '../../api';
 import { useDispatch, useSelector } from 'react-redux';
 import { addLike, removeLike } from '../../DataStore/Likes/actions'
 import { IMG_BASE, VID_BASE } from '../../App';
@@ -37,9 +37,18 @@ const Main = () => {
 
     useEffect(()=>{
         //Check if the user not loged in and rederect him to the login
-        if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
-            navigate("/login");
+        const checkUserInfo = async()=>{
+            if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
+              navigate("/login");
+            }else{
+                const response = await checkExistence({userId: userIdCookies.userId , username : userNameCookies.username})
+                console.log(response);
+              if(!response.isExist){
+                navigate("/login");
+              }
+            }
           }
+        checkUserInfo();
         document.title = t("home.main.label");
         //Set the loading state to false when the component load
         setIsLoading(false)

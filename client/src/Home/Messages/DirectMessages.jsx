@@ -4,7 +4,7 @@ import { faArrowLeftLong, faImage, faInfoCircle } from '@fortawesome/free-solid-
 import { useTranslation } from 'react-i18next';
 import { useCookies } from 'react-cookie';
 import { useNavigate, useParams } from 'react-router-dom';
-import { getMessages , sendMessage } from '../../api';
+import { checkExistence, getMessages , sendMessage } from '../../api';
 import { useDispatch, useSelector } from 'react-redux';
 import { receiveMsg, sendMsg } from '../../DataStore/Messages/actions';
 import { addDoc, collection, onSnapshot, query, where } from 'firebase/firestore';
@@ -93,9 +93,18 @@ const DirectMessages = () => {
   
     useEffect(() => {
       //Check if the user not loged in and rederect him to the login
-      if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
-        navigate("/login");
+      const checkUserInfo = async()=>{
+        if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
+          navigate("/login");
+        }else{
+            const response = await checkExistence({userId: userIdCookies.userId , username : userNameCookies.username})
+            console.log(response);
+          if(!response.isExist){
+            navigate("/login");
+          }
+        }
       }
+    checkUserInfo();
       //call the handleMessages when the component load to fetch msg data
       handleMessages();
     }, [t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username,username,handleMessages,isLoading,msg]);

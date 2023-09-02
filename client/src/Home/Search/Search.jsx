@@ -3,7 +3,7 @@ import "./Search.css"
 import { useCookies } from 'react-cookie';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { search } from '../../api';
+import { checkExistence, search } from '../../api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -48,9 +48,18 @@ const Search = () => {
 
   useEffect(()=>{
     //Check if the user not loged in and rederect him to the login
-    if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
-      navigate("/login");
+    const checkUserInfo = async()=>{
+      if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
+        navigate("/login");
+      }else{
+          const response = await checkExistence({userId: userIdCookies.userId , username : userNameCookies.username})
+          console.log(response);
+        if(!response.isExist){
+          navigate("/login");
+        }
+      }
     }
+  checkUserInfo();
     document.title = t("home.search.title");
     setIsLoading(false)
   },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username])

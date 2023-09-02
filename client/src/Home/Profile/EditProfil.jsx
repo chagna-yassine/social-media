@@ -126,7 +126,7 @@ const EditProfil = ({userData , display , setDisplay}) => {
                 <FontAwesomeIcon icon={faPen}/>
                 <p>edit cover pic</p>
               </label>
-              <input type="file" id="cover" style={{display:'none'}} onChange={(e)=>{handleCoverChange(e)}}/>
+              <input type="file" accept='.jpeg , .png , .jpg' id="cover" style={{display:'none'}} onChange={(e)=>{handleCoverChange(e)}}/>
             </div>
         </div>
         <div className="Pic">
@@ -138,7 +138,7 @@ const EditProfil = ({userData , display , setDisplay}) => {
                 <FontAwesomeIcon icon={faPen}/>
                 <p>edit profile pic</p>
               </label>
-              <input type="file" id="pic" style={{display:'none'}} onChange={(e)=>{handlePicChange(e)}}/>
+              <input type="file" id="pic" accept='.jpeg , .png , .jpg' style={{display:'none'}} onChange={(e)=>{handlePicChange(e)}}/>
             </div>
         </div>
         <div className="input-container">

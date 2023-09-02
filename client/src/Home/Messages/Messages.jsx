@@ -3,7 +3,7 @@ import "./Messages.css";
 import { useCookies } from 'react-cookie';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { getConversations } from '../../api';
+import { checkExistence, getConversations } from '../../api';
 import { useSelector } from 'react-redux';
 
 const Messages = () => {
@@ -35,9 +35,18 @@ const msg = useSelector((state)=> state.messages);
 
   useEffect(() => {
     //Check if the user not loged in and rederect him to the login
-    if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
-      navigate("/login");
+    const checkUserInfo = async()=>{
+      if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
+        navigate("/login");
+      }else{
+          const response = await checkExistence({userId: userIdCookies.userId , username : userNameCookies.username})
+          console.log(response);
+        if(!response.isExist){
+          navigate("/login");
+        }
+      }
     }
+  checkUserInfo();
     document.title = t("home.msgs.title");
 
   // function that get the conversations that the user participate in and set the loading state to false when the conversations loaded

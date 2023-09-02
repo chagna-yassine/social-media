@@ -8,7 +8,7 @@ import { useCookies } from 'react-cookie'
 import { handleBgImgs } from '../../HandleBgImgs/handleBgImgs'
 import { handleViewPassword } from '../AuthFunctionalities'
 import { useTranslation } from 'react-i18next'
-import { login } from '../../api';
+import { checkExistence, login } from '../../api';
 
 
 const Login = () => {
@@ -64,9 +64,16 @@ const Login = () => {
   useEffect(()=>{
     document.title = t("login.label");
     //Check if the user loged in and rederect him to the main
-    if(userCookies.token && userIdCookies.userId && userNameCookies.username){
-        navigate("/");
+    const checkUserInfo = async()=>{
+      if(userCookies.token && userIdCookies.userId && userNameCookies.username){
+        const response = await checkExistence({userId: userIdCookies.userId , username : userNameCookies.username})
+          console.log(response);
+        if(response.isExist){
+          navigate("/");
+        }
+      }
     }
+    checkUserInfo();
     //Call the handleLogin function when the user click the login button to handle language change on render
     isClicked && handleLogin();
   },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username,handleLogin,isClicked])

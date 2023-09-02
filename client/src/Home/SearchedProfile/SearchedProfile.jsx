@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
-import { Comment, Like, checkFollow, checkLike, countComment, countLike, createConversation, follow, getComment, getPost, getUser, unFollow, unLike } from '../../api';
+import { Comment, Like, checkExistence, checkFollow, checkLike, countComment, countLike, createConversation, follow, getComment, getPost, getUser, unFollow, unLike } from '../../api';
 import { IMG_BASE, VID_BASE } from '../../App';
 import { handleCommentModal } from '../Main/comment';
 
@@ -62,9 +62,18 @@ const SearchedProfile = () => {
     //a useEffect hook that handle the document title and the existens of the userCookies 
     useEffect(()=>{
       //Check if the user not loged in and rederect him to the login
-      if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
-        navigate("/login");
+      const checkUserInfo = async()=>{
+        if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
+          navigate("/login");
+        }else{
+            const response = await checkExistence({userId: userIdCookies.userId , username : userNameCookies.username})
+            console.log(response);
+          if(!response.isExist){
+            navigate("/login");
+          }
+        }
       }
+    checkUserInfo();
       //set the document title to the username
       document.title = `${username} - ${t("home.search.searchedProfil.title")}`;
       //call the function handeUserData when the component render and fetch the data

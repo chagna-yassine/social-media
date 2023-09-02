@@ -8,7 +8,7 @@ import { useCookies } from 'react-cookie'
 import { handleBgImgs } from '../../HandleBgImgs/handleBgImgs'
 import { handleViewPassword } from '../AuthFunctionalities'
 import { useTranslation } from 'react-i18next'
-import { signup } from '../../api'
+import { checkExistence, signup } from '../../api'
 import { handleDataValidation } from './HandleSignup';
 
 const Signup = () => {
@@ -99,9 +99,16 @@ const Signup = () => {
   useEffect(()=>{
     document.title = t("signup.label");
     //Check if the user loged in and rederect him to the main
-    if(userCookies.token && userIdCookies.userId && userNameCookies.username){
-      navigate("/");
-  }
+    const checkUserInfo = async()=>{
+      if(userCookies.token && userIdCookies.userId && userNameCookies.username){
+        const response = await checkExistence({userId: userIdCookies.userId , username : userNameCookies.username})
+          console.log(response);
+        if(response.isExist){
+          navigate("/");
+        }
+      }
+    }
+    checkUserInfo();
     //Call the handleSignup function when the user click the signup button to handle language change on render
     isClicked && handleSignup();
   },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username,handleSignup,isClicked])

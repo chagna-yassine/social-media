@@ -9,6 +9,7 @@ import { faHouse, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { handleNotifications } from './HomeFonctionalities';
 import { useTranslation } from 'react-i18next';
+import { checkExistence } from '../api';
 
 const Home = () => {
 
@@ -26,9 +27,18 @@ const Home = () => {
 
   useEffect(()=>{
       //Check if the user not loged in and rederect him to the login
-      if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
-        navigate("/login");
+      const checkUserInfo = async()=>{
+        if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
+          navigate("/login");
+        }else{
+            const response = await checkExistence({userId: userIdCookies.userId , username : userNameCookies.username})
+            console.log(response);
+          if(!response.isExist){
+            navigate("/login");
+          }
+        }
       }
+    checkUserInfo();
       handleBgImgs(currentDisplayMode,"Main-img","Main");
   },[currentDisplayMode,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username])
 

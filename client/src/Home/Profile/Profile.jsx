@@ -5,7 +5,7 @@ import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { getPost, getComment, Like, Comment, checkLike, unLike, countLike, countComment, getUser } from '../../api';
+import { getPost, getComment, Like, Comment, checkLike, unLike, countLike, countComment, getUser, checkExistence } from '../../api';
 import { handleCommentModal } from '../Main/comment';
 import { IMG_BASE, VID_BASE } from '../../App';
 import EditProfil from './EditProfil';
@@ -41,9 +41,18 @@ const Profile = () => {
 
   useEffect(()=>{
     //Check if the user not loged in and rederect him to the login
-    if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
-        navigate("/login");
-    }
+    const checkUserInfo = async()=>{
+        if(!userCookies.token || !userIdCookies.userId || !userNameCookies.username){
+          navigate("/login");
+        }else{
+            const response = await checkExistence({userId: userIdCookies.userId , username : userNameCookies.username})
+            console.log(response);
+          if(!response.isExist){
+            navigate("/login");
+          }
+        }
+      }
+    checkUserInfo();
     document.title = `${userNameCookies.username} - ${t("home.profile.label")}`;
     const handeUserData = async()=>{
         setUser(await getUser({ username: userNameCookies.username }));

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import { handleBgImgs } from '../../HandleBgImgs/handleBgImgs'
 import { useTranslation } from 'react-i18next'
-import { checkEmail, sendEmail, updatePassword } from '../../api';
+import { checkEmail, checkExistence, sendEmail, updatePassword } from '../../api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { handleViewPassword } from '../AuthFunctionalities';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
@@ -61,9 +61,16 @@ const Recovery = () => {
   useEffect(()=>{
     document.title = "Recover";
     //Check if the user loged in and rederect him to the main
-    if(userCookies.token && userIdCookies.userId && userNameCookies.username){
-        navigate("/");
+    const checkUserInfo = async()=>{
+      if(userCookies.token && userIdCookies.userId && userNameCookies.username){
+        const response = await checkExistence({userId: userIdCookies.userId , username : userNameCookies.username})
+          console.log(response);
+        if(response.isExist){
+          navigate("/");
+        }
+      }
     }
+    checkUserInfo();
 
   },[t,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username,])
 
