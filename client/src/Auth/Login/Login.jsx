@@ -99,9 +99,11 @@ const Login = () => {
                   </div>
               </div>
               <div className='Submition'>
-                <a className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} href="/login">{t("login.forgot-pwd")}</a>
-                <input className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} type="button" value={t("login.submit")} onClick={()=>{setIsClicked(true);handleLogin()}}/>
-                <Link className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} to="/signup">{t("login.link")}</Link>
+
+                 <Link className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} to={"/Recovery"}>{t("login.forgot-pwd")}</Link>
+                 <input className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} type="button" value={t("login.submit")} onClick={()=>{setIsClicked(true);handleLogin()}}/>
+                 <Link className={`${currentDisplayMode === 'dark' ? 'dark' : 'light'}`} to="/signup">{t("login.link")}</Link>
+
               </div>
             </form>
         </div>

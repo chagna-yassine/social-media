@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import testImg_2 from "../../Images/Light-6.jpeg"
-import testImg_3 from "../../Images/Dark-6.jpeg"
+import "../Profile/Profile.css";
 import { useCookies } from 'react-cookie';
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -9,6 +8,7 @@ import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-
 import { Comment, Like, checkFollow, checkLike, countComment, countLike, createConversation, follow, getComment, getPost, getUser, unFollow, unLike } from '../../api';
 import { IMG_BASE, VID_BASE } from '../../App';
 import { handleCommentModal } from '../Main/comment';
+
 
 const SearchedProfile = () => {
     //get the username from the ur param
@@ -190,16 +190,16 @@ const SearchedProfile = () => {
         //Handle if the component is Fully loading
         !isLoading && (
             <div className='Profile-container'>
-        <div className="Profile">
+        <div className="Profile Searched">
           <div className="Profile-cover">
-              <img src={testImg_2} alt="" />
+            <img src={ IMG_BASE+user.cover } alt={user.username} />
           </div>
           <div className={`Profile-pic ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>
-            <img src={testImg_3} alt="" />
+            <img src={ IMG_BASE+user.profilePic } alt={user.username} />
           </div>
           <div className={`Profile-info ${i18n.language === "ar" ? "ar" : null}`}>
             <h3 className={`Profile-name ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{user.username}</h3>
-            <p className={`Profile-bio ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>This is my bio</p>
+            <p className={`Profile-bio ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{user.bio}</p>
           </div>
           <div className={`Profile-actions ${i18n.language === "ar" ? "ar" : i18n.language === "fr" ? "fr" : null}`}>
              {
@@ -224,7 +224,9 @@ const SearchedProfile = () => {
                             <div className={`card border-0 mb-3 Post-info ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                                 <div className="row g-0">
                                     <div className="Logo-container">
-                                        <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}></div>
+                                        <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                                            <img className='Logo-img' src={IMG_BASE+post.user_id.profilePic} alt={post.user_id.username} />
+                                        </div>
                                     </div>
                                     <div className="w-50 d-flex align-items-center">
                                         <h2 className={`Label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{username}</h2>
@@ -255,9 +257,20 @@ const SearchedProfile = () => {
                                             { comments && comments.map((cmnt, key) => (
                                                 cmnt.post_id === post._id &&
                                                 <li key={key} className='list-group-item bg-transparent border-0 p-0'>
-                                                    <p className='text-white fw-bold mb-1 ms-2'>{cmnt.user_id.username}</p>
-                                                    <p className={`List-item m-0 mb-2 ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{ cmnt.text}</p>
-                                                </li>
+                                                        <div className={`card border-0 mb-3 Post-info ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                                                            <div className="row g-0">
+                                                                <div className="Logo-container">
+                                                                    <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                                                                        <img className='Logo-img' src={IMG_BASE+cmnt.user_id.profilePic} alt={cmnt.user_id.username} />
+                                                                    </div>
+                                                                </div>
+                                                                <div className="w-50 d-flex align-items-center">
+                                                                    <h2 className={`Label ${currentDisplayMode === 'dark' ? 'dark' : 'light'} cursor-pointer`} onClick={()=>{navigate(`/${cmnt.user_id.username}`)}}>{cmnt.user_id.username}</h2>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <p className={`List-item m-0 mb-2 ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{ cmnt.text}</p>
+                                                    </li>
                                                 ))
                                             }
                                         </ul>

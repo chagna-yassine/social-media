@@ -29,9 +29,14 @@
     overflow: hidden;
     width: 100%;
     min-height: 20vh;
-    padding-block-end: 2vh;
+    padding-block-end: 4vh;
     border-bottom: 1px solid var(--white);
 }
+
+.Main .Feed-container .Profile.Searched{
+    padding-block-end: 9vh;
+}
+
 .Main .Feed-container .Profile .Profile-cover{
     width: 100%;
 }
@@ -95,6 +100,7 @@
 .Main .Feed-container .Profile .Profile-info .Profile-bio{
     font-weight: bolder;
     margin-inline-start: 1vh;
+    margin-bottom: 0;
     transition: color 1s;
 }
 

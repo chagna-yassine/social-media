@@ -1,0 +1,177 @@
+:root{
+    --dark-green: #233F3C;
+    --light-green: #9DC56B;
+    --dark-blue: #3D748E;
+    --dark-blue-2: #00327e;
+    --light-blue: #B2E6EE;
+    --white: #FFFFFF;
+    --dark-white: #ddddddee;
+    --dark: #000000;
+    --light-gray: #42464A;
+    --light-dark: #23272D;
+    --brown: #ac7548;
+    --dark-brown: #211826;
+}
+.Recovery{
+    overflow: hidden;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-position: center;
+    background-size: cover;
+}
+#Recovery{
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100vh !important;
+    object-fit: cover !important;
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+}
+#Recovery.loaded{
+    opacity: 1 !important;
+}
+.Recovery .Auth-container{
+    top: 10%;
+    left: 25%;
+    position: absolute;
+    width: 50%;
+    max-height: 90vh;
+    border-radius: 30px;
+    transition: background-color 1s;
+}
+.Recovery .Auth-container.light{
+    background-color: var(--brown);
+}
+.Recovery .Auth-container.dark{
+    background-color: var(--dark-brown);
+}
+.Recovery .Logo{
+    position: absolute;
+    width: 15vh;
+    height: 15vh;
+    background-color: var(--light-green);
+    border-radius: 50%;
+    top: -10%;
+    left: -6%;
+}
+.Recovery .Logo.light{
+    background-color: var(--light-green);
+}
+.Recovery .Logo.dark{
+    background-color: var(--dark-green);
+}
+.Recovery .Label{
+    text-align: center;
+    font-variant: small-caps;
+    text-transform: capitalize;
+    font-size: 5vh;
+    margin-block: 10%;
+    transition: color 1s;
+}
+.Recovery .Label.dark{
+    color: var(--dark-white);
+}
+.Recovery .Label.light{
+    color: var(--white);
+}
+.Recovery .Form{
+    width: 100%;
+    min-height: 10vh;
+    margin-bottom: 10%;
+}
+.Recovery .Form-label{
+    display: block;
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: bold;
+    margin-block-start: 8%;
+    margin-block-end: 5%;
+    transition: color 1s;
+}
+.Recovery .Form-label.dark{
+    color: var(--dark-white);
+}
+.Recovery .Form-label.light{
+    color: var(--white);
+}
+.Recovery .Input-container{
+    position: relative;
+    width: 75%;
+    margin: auto;
+}
+.Recovery .Form-input{
+    display: block;
+    border: none;
+    border-radius: 50px;
+    padding: 1%;
+    width: 100%;
+    height: 4.5vh;
+    margin: auto;
+    font-weight: bolder;
+    text-align: center;
+    transition: background-color 1s;
+}
+.Recovery .Form-input.light{
+    background-color: var(--light-blue);
+    color: var(--light-dark);
+}
+.Recovery .Form-input.dark{
+    background-color: var(--dark-blue);
+    color: var(--dark-white);
+}
+.Recovery .Form-input:focus{
+    outline: none;
+}
+.Recovery .Input-icon{
+    position: absolute;
+    right: 2%;
+    top: 21%;
+}
+.Recovery .Submition{
+    width: 60%;
+    margin: auto;
+    margin-block-start: 5%;
+}
+.Recovery .Submition a{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    margin-block: 15%;
+    transition: color 1s;
+}
+.Recovery .Submition a.light{
+    color: var(--light-blue);
+}
+.Recovery .Submition a.dark{
+    color: var(--dark-blue);
+}
+.Recovery .Submition input{
+    display: block;
+    margin: auto;
+    border: none;
+    font-weight: bolder;
+    border-radius: 5vh;
+    width: 60%;
+    height: 5vh;
+    font-size: 3vh;
+    cursor: pointer;
+    font-variant: small-caps;
+    text-transform: capitalize;
+    transition: all 1s;
+}
+.Recovery .Submition input.dark{
+    background-color: var(--dark-blue-2);
+    color: var(--dark-white);
+}
+.Recovery .Submition input.light{
+    background-color: var(--dark-blue);
+    color: var(--white);
+}
+
+.campcode{
+    font-weight: bolder;
+    font-size: 20px;
+}

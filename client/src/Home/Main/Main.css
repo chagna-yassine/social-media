@@ -74,12 +74,22 @@
     width: 6vh !important;
 }
 .Main .Feed-container .Post .Logo{
-    width: 6vh;
-    height: 6vh;
+    width: 7vh;
+    height: 7vh;
+    padding: 0.25vh;
     background-color: var(--light-green);
     border-radius: 50%;
     transition: background-color 1s;
 }
+
+.Main .Feed-container .Post .Logo .Logo-img{
+    width: 100%;
+    height: 6.5vh;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
 .Main .Feed-container .Post .Logo.light{
     background-color: var(--light-green);
 }
@@ -189,6 +199,17 @@
 }
 .Main .Feed-container .Post .CommentModal .List .List-item.dark{
     background-color: var(--dark-white);
+}
+
+.Main .Feed-container .Post .CommentModal .List .Post-info .Logo-container .Logo{
+    width: 5vh;
+    height: 5vh;
+}
+.Main .Feed-container .Post .CommentModal .List .Post-info .Logo-container .Logo .Logo-img{
+    height: 4.5vh;
+}
+.Main .Feed-container .Post .CommentModal .List .Post-info .Label{
+    margin-inline-start: 0;
 }
 
 .Main .Feed-container .Post .CommentModal-items{

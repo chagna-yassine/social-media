@@ -16,13 +16,13 @@ router.post('/', async (req, res) => {
       const followingUsers = await Follow.find({ follower: user_id }).distinct('following');
   
       // Step 2: Retrieve posts of the followed users
-      const postsOfFollowing = await Post.find({ user_id: { $in: followingUsers } , _id: { $nin: likedPost} }).populate('user_id', 'username');
+      const postsOfFollowing = await Post.find({ user_id: { $in: followingUsers } , _id: { $nin: likedPost} }).populate('user_id', 'username profilePic');
   
-      const userPosts = await Post.find({ user_id , _id: { $nin: likedPost} }).populate('user_id', 'username'); // Find all posts for the specified user
+      const userPosts = await Post.find({ user_id , _id: { $nin: likedPost} }).populate('user_id', 'username profilePic'); // Find all posts for the specified user
   
       const meAndMyFollower = userPosts.concat(postsOfFollowing).sort(() => Math.random() - 0.5);
   
-      const otherPosts = await Post.find({ user_id: { $ne: user_id, $nin: followingUsers } , _id: { $nin: likedPost} }).populate('user_id', 'username'); // Find posts for other users
+      const otherPosts = await Post.find({ user_id: { $ne: user_id, $nin: followingUsers } , _id: { $nin: likedPost} }).populate('user_id', 'username profilePic'); // Find posts for other users
   
       // Shuffle the posts for other users
       const shuffledOtherPosts =  otherPosts.sort(() => Math.random() - 0.5);
