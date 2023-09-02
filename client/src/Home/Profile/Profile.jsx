@@ -3,8 +3,6 @@ import "./Profile.css";
 import { useCookies } from 'react-cookie';
 import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import testImg_2 from "../../Images/Light-6.jpeg"
-import testImg_3 from "../../Images/Dark-6.jpeg"
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getPost, getComment, Like, Comment, checkLike, unLike, countLike, countComment, getUser } from '../../api';

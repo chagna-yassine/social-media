@@ -389,3 +389,51 @@ export const updateUser = async (userData) => {
     throw error;
   }
 };
+
+export const checkEmail = async (email) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Recovery/checkEmail`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({email}),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const sendEmail = async (userData) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Recovery`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updatePassword = async (userData) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Recovery/updatePassword`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};

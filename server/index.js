@@ -16,6 +16,7 @@ import searchRoutes from "./routes/search.js";
 import followRoutes from "./routes/follow.js";
 import messageRoutes from "./routes/message.js";
 import userRoutes from "./routes/user.js";
+import recoveryRoutes from "./routes/pwdRecovery.js";
 
 
 /* CONFIGURATION */
@@ -41,7 +42,8 @@ app.use('/auth', authRoutes);
 app.use('/Search', searchRoutes);
 app.use('/Follow', followRoutes);
 app.use('/Message', messageRoutes);
-app.use('/User',userRoutes)
+app.use('/User',userRoutes);
+app.use('/Recovery',recoveryRoutes);
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000;

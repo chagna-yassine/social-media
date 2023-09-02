@@ -19,6 +19,7 @@ import DirectMessages from './Home/Messages/DirectMessages';
 import DefaultOutlet from './Home/Messages/DefaultOutlet';
 import { Provider } from 'react-redux'
 import { store } from './DataStore/store';
+import Recovery from './Auth/Recovery/Recovery';
 export const IMG_BASE = "http://localhost:5001/ImageBlob/";
 export const VID_BASE = "http://localhost:5001/VideoBlob/";
 
@@ -57,6 +58,7 @@ function App() {
             </Route>
             <Route path='/login' element={<Login />}/>
             <Route path='/signup' element={<Signup />}/>
+            <Route path='/recovery' element={<Recovery />}/>
           </Routes>
         </Provider>
       )}
