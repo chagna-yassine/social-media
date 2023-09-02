@@ -236,11 +236,12 @@
 /* Responsive design */
 @media screen and (min-width: 900px) and  (max-width: 1150px){
     .Main .Feed-container{
-        width: 75%;
-        height: 70vh;
+        padding-bottom: 10em;
+        width: 70%;
+        height: 100vh;
     }
     .Main .Side-bar{
-        width: 25%; 
+        width: 30%; 
     }
     .Main .Side-bar .List{
         font-size: 1.7vh;
@@ -257,12 +258,14 @@
         height: 2vh;
     }
     .Main .bottom-bar {
-        bottom: 6%;
-        height: 6vh;
+        transform: rotate(0deg);
+        bottom: 1%;
+        height: 7vh;
     }
     .Main .bottom-bar .bottom-bar-item{
-        width: 6vh;
-        height: 6vh;
+        transform: rotate(360deg);
+        width: 5vh;
+        height: 5vh;
     }
     .Main .bottom-bar .bottom-bar-item-icon{
         width: 3vh;
