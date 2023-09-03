@@ -1,7 +1,5 @@
 import express from "express";
 import { Comment } from "../metadatServise/comment.js";
-import { User } from "../metadatServise/user.js";
-import mongoose from "mongoose";
 
 const router = express.Router();
 
@@ -23,7 +21,7 @@ router.post('/', async (req, res) => {
 
 router.get('/Get', async (req, res) => {
   try {
-      const comments = await Comment.find({}).sort({created_at : -1}).populate('user_id','username profilePic');
+      const comments = await Comment.find({}).sort({created_at : -1}).populate('user_id','username profilePic').populate('replies.user_id' , 'username profilePic');
 
       res.json(comments);
   }catch (error) {
@@ -42,55 +40,6 @@ router.post('/countComment', async (req, res) => {
   }catch (error) {
     res.status(500).json({ error: error.message });
   }
-});
-
-router.post('/getReplies', async (req, res) => {
-  try {
-      //get the data from the api
-      const {commentId}  = req.body;
-
-      const replies = await Comment.aggregate([
-        {
-          $match: {
-            _id: new mongoose.Types.ObjectId(commentId),
-          },
-        },
-        {
-          $unwind: "$replies",
-        },
-        {
-          $lookup: {
-            from: "users",
-            localField: "replies.user_id",
-            foreignField: "_id",
-            as: "replies.user",
-          },
-        },
-        {
-          $addFields: {
-            "replies.user": {
-              $arrayElemAt: ["$replies.user", 0],
-            },
-          },
-        },
-        {
-          $group: {
-            _id: "$_id",
-            user_id: { $first: "$user_id" },
-            post_id: { $first: "$post_id" },
-            text: { $first: "$text" },
-            created_at: { $first: "$created_at" },
-            replies: { $push: "$replies" },
-          },
-        },
-      ])
-      
-      res.status(201).json(replies[0].replies);
-
-  }catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-
 });
 
 router.post('/sendReply', async (req, res) => {
