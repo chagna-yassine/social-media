@@ -1,11 +1,11 @@
-import React, {  useEffect, useState } from 'react';
+import React, {  useEffect, useRef, useState } from 'react';
 import "./Profile.css";
 import { useCookies } from 'react-cookie';
 import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { getPost, getComment, Like, Comment, checkLike, unLike, countLike, countComment, getUser, checkExistence, deletePost } from '../../api';
+import { getPost, getComment, Like, Comment, checkLike, unLike, countLike, countComment, getUser, checkExistence, deletePost, sendReply, getReplies } from '../../api';
 import { handleCommentModal } from '../Main/comment';
 import { IMG_BASE, VID_BASE } from '../../App';
 import EditProfil from './EditProfil';
@@ -149,6 +149,38 @@ const Profile = () => {
         console.error(error);
      }
   }
+  const [commentId,setCommentId] = useState('');
+  const [reply,setReply] = useState('');
+  const [replies,setReplies] = useState([]);
+  const [replied_to,setReplied_to] = useState('');
+  const [replied_toName,setReplied_toName] = useState('');
+  const [post_id,setPost_id]= useState('')
+
+  const handleGetReplies = async(commentId)=>{
+    try{
+        if(commentId){
+            const response = await getReplies({commentId})
+            setReplies(response.reverse())
+        }
+     }catch(error){
+        console.error(error);
+     }
+  }
+  const handleSendReply = async()=>{
+    try{
+        await sendReply({commentId,
+                         user_id: userIdCookies.userId ,
+                         post_id,
+                        replied_to ,
+                        content: reply
+                    })
+        handleGetReplies(commentId)
+     }catch(error){
+        console.error(error);
+     }
+  }
+  
+  console.log(replies);
 
   return (
      !isLoading && (
@@ -223,7 +255,7 @@ const Profile = () => {
                                                 { comments && comments.map((cmnt, key) => (
                                                     cmnt.post_id === post._id &&
                                                     <li key={key} className='list-group-item bg-transparent border-0 p-0'>
-                                                        <div className={`card border-0 mb-3 Post-info ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                                                        <div className={`card border-0 Post-info ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                                                             <div className="row g-0">
                                                                 <div className="Logo-container">
                                                                     <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
@@ -236,14 +268,55 @@ const Profile = () => {
                                                             </div>
                                                         </div>
                                                         <p className={`List-item m-0 mb-2 ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{ cmnt.text}</p>
+                                                        <div className="Cmnt-Interactions">
+                                                            <p>like</p>
+                                                            <p onClick={()=>{setReply(`@${cmnt.user_id.username}`);setReplied_to(cmnt.user_id._id);setCommentId(cmnt._id);setReplied_toName(cmnt.user_id.username);setPost_id(cmnt.post_id); handleGetReplies(cmnt._id)}}>reply</p>
+                                                            <p>delete</p>
+                                                        </div>
+                                                        { cmnt._id === commentId && replies.map((reply,index)=>(
+                                                        <>
+                                                            <li key={index + reply.user_id} className='list-group-item bg-transparent border-0 p-0 Reply'>
+                                                                <div className={`card border-0 Post-info ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                                                                    <div className="row g-0">
+                                                                        <div className="Logo-container">
+                                                                            <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                                                                                <img className='Logo-img' src={IMG_BASE+reply.user.profilePic} alt={reply.user.username} />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div className="w-50 d-flex align-items-center">
+                                                                            <h2 className={`Label ${currentDisplayMode === 'dark' ? 'dark' : 'light'} cursor-pointer`} onClick={()=>{navigate(`/${reply.user.username}`)}}>{reply.user.username}</h2>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <p className={`List-item m-0 mb-2 ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{ reply.text}</p>
+                                                                <div className="Cmnt-Interactions">
+                                                                    <p>delete</p>
+                                                                </div>
+                                                            </li>
+                                                        </>
+                                                    ))}
+                                                    {
+                                                        replies.length > 0 && cmnt._id === replies[0].cmnt_id && (
+                                                            <p className='text-primary' onClick={()=>{setReplies([])}}>Hide replies</p>
+                                                        )
+                                                    }
                                                     </li>
                                                     ))
                                                 }
                                             </ul>
-                                            <form onSubmit={(e)=>{e.preventDefault();handleGetComment();}}>
-                                                <input type="text" value={comment} onChange={(e) => setComment(e.target.value)}/>
-                                                <button onClick={()=>{handleComment(userIdCookies.userId, post._id, comment , index);handleGetComment();}}>send</button>
-                                            </form>
+                                            {
+                                                reply.indexOf(`@${replied_toName}`) === -1 ? (
+                                                    <form className='Submition' onSubmit={(e)=>{e.preventDefault();handleGetComment();}}>
+                                                        <input type="text" value={comment} onChange={(e) => setComment(e.target.value)}/>
+                                                        <button type='button' className='button bg-primary border-0' onClick={()=>{handleComment(userIdCookies.userId, post._id, comment , index);handleGetComment();}}>send</button>
+                                                    </form>
+                                                ):(
+                                                    <form className='Submition replySubmition' onSubmit={(e)=>{e.preventDefault();handleGetComment();}}>
+                                                        <input type="text" value={reply} onChange={(e) => setReply(e.target.value)}/>
+                                                        <button type='button' className='button bg-primary border-0' onClick={()=>{handleSendReply();handleGetReplies()}}>send</button>
+                                                    </form>
+                                                )
+                                            }
                                         </div>
                                     </div>
                                 </div>

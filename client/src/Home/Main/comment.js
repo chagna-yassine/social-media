@@ -12,7 +12,7 @@ export const handleCommentModal = (id)=>{
         })
     }else{
         dropdown.style.visibility = "visible"
-        dropdown.style.height = "80%";
+        dropdown.style.height = "90%";
         dropdown.style.opacity = 1;
         dropdownItems.forEach(item=>{
             item.style.paddingBlock = "6px";

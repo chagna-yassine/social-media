@@ -364,6 +364,38 @@ export const countComment = async (Data) => {
   }
 };
 
+export const sendReply = async (replyData) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Comment/sendReply`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(replyData),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getReplies = async (commentId) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Comment/getReplies`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(commentId),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getFeed = async (user_id) => {
   try {
     const response = await fetch(`${API_BASE_URL}/Feed`, {
