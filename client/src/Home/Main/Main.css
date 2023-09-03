@@ -162,10 +162,10 @@
     background-color: var(--dark-gray);
     position: absolute;
     width: 19em;
-    height: 80%;
+    height: 90%;
     border-radius: 10px;
     padding-left: 1%;
-    top: 15%;
+    top: 10%;
     left: 66.5%;
 }
 
@@ -195,6 +195,35 @@
     border: 0 !important;
     transition: background-color 1s;
 }
+
+.Main .Feed-container .Post .CommentModal-items{
+    left:auto;
+    width: 100%;
+    border-radius: 0px;
+    text-align: left;
+    font-size: medium;
+    height: auto;
+    transition: all 1s;
+}
+.Main .Feed-container .Post .CommentModal-item{
+    text-transform: capitalize;
+    font-variant: small-caps;
+    color: var(--white);
+    font-weight: bolder;
+    margin: 0;
+    height: auto;
+    transition: all 0.75s ease-in-out;
+}
+
+.Main .Feed-container .Post .CommentModal-items .List{
+    padding-block: 1.5vh;
+    padding-inline: 2.5vh;
+}
+
+.Main .Feed-container .Post .CommentModal-items .Post-info{
+    margin-bottom: 0.5vh;
+}
+
 .Main .Feed-container .Post .CommentModal .List .List-item.light{
     background-color: var(--white);
 }
@@ -213,32 +242,6 @@
     margin-inline-start: 0;
 }
 
-.Main .Feed-container .Post .CommentModal-items{
-    /* visibility: hidden;
-    position: absolute; */
-    left:auto;
-    /* background-color: var(--light-gray); */
-    width: 100%;
-    border-radius: 0px;
-    text-align: left;
-    font-size: medium;
-    height: auto;
-    /* opacity: 0; */
-    transition: all 1s;
-}
-.Main .Feed-container .Post .CommentModal-item{
-    text-transform: capitalize;
-    font-variant: small-caps;
-    color: var(--white);
-    font-weight: bolder;
-    /* padding-left: 1en !important; */
-    margin: 0;
-    height: auto;
-    transition: all 0.75s ease-in-out;
-}
-.Main .Feed-container .Post .CommentModal-item:not(:last-child){
-    border-bottom: 1px solid var(--white);
-}
 
 .Interactions{
     display: flex !important;
@@ -284,13 +287,17 @@
     font-weight: bolder;
     border-radius: 5vh;
     width: 60%;
-    height: 5vh;
+    height: 4vh;
     bottom: 3%;
-    font-size: 3vh;
+    font-size: 2vh;
+    padding-inline: 1.5vh;
     cursor: pointer;
-    font-variant: small-caps;
-    text-transform: capitalize;
     transition: all 1s;
+}
+
+.Submition input:focus{
+    border: none;
+    outline: none;
 }
 
 .button{
@@ -299,10 +306,8 @@
     right: 1%;
     margin: auto;
     width: 30%;
-    height: 5vh;
-    background-color: var(--dark-blue-2);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    color: var(--dark-white);
+    height: 4vh;
+    color: var(--white);
     border-radius: 5vh;
 }
 
@@ -310,6 +315,23 @@
     font-variant: small-caps;
 }
 .text-small-caps::first-letter{
+    text-transform: uppercase;
+}
+
+.Cmnt-Interactions{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    margin-left: 1vh;
+    margin-bottom: 0.5vh;
+}
+.Cmnt-Interactions p{
+    margin: 0;
+    color: var(--white);
+    font-weight: bold;
+    font-size: 12px;
+}
+.Cmnt-Interactions p::first-letter{
     text-transform: uppercase;
 }
 
