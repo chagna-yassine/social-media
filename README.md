@@ -2,6 +2,9 @@
 
 Are you ready to join a thriving digital community where free speech and creativity reign supreme? Welcome to Fire Camp, the ultimate social media platform where your voice matters, and your creativity knows no bounds.
 
+![Screenshot from 2023-09-02 18-16-04](https://github.com/chagna-yassine/social-media/assets/109078003/302b9516-7dab-4389-87cc-6404a169024e)
+
+
 **What is Fire Camp?**
 
 Fire Camp is your passport to a vibrant online world where you can freely express yourself, connect with kindred spirits, and share your thoughts, art, and ideas with a diverse and welcoming community.
