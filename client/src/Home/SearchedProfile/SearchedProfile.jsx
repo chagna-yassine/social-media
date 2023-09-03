@@ -10,6 +10,7 @@ import { IMG_BASE, VID_BASE } from '../../App';
 import { handleCommentModal } from '../Main/comment';
 import $ from 'jquery'
 import { handleRemoveModal } from '../Profile/removeAlert';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 
 
 const SearchedProfile = () => {
@@ -203,6 +204,7 @@ const SearchedProfile = () => {
   const [replied_toName,setReplied_toName] = useState('');
   const [post_id,setPost_id]= useState('')
   const [isExpanded,setIsExpanded] = useState(false)
+  const [isFade,setIsFade] = useState(false)
 
   
   const handleSendReply = async()=>{
@@ -297,7 +299,11 @@ const SearchedProfile = () => {
                                 ): post.media.status === 'image' ?(
                                     <>
                                         <p className='m-0 text-white ms-4 fw-bold fs-5 text-small-caps'>{post.text}</p>
-                                        <img src={IMG_BASE+post.media.url} className="card-img-top Post-content-img" alt={post.media.name}/>
+                                          <img src={IMG_BASE+post.media.url} className="card-img-top Post-content-img" alt={post.media.name} onClick={()=>{$(`#img-${post._id}`).fadeToggle();setIsFade(!isFade);$('.Feed-container').css('overflow-y', 'hidden')}}/>
+                                          <div id={`img-${post._id}`} className={`img-preview ${isFade ? "fade-in" : "fade-out"}`}>
+                                            <img src={IMG_BASE+post.media.url} className="card-img-top" alt={post.media.name}/>
+                                             <FontAwesomeIcon className='closePreview' icon={faX} onClick={()=>{$(`#img-${post._id}`).fadeToggle();setIsFade(!isFade);$('.Feed-container').css('overflow-y', 'scroll')}}/>
+                                          </div>
                                     </>
                                 ):(
                                     <>

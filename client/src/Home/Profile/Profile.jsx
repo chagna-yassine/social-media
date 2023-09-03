@@ -156,6 +156,7 @@ const Profile = () => {
   const [replied_toName,setReplied_toName] = useState('');
   const [post_id,setPost_id]= useState('')
   const [isExpanded,setIsExpanded] = useState(false)
+  const [isFade,setIsFade] = useState(false)
 
   
   const handleSendReply = async()=>{
@@ -252,7 +253,11 @@ const Profile = () => {
                                     ): post.media.status === 'image' ?(
                                         <>
                                             <p className='m-0 text-white ms-4 fw-bold fs-5 text-small-caps'>{post.text}</p>
-                                            <img src={IMG_BASE+post.media.url} className="card-img-top Post-content-img" alt={post.media.name}/>
+                                            <img src={IMG_BASE+post.media.url} className="card-img-top Post-content-img" alt={post.media.name} onClick={()=>{$(`#img-${post._id}`).fadeToggle();setIsFade(!isFade);$('.Feed-container').css('overflow-y', 'hidden')}}/>
+                                            <div id={`img-${post._id}`} className={`img-preview ${isFade ? "fade-in" : "fade-out"}`}>
+                                                <img src={IMG_BASE+post.media.url} className="card-img-top" alt={post.media.name}/>
+                                                <FontAwesomeIcon className='closePreview' icon={faX} onClick={()=>{$(`#img-${post._id}`).fadeToggle();setIsFade(!isFade);$('.Feed-container').css('overflow-y', 'scroll')}}/>
+                                            </div>
                                         </>
                                     ):(
                                         <>

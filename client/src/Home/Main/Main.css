@@ -404,6 +404,45 @@
     font-size: 1vh;
 }
 
+.img-preview{
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 80vh;
+    z-index: 3;
+    top: -10vh;
+    box-shadow: 0px 0px 80px black , 
+    1px 1px 100px black , 
+    1px 1px 120px black,
+    0px 0px 180px black;
+    border-radius: 10px;
+}
+.img-preview.fade-in{
+    display: block;
+}
+.img-preview.fade-out{
+    display: none;
+}
+.img-preview img{
+    width: 100%;
+    border-radius: 10px;
+    height: 80vh;
+    object-fit: cover;
+    object-position: center;
+}
+
+.closePreview{
+    position: absolute;
+    z-index: inherit;
+    color: red;
+    background-color: var(--dark);
+    padding: 1vh;
+    padding-inline: 2vh;
+    border-top-right-radius: 10px;
+    right: 0vh;
+    top: 0vh;
+}
+
 /* Responsive design */
 @media screen and (min-width: 900px) and  (max-width: 1150px){
     .Main .Feed-container .Post-List{
