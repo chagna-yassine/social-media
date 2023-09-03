@@ -5,9 +5,10 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
-import { Comment, Like, checkExistence, checkFollow, checkLike, countComment, countLike, createConversation, follow, getComment, getPost, getUser, unFollow, unLike } from '../../api';
+import { Comment, Like, checkExistence, checkFollow, checkLike, countComment, countLike, createConversation, follow, getComment, getPost, getUser, sendReply, unFollow, unLike } from '../../api';
 import { IMG_BASE, VID_BASE } from '../../App';
 import { handleCommentModal } from '../Main/comment';
+import $ from 'jquery'
 
 
 const SearchedProfile = () => {
@@ -194,6 +195,33 @@ const SearchedProfile = () => {
             console.error(error);
         }
       };
+
+      const [commentId,setCommentId] = useState('');
+  const [reply,setReply] = useState('');
+  const [replied_to,setReplied_to] = useState('');
+  const [replied_toName,setReplied_toName] = useState('');
+  const [post_id,setPost_id]= useState('')
+  const [isExpanded,setIsExpanded] = useState(false)
+
+  
+  const handleSendReply = async()=>{
+    try{
+        await sendReply({commentId,
+                         user_id: userIdCookies.userId ,
+                         post_id,
+                        replied_to ,
+                        content: reply
+                    })
+        handleGetComment();
+     }catch(error){
+        console.error(error);
+     }
+  }
+
+  const handleToggleAnimation = (id) => {
+    $(`#Reply-${id}`).slideToggle(300);
+    setIsExpanded(!isExpanded)
+  };
     
     return (
         //Handle if the component is Fully loading
@@ -262,11 +290,11 @@ const SearchedProfile = () => {
                             <div id={`Comment-Modal-${post._id}`} className="CommentModal">
                                 <div className="CommentModal-list">
                                     <div className="CommentModal-items"> 
-                                        <ul className="list-group List">
-                                            { comments && comments.map((cmnt, key) => (
-                                                cmnt.post_id === post._id &&
-                                                <li key={key} className='list-group-item bg-transparent border-0 p-0'>
-                                                        <div className={`card border-0 mb-3 Post-info ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                                    <ul className="list-group List">
+                                                { comments && comments.map((cmnt, key) => (
+                                                    cmnt.post_id === post._id &&
+                                                    <li key={key} className='list-group-item bg-transparent border-0 p-0'>
+                                                        <div className={`card border-0 Post-info ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                                                             <div className="row g-0">
                                                                 <div className="Logo-container">
                                                                     <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
@@ -279,14 +307,61 @@ const SearchedProfile = () => {
                                                             </div>
                                                         </div>
                                                         <p className={`List-item m-0 mb-2 ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{ cmnt.text}</p>
+                                                        <div className={`Cmnt-Interactions ${cmnt.user_id._id === userIdCookies.userId && "delete"}`}>
+                                                            <p onClick={()=>{setReply(`@${cmnt.user_id.username}`);setReplied_to(cmnt.user_id._id);setCommentId(cmnt._id);setReplied_toName(cmnt.user_id.username);setPost_id(cmnt.post_id);handleToggleAnimation(cmnt._id)}}>reply</p>
+                                                            <p>{cmnt.replies.length}</p>
+                                                            {
+                                                                cmnt.user_id._id === userIdCookies.userId && (
+                                                                    <p>delete</p>
+                                                                )
+                                                            }
+                                                        </div>
+                                                        <div id={`Reply-${cmnt._id}`} className='Reply-modal'>
+                                                            {  cmnt.replies.map((reply)=>(
+                                                            <>
+                                                                <li key={reply._id} className='list-group-item bg-transparent border-0 p-0 Reply'>
+                                                                    <div className={`card border-0 Post-info ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                                                                        <div className="row g-0">
+                                                                            <div className="Logo-container">
+                                                                                <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
+                                                                                    <img className='Logo-img' src={IMG_BASE+reply.user_id.profilePic} alt={reply.user_id.username} />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div className="w-50 d-flex align-items-center">
+                                                                                <h2 className={`Label ${currentDisplayMode === 'dark' ? 'dark' : 'light'} cursor-pointer`} onClick={()=>{navigate(`/${reply.user_id.username}`)}}>{reply.user_id.username}</h2>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <p className={`List-item m-0 mb-2 ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>{ reply.text}</p>
+                                                                    <div className="Cmnt-Interactions">
+                                                                    {
+                                                                        reply.user_id._id === userIdCookies.userId && (
+                                                                            <p>delete</p>
+                                                                        )
+                                                                    }
+                                                                    </div>
+                                                                </li>
+                                                            </>
+                                                        ))}
+                                                        <p className='text-primary' onClick={()=>{handleToggleAnimation(cmnt._id)}}>Hide replies</p>
+                                                        </div>
                                                     </li>
-                                                ))
+                                                    ))
+                                                }
+                                            </ul>
+                                            {
+                                                reply.indexOf(`@${replied_toName}`) === -1 ? (
+                                                    <form className='Submition' onSubmit={(e)=>{e.preventDefault();handleGetComment();}}>
+                                                        <input type="text" value={comment} onChange={(e) => setComment(e.target.value)}/>
+                                                        <button type='button' className='button bg-primary border-0' onClick={()=>{handleComment(userIdCookies.userId, post._id, comment , index);handleGetComment();}}>send</button>
+                                                    </form>
+                                                ):(
+                                                    <form className='Submition replySubmition' onSubmit={(e)=>{e.preventDefault();handleGetComment();}}>
+                                                        <input type="text" value={reply} onChange={(e) => setReply(e.target.value)}/>
+                                                        <button type='button' className='button bg-primary border-0' onClick={()=>{handleSendReply();}}>send</button>
+                                                    </form>
+                                                )
                                             }
-                                        </ul>
-                                        <form onSubmit={(e)=>{e.preventDefault();handleGetComment();}}>
-                                            <input type="text" value={comment} onChange={(e) => setComment(e.target.value)}/>
-                                            <button onClick={()=>{handleComment(userIdCookies.userId, post._id, comment , index);handleGetComment();}}>send</button>
-                                        </form>
                                     </div>
                                 </div>
                             </div>

@@ -321,10 +321,15 @@
 .Cmnt-Interactions{
     display: flex;
     justify-content: space-between;
-    width: 50%;
+    width: 18%;
     margin-left: 1vh;
     margin-bottom: 0.5vh;
 }
+
+.Cmnt-Interactions.delete{
+    width: 35%;
+}
+
 .Cmnt-Interactions p{
     margin: 0;
     color: var(--white);

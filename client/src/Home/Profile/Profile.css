@@ -230,6 +230,18 @@
     margin-left: 15%;
 }
 
+.Reply-modal{
+    display: none;
+}
+
+.Reply-modal.expanded {
+    display: block;
+  }
+  
+.Reply-modal.collapsed {
+    display: none;
+  }
+
 /* Responsive design */
 
 @media screen and (min-width: 1020px) and  (max-width: 1250px){
