@@ -5,7 +5,7 @@ import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { getPost, getComment, Like, Comment, checkLike, unLike, countLike, countComment, getUser, checkExistence, deletePost, sendReply } from '../../api';
+import { getPost, getComment, Like, Comment, checkLike, unLike, countLike, countComment, getUser, checkExistence, deletePost, sendReply, removeReply, removeComment } from '../../api';
 import { handleCommentModal } from '../Main/comment';
 import { IMG_BASE, VID_BASE } from '../../App';
 import EditProfil from './EditProfil';
@@ -177,6 +177,24 @@ const Profile = () => {
     setIsExpanded(!isExpanded)
   };
 
+  const handleDeleteReply = async(commentId , reply_id)=>{
+    try{
+        await removeReply({commentId , reply_id})
+        handleGetComment();
+     }catch(error){
+        console.error(error);
+     }
+  }
+
+  const handleDeleteComment = async(commentId)=>{
+    try{
+        await removeComment({commentId})
+        handleGetComment();
+     }catch(error){
+        console.error(error);
+     }
+  }
+
   return (
      !isLoading && (
         <div className='Profile-container'>
@@ -250,6 +268,13 @@ const Profile = () => {
                                                 { comments && comments.map((cmnt, key) => (
                                                     cmnt.post_id === post._id &&
                                                     <li key={key} className='list-group-item bg-transparent border-0 p-0'>
+                                                        <div id={`Remove-Modal-${cmnt._id}`} className="removeCommentAlert">
+                                                            <p className='Remove-item'>Are u sure?</p>
+                                                            <div className="controle">
+                                                                <button className='btn btn-secondary' onClick={()=>{handleRemoveModal(cmnt._id)}}>Cancel</button>
+                                                                <button className='btn btn-danger' onClick={()=>{handleDeleteComment(cmnt._id)}}>Delete</button>
+                                                            </div>
+                                                        </div>
                                                         <div className={`card border-0 Post-info ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                                                             <div className="row g-0">
                                                                 <div className="Logo-container">
@@ -268,7 +293,7 @@ const Profile = () => {
                                                             <p>{cmnt.replies.length}</p>
                                                             {
                                                                 cmnt.user_id._id === userIdCookies.userId && (
-                                                                    <p>delete</p>
+                                                                    <p onClick={()=>{handleRemoveModal(cmnt._id)}}>delete</p>
                                                                 )
                                                             }
                                                         </div>
@@ -276,6 +301,13 @@ const Profile = () => {
                                                             {  cmnt.replies.map((reply)=>(
                                                             <>
                                                                 <li key={reply._id} className='list-group-item bg-transparent border-0 p-0 Reply'>
+                                                                    <div id={`Remove-Modal-${reply._id}`} className="removeReplyAlert">
+                                                                        <p className='Remove-item'>Are u sure?</p>
+                                                                        <div className="controle">
+                                                                            <button className='btn btn-secondary' onClick={()=>{handleRemoveModal(reply._id)}}>Cancel</button>
+                                                                            <button className='btn btn-danger' onClick={()=>{handleDeleteReply(cmnt._id,reply._id)}}>Delete</button>
+                                                                        </div>
+                                                                    </div>
                                                                     <div className={`card border-0 Post-info ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                                                                         <div className="row g-0">
                                                                             <div className="Logo-container">
@@ -292,7 +324,7 @@ const Profile = () => {
                                                                     <div className="Cmnt-Interactions">
                                                                     {
                                                                         reply.user_id._id === userIdCookies.userId && (
-                                                                            <p>delete</p>
+                                                                            <p onClick={()=>{handleRemoveModal(reply._id)}}>delete</p>
                                                                         )
                                                                     }
                                                                     </div>

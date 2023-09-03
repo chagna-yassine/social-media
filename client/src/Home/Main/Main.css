@@ -340,6 +340,70 @@
     text-transform: uppercase;
 }
 
+.removeReplyAlert{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    background-color: var(--light-gray);
+    top: 0;
+    left: 0;
+    height: 15vh;
+    width: 25vh;
+    border-radius: 20px;
+    box-shadow: 0px 0px 50px black;
+    z-index: 2;
+}
+.removeReplyAlert p{
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    font-weight: bolder;
+}
+.removeReplyAlert .controle{
+    display: flex;
+    width: 75%;
+    margin: auto;
+    justify-content: space-between;
+}
+.removeReplyAlert .controle button{
+    width: 45%;
+    font-size: 1vh;
+}
+
+.removeCommentAlert{
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    background-color: var(--light-gray);
+    top: 15%;
+    left: 15%;
+    height: 15vh;
+    width: 25vh;
+    border-radius: 20px;
+    box-shadow: 0px 0px 50px black;
+    z-index: 2;
+}
+.removeCommentAlert p{
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    font-weight: bolder;
+}
+.removeCommentAlert .controle{
+    display: flex;
+    width: 75%;
+    margin: auto;
+    justify-content: space-between;
+}
+.removeCommentAlert .controle button{
+    width: 45%;
+    font-size: 1vh;
+}
+
 /* Responsive design */
 @media screen and (min-width: 900px) and  (max-width: 1150px){
     .Main .Feed-container .Post-List{

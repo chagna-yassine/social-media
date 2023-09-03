@@ -70,4 +70,33 @@ router.post('/sendReply', async (req, res) => {
 
 });
 
+router.post('/removeReply', async (req, res) => {
+  try {
+      //get the data
+      const { commentId , reply_id } = req.body;
+      //search for the like and delete it
+      await Comment.updateOne(
+        { _id: commentId },
+        { $pull: { replies: { _id: reply_id } } }
+        )
+      //Send a msg that the comment deleted successfully else send an err msg
+      res.status(201).json({msg : "Reply deleted successfully"});
+  }catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+router.post('/removeComment', async (req, res) => {
+  try {
+      //get the data
+      const { commentId } = req.body;
+      //search for the like and delete it
+      await Comment.findByIdAndDelete(commentId)
+      //Send a msg that the comment deleted successfully else send an err msg
+      res.status(201).json({msg : "Comment deleted successfully"});
+  }catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 export default router;
