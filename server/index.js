@@ -1,4 +1,6 @@
 import express from "express";
+import http from 'http'; 
+import { Server } from 'socket.io';
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
@@ -22,6 +24,10 @@ import recoveryRoutes from "./routes/pwdRecovery.js";
 /* CONFIGURATION */
 dotenv.config();
 const app = express();
+
+const server = http.createServer(app);
+const io = new Server(server);
+
 app.use(express.json());
 app.use(express.static('Blob'))
 app.use(helmet());
@@ -44,6 +50,16 @@ app.use('/Follow', followRoutes);
 app.use('/Message', messageRoutes);
 app.use('/User',userRoutes);
 app.use('/Recovery',recoveryRoutes);
+
+// WebSocket handling
+io.on('connection', (socket) => {
+  console.log('A user connected');
+
+  // Handle WebSocket events here
+  socket.on('disconnect', () => {
+    console.log('A user disconnected');
+  });
+});
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000;

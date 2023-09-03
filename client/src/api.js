@@ -469,3 +469,19 @@ export const updatePassword = async (userData) => {
     throw error;
   }
 };
+
+export const Event = async (user_id, content) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Fanout`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user_id, content),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};

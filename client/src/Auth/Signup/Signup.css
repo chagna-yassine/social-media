@@ -174,7 +174,7 @@
 .Signup .Submition{
     width: 60%;
     margin: auto;
-    margin-block: -1.5%;
+    margin-block: 10%;
 }
 .Signup .Submition a{
     display: block;

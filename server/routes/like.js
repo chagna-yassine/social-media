@@ -11,6 +11,13 @@ router.post('/', async (req, res) => {
         //create a new like
         const like = new Like({ user_id , post_id });
         await like.save();
+        
+        // creat data for the notif 
+        const likeData = {user_id, post_id}
+        
+        // When a new like is created, emit a 'likeAdded' event
+        io.emit('likeAdded', { likeData });
+        
         //Send a msg that the like created successfully else send an err msg
         res.status(201).json({ message: 'User like post successfully' });
     }catch (error) {
