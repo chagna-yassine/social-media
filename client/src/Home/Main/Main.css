@@ -115,8 +115,9 @@
 }
 
 .Main .Feed-container .Post .Post-content{
-    width: 100%;
+    width: 60%;
     min-height: 45vh;
+    align-items: center;
     border-radius: 30px;
     border: 0 ;
     transition: background-color 1s;
@@ -124,13 +125,15 @@
 
 .Main .Feed-container .Post .Post-content.light{
     background-color: transparent;
+    color: var(--dark);
 }
 .Main .Feed-container .Post .Post-content.dark{
     background-color: transparent;
+    color: var(--dark-white);
 }
 
 .Main .Feed-container .Post .Post-content .Post-content-img{
-    width: 65%;
+    width: 100%;
     height: 40vh;
     border-radius: 30px;
     object-fit: cover;
@@ -139,7 +142,7 @@
 }
 
 .Main .Feed-container .Post .Post-content .Post-content-video{
-    width: 65%;
+    width: 100%;
     height: 40vh;
     border-radius: 30px;
     object-fit: contain;
@@ -149,12 +152,12 @@
 }
 
 .Main .Feed-container .Post .Post-content .Post-content-text{
-    width: 65%;
+    width: 100%;
     height: 45vh;
     border-radius: 30px;
     object-fit: cover;
     object-position: center;
-    
+    background-color: var(--dark-blue);
 }
 
 .Main .Feed-container .Post .CommentModal{

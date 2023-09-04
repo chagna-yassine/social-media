@@ -113,14 +113,14 @@ const Main = () => {
                 post : post_id
             }))
 
-            const _id = await getUserId(post_id);
+            const _id = await getUserId({post_id});
 
             // add data to event collection in db
             try {
-                const res = await event(user_id, _id, "like");
+                const res = await event({from : user_id,to: _id, type :"like"});
                 
                 // hundle the success or err 
-                console.log(response)
+                console.log(res)
             } catch (error) {
                 console.error(error);
             }
@@ -147,7 +147,7 @@ const Main = () => {
           //if there is any change on the query grap the data frm the doc and send it to stor as a receiveMsg action
           onSnapshot(queryEvent,(data)=>{
              data.forEach((doc)=>{
-                dispatch(console.log(doc.data()))
+                console.log(doc.data())
              })
           })
         }
@@ -269,7 +269,7 @@ const Main = () => {
                             <div className={`card Post-content ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                                 {
                                     post.media.status === 'noMedia' ? (
-                                        <p className="card-img-top Post-content-text bg-dark text-white d-flex justify-content-center align-items-center">{post.text}</p>
+                                        <p className="card-img-top Post-content-text text-white d-flex justify-content-center align-items-center">{post.text}</p>
                                     ): post.media.status === 'image' ?(
                                         <>
                                           <p className='m-0 text-white ms-4 fw-bold fs-5 text-small-caps'>{post.text}</p>
