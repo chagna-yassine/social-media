@@ -5,7 +5,7 @@ import { faLocationDot, faPhotoVideo, faUserTag } from '@fortawesome/free-solid-
 import { useCookies } from 'react-cookie'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { checkExistence, uploadImgPost, uploadVideoPost } from '../../api'
+import { checkExistence, uploadImgPost, uploadPost, uploadVideoPost } from '../../api'
 
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
@@ -74,12 +74,16 @@ const AddPost = () => {
       postData.append('caption', caption);
       postData.append('text', text);
       let response;
-      if(media.type === 'video/mp4'){
-        postData.append('video', media);
-        response = await uploadVideoPost(postData);
+      if(media !== null){
+        if(media.type === 'video/mp4'){
+          postData.append('video', media);
+          response = await uploadVideoPost(postData);
+        }else{
+          postData.append('image', media);
+          response = await uploadImgPost(postData);
+        }
       }else{
-        postData.append('image', media);
-        response = await uploadImgPost(postData);
+          response = await uploadPost({user_id : userIdCookies.userId , caption , text});
       }
       navigate('/')
 

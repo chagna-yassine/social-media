@@ -140,6 +140,8 @@ const Main = () => {
         }
     };
 
+    console.log(feed);
+
     //if a new like is added
     useEffect(()=>{
         if(events){

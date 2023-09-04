@@ -76,6 +76,22 @@ export const uploadVideoPost = async (postData) => {
   }
 };
 
+export const uploadPost = async (postData) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Image/uploadPost`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(postData),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const getPost = async (user_id) => {
   try {
     const response = await fetch(`${API_BASE_URL}/Image/?user_id=${user_id}`, {

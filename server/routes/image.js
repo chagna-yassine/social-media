@@ -107,6 +107,24 @@ router.post('/uploadVideo', uploadVideo.single('video') , async (req, res) => {
     }
 });
 
+router.post('/uploadPost', async (req, res) => {
+    try {
+        const { user_id, caption, text }= req.body;
+
+        const post = new Post({
+            user_id,
+            caption,
+            text
+        });
+        await post.save();
+
+        res.status(201).json({message: 'post added successfully'});
+
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 // Get all the post
 router.get('/', async (req, res) => {
     try {
