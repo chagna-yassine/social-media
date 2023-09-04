@@ -416,7 +416,7 @@
     width: 100%;
     height: 80vh;
     z-index: 3;
-    top: -10vh;
+    top: 10vh;
     box-shadow: 0px 0px 80px black , 
     1px 1px 100px black , 
     1px 1px 120px black,

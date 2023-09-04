@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from 'react';
+import React, {  useEffect, useRef, useState } from 'react';
 import "./Profile.css";
 import { useCookies } from 'react-cookie';
 import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
@@ -196,6 +196,22 @@ const Profile = () => {
      }
   }
 
+  const imgRef = useRef();
+  const [currentPreviewImg,setCurrentPreviewImg] = useState(null)
+
+  const handleImgPreview = (id)=>{
+    $(`#img-${id}`).fadeToggle();
+    setIsFade(!isFade);
+    $('.Feed-container').css('overflow-y', 'hidden');
+    imgRef.current.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  useEffect(() => {
+    if (currentPreviewImg !== null) {
+      handleImgPreview(currentPreviewImg);
+    }
+  }, [currentPreviewImg]);
+
   return (
      !isLoading && (
         <div className='Profile-container'>
@@ -253,11 +269,13 @@ const Profile = () => {
                                     ): post.media.status === 'image' ?(
                                         <>
                                             <p className='m-0 text-white ms-4 fw-bold fs-5 text-small-caps'>{post.text}</p>
-                                            <img src={IMG_BASE+post.media.url} className="card-img-top Post-content-img" alt={post.media.name} onClick={()=>{$(`#img-${post._id}`).fadeToggle();setIsFade(!isFade);$('.Feed-container').css('overflow-y', 'hidden')}}/>
-                                            <div id={`img-${post._id}`} className={`img-preview ${isFade ? "fade-in" : "fade-out"}`}>
-                                                <img src={IMG_BASE+post.media.url} className="card-img-top" alt={post.media.name}/>
-                                                <FontAwesomeIcon className='closePreview' icon={faX} onClick={()=>{$(`#img-${post._id}`).fadeToggle();setIsFade(!isFade);$('.Feed-container').css('overflow-y', 'scroll')}}/>
+                                          <img src={IMG_BASE+post.media.url} className="card-img-top Post-content-img" ref={currentPreviewImg === post._id ? imgRef : undefined} alt={post.media.name} onClick={()=>{setCurrentPreviewImg(post._id);}}/>
+                                          <div id={`img-${post._id}`} className={`img-preview ${currentPreviewImg === post._id && isFade ? "fade-in" : "fade-out"}`}>
+                                            <img src={IMG_BASE+post.media.url} className="card-img-top" alt={post.media.name}/>
+                                            <div onClick={()=>{$(`#img-${post._id}`).fadeToggle();setIsFade(!isFade);$('.Feed-container').css('overflow-y', 'scroll');setCurrentPreviewImg(null)}}>
+                                                <FontAwesomeIcon className='closePreview' icon={faX} />
                                             </div>
+                                          </div>
                                         </>
                                     ):(
                                         <>
