@@ -190,7 +190,7 @@
 .removePost{
     position: absolute;
     color: var(--white);
-    right: 35%;
+    left: 100%;
 }
 .removePost.text{
     top: -10%;
