@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { Comment, Like, checkExistence, getComment, getFeed, removeComment, removeReply, sendReply, unLike, getUserId, event, getEvent } from '../../api';
 import { useDispatch, useSelector } from 'react-redux';
 import { addLike, removeLike } from '../../DataStore/Likes/actions'
+import { newLike, newComment, newFollow, newMessage, newPost } from '../../DataStore/Event/action';
 import { IMG_BASE, VID_BASE } from '../../App';
 import $ from 'jquery'
 import { handleRemoveModal } from '../Profile/removeAlert';
@@ -147,7 +148,10 @@ const Main = () => {
           //if there is any change on the query grap the data frm the doc and send it to stor as a receiveMsg action
           onSnapshot(queryEvent,(data)=>{
              data.forEach((doc)=>{
-                console.log(doc.data())
+                dispatch(newLike({
+                    from: userIdCookies.userId,
+                    to : "post_id"
+                }))
              })
           })
         }
