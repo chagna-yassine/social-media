@@ -143,7 +143,7 @@ const Main = () => {
     useEffect(()=>{
         if(events){
           //create the query to listen to
-          const queryEvent = query(eventref,where("to","==", userIdCookies.userId ));
+          const queryEvent = query(eventref,where("to","==", userIdCookies.userId ),where('from',"!=",userIdCookies.userId));
           //if there is any change on the query grap the data frm the doc and send it to stor as a receiveMsg action
           onSnapshot(queryEvent,(data)=>{
              data.forEach((doc)=>{
@@ -151,7 +151,7 @@ const Main = () => {
              })
           })
         }
-    },[events])
+    },[events,likes])
 
     const handleUnLike = async (user_id, post_id , index) => {
         try {  

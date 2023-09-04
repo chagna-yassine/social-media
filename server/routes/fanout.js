@@ -21,8 +21,7 @@ router.post('/', async (req, res) => {
 router.post('/GetId', async (req, res) => {
     try {
         // get event data from api
-        const { post_id } = req.body;
-
+        const {post_id} = req.body;
       
         // Find the post with the given post_id and select the user_id field
         const post = await Post.findById(post_id).select("user_id");
