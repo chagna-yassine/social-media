@@ -29,7 +29,7 @@
     overflow: hidden;
     width: 100%;
     min-height: 20vh;
-    padding-block-end: 4vh;
+    padding-block-end: 8vh;
     border-bottom: 1px solid var(--white);
 }
 
@@ -61,7 +61,7 @@
     left: unset;
 }
 .Main .Feed-container .Profile .Profile-pic.light{
-    background-color: var(--light-gray);
+    background-color: var(--light-green);
 }
 .Main .Feed-container .Profile .Profile-pic.dark{
     background-color: var(--light-dark);
@@ -152,14 +152,14 @@
 }
 
 .Main .Feed-container .Profile .Profile-actions .Add-post.light{
-    background-color: var(--dark-blue-2);
+    background-color: var(--dark-blue);
 }
 .Main .Feed-container .Profile .Profile-actions .Add-post.dark{
     background-color: var(--dark-blue);
 }
 
 .Main .Feed-container .Profile .Profile-actions .Edit-Profile.light{
-    background-color: var(--light-gray);
+    background-color: var(--light-green);
 }
 .Main .Feed-container .Profile .Profile-actions .Edit-Profile.dark{
     background-color: var(--light-dark);

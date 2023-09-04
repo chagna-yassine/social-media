@@ -139,7 +139,6 @@ const Recovery = () => {
     <div className='Recovery'>
       <img id='Recovery' loading='lazy' src="" alt="Login" />
         <div className={`Auth-container ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
-          <div className={`Logo ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}></div>
             {
               !campCode ? (
                 <>

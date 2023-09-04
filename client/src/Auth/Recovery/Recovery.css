@@ -37,31 +37,21 @@
     top: 10%;
     left: 25%;
     position: absolute;
+    padding-bottom: 1em;
     width: 50%;
     max-height: 90vh;
     border-radius: 30px;
     transition: background-color 1s;
 }
 .Recovery .Auth-container.light{
-    background-color: var(--brown);
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 .Recovery .Auth-container.dark{
-    background-color: var(--dark-brown);
-}
-.Recovery .Logo{
-    position: absolute;
-    width: 15vh;
-    height: 15vh;
-    background-color: var(--light-green);
-    border-radius: 50%;
-    top: -10%;
-    left: -6%;
-}
-.Recovery .Logo.light{
-    background-color: var(--light-green);
-}
-.Recovery .Logo.dark{
-    background-color: var(--dark-green);
+    background-color: transparent;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 .Recovery .Label{
     text-align: center;
@@ -167,7 +157,7 @@
     color: var(--dark-white);
 }
 .Recovery .Submition input.light{
-    background-color: var(--dark-blue);
+    background-color: var(--light-green);
     color: var(--white);
 }
 

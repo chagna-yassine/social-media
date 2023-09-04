@@ -188,7 +188,7 @@
     color: var(--dark-white);
 }
 .Login .Submition input.light{
-    background-color: var(--dark-gray);
+    background-color: var(--light-green);
     color: var(--white);
 }
 

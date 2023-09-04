@@ -270,7 +270,7 @@ const Main = () => {
                                         </>
                                     )
                                 }
-                                <div id={`Comment-Modal-${post._id}`} className="CommentModal">
+                            <div id={`Comment-Modal-${post._id}`} className={`CommentModal ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                                     <div className="CommentModal-list">
                                         <div className="CommentModal-items"> 
                                         <ul className="list-group List">

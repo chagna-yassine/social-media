@@ -210,7 +210,7 @@
     color: var(--dark-white);
 }
 .Signup .Submition input.light{
-    background-color: var(--dark-blue);
+    background-color: var(--light-green);
     color: var(--white);
 }
 .Signup .err{

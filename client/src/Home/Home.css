@@ -142,9 +142,14 @@
 }
 
 .Main .Side-bar-header-label{
-    color: var(--white);
     text-transform: capitalize;
     font-variant: small-caps;
+}
+.Main .Side-bar-header-label.light{
+    color: var(--dark);
+}
+.Main .Side-bar-header-label.dark{
+    color: var(--dark-white);
 }
 
 .Main .Side-bar-header .Side-bar-header-icon-container , 
@@ -179,12 +184,18 @@
 }
 .Main .Side-bar .List .List-item{
     visibility: visible;
-    color: var(--dark-white);
+    color: var(--white);
     max-width: 100%; 
     max-height: 10vh;
     border-radius: 10px;
     border: var(--dark-gray) 1px solid;
     transition: background-color 1s;
+}
+.Main .Side-bar .List .List-item.light{
+    color: var(--dark);
+}
+.Main .Side-bar .List .List-item.dark{
+    color: var(--dark-white);
 }
 .Main .Side-bar .List .List-item.ar{
     direction: rtl;
@@ -214,7 +225,7 @@
     transition: background-color 1s;
 }
 .Main .bottom-bar.light{
-    background-color: var(--dark-gray);
+    background-color: var(--light-green);
 }
 .Main .bottom-bar.dark{
     background-color: var(--dark-gray);

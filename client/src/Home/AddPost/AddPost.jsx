@@ -7,6 +7,9 @@ import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { checkExistence, uploadImgPost, uploadVideoPost } from '../../api'
 
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
+
 const AddPost = () => {
 
   const [ t , i18n ] = useTranslation("global");
@@ -26,6 +29,22 @@ const AddPost = () => {
   const navigate = useNavigate();
 
   const [media,setMedia] = useState(null);
+
+  const showSuccessAlert = () => {
+    Swal.fire(
+      'Good job!',
+      'You clicked the button!',
+      'success'
+    )
+  };
+
+  const showErrAlert = () => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Something went wrong!',
+    })
+  };
 
   useEffect(()=>{
     //Check if the user not loged in and rederect him to the login
@@ -63,8 +82,14 @@ const AddPost = () => {
         response = await uploadImgPost(postData);
       }
       navigate('/')
+
+      // show success alert
+      showSuccessAlert();
+      
       console.log(response); // Handle success or display error message
     } catch (error) {
+      // show success alert
+      showErrAlert();
       console.error(error);
     }
   };

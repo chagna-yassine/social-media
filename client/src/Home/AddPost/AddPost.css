@@ -7,12 +7,13 @@
     --white: #FFFFFF;
     --dark-white: #ddddddee;
     --dark: #000000;
-    --light-gray: #42464A;
     --light-dark: #23272D;
     --brown: #ac7548;
     --dark-brown: #211826;
     --green-blue: #3A6F7D;
     --light-red: #da3b3b;
+    --dark-gray: #353B42;
+    --light-gray: #7B858D;
 }
 
 .Main .Feed-container .AddPost{
@@ -69,7 +70,7 @@
 }
 
 .Main .Feed-container .AddPost .AddPost-header .AddPost-header-send.dark{
-    background-color: var(--dark-green);
+    background-color: var(--dark-gray);
     color: var(--dark-white);
 }
 
@@ -88,11 +89,12 @@
     resize: none;
     border: 0;
     border-radius: 30px;
-    width: 100%;
+    width: 95%;
     min-height: 45vh;
     padding: 2vh;
     font-size: 3.5vh;
-    background-color: var(--light-green);
+    background-color: var(--light-gray);
+    margin-left: 1em;
     font-weight: bolder;
     color: var(--dark);
     transition: all 1s;
@@ -109,7 +111,7 @@
 }
 
 .Main .Feed-container .AddPost .Post-data .Post-data-text.dark textarea{
-    background-color: var(--dark-green);
+    background-color: var(--dark-gray);
     color: var(--dark-white);
 
 }

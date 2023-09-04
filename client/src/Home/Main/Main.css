@@ -159,14 +159,19 @@
 
 .Main .Feed-container .Post .CommentModal{
     visibility: hidden;
-    background-color: var(--dark-gray);
     position: absolute;
     width: 19em;
     height: 90%;
     border-radius: 10px;
     padding-left: 1%;
-    top: 10%;
+    top: 0%;
     left: 66.5%;
+}
+.Main .Feed-container .Post .CommentModal.light{
+    background-color: var(--dark-white);
+}
+.Main .Feed-container .Post .CommentModal.dark{
+    background-color: var(--dark-gray);
 }
 
 .Main .Feed-container .Post .CommentModal .List{
@@ -258,7 +263,8 @@
 }
 
 .Interactions.light{
-    background-color: var(--dark-gray);
+    background-color: var(--light-green);
+    border: var(--light-green) 1px solid;
 }
 .Interactions.dark{
     background-color: var(--dark-gray);
@@ -448,6 +454,7 @@
     .Main .Feed-container .Post-List{
         height: fit-content;
         padding: 0%;
+        padding-left: 10%;
         padding-bottom: 5em;
         margin-bottom: 1em;
         border-top-left-radius: 30px;
@@ -466,11 +473,11 @@
         padding-left: 1%;
         width: 15em;
         height: 80%;
-        top: 15%;
-        left: 45% !important;
+        top: 6% !important;
+        left: 40% !important;
     }
     .Interactions{
-        bottom: -5vh;
+        bottom: -4vh;
         width: 10em;
         padding-block: 0.2% !important;
     }

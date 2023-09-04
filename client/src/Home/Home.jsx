@@ -55,7 +55,7 @@ const Home = () => {
             <div id='Notification' className={`Side-bar ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
               <div className='Side-bar-content'>
                 <div className="Side-bar-header">
-                    <div className="Side-bar-header-label"><h5>{t("home.main.notif")}</h5></div>
+                    <div className={`Side-bar-header-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}><h5>{t("home.main.notif")}</h5></div>
                     <div className="Side-bar-header-icon-container">
                         <FontAwesomeIcon className='Side-bar-header-icon' icon={faBell}/>
                     </div>
