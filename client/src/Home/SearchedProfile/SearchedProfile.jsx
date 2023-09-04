@@ -129,7 +129,7 @@ const SearchedProfile = () => {
             const newPosts =  await Promise.all(
                 response.map(async(post)=>{
                     const isLiked = await checkLike({
-                        user_id, 
+                        user_id : userIdCookies.userId, 
                         post_id : post._id
                     })
                     const likeCount = await countLike({ post_id : post._id});
@@ -259,6 +259,8 @@ const SearchedProfile = () => {
       handleImgPreview(currentPreviewImg);
     }
   }, [currentPreviewImg]);
+
+  console.log(posts);
     
     return (
         //Handle if the component is Fully loading
@@ -425,13 +427,13 @@ const SearchedProfile = () => {
                         </div>
                         <div className={`list-group-item Interactions ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
                             <div className="Interactions-item">
-                                {
-                                    post.likeStatus === 'notLiked' ? (
-                                        <FontAwesomeIcon className="Interactions-item-icon " icon={faHeart} onClick={()=>{handleLike(userIdCookies.userId, post._id , index)}}/>
-                                    ) : (
-                                        <FontAwesomeIcon className="Interactions-item-icon text-danger" icon={faHeart} onClick={()=>{handleUnLike(userIdCookies.userId, post._id , index)}}/>
-                                    )
-                                }
+                                    {
+                                        post.likeStatus === 'notLiked' ? (
+                                            <FontAwesomeIcon className="Interactions-item-icon " icon={faHeart} onClick={()=>{handleLike(userIdCookies.userId, post._id , index)}}/>
+                                        ) : (
+                                            <FontAwesomeIcon className="Interactions-item-icon text-danger" icon={faHeart} onClick={()=>{handleUnLike(userIdCookies.userId, post._id , index)}}/>
+                                        )
+                                    }
                             </div>
                             <p className="LikeCount m-0 text-white">{post.likeCount}</p>
                             <div className="Interactions-item">
