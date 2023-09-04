@@ -113,14 +113,14 @@ const Main = () => {
                 post : post_id
             }))
 
-            const _id = await getUserId(post_id);
+            const _id = await getUserId({post_id});
 
             // add data to event collection in db
             try {
-                const res = await event(user_id, _id, "like");
+                const res = await event({from : user_id,to: _id, type :"like"});
                 
                 // hundle the success or err 
-                console.log(response)
+                console.log(res)
             } catch (error) {
                 console.error(error);
             }
@@ -143,15 +143,15 @@ const Main = () => {
     useEffect(()=>{
         if(events){
           //create the query to listen to
-          const queryEvent = query(eventref,where("to","==", userIdCookies.userId ));
+          const queryEvent = query(eventref,where("to","==", userIdCookies.userId ),where('from',"!=",userIdCookies.userId));
           //if there is any change on the query grap the data frm the doc and send it to stor as a receiveMsg action
           onSnapshot(queryEvent,(data)=>{
              data.forEach((doc)=>{
-                dispatch(console.log(doc.data()))
+                console.log(doc.data())
              })
           })
         }
-    },[events])
+    },[events,likes])
 
     const handleUnLike = async (user_id, post_id , index) => {
         try {  
