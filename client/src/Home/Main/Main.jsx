@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import "./Main.css";
 import { useCookies } from 'react-cookie';
 import { faComment, faHeart, faPaperPlane } from '@fortawesome/free-regular-svg-icons';
@@ -6,13 +6,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'react-i18next';
 import { handleCommentModal } from './comment';
 import { useNavigate } from 'react-router-dom';
-import { Comment, Like, checkExistence, getComment, getFeed, removeComment, removeReply, sendReply, unLike } from '../../api';
+import { Comment, Like, checkExistence, getComment, getFeed, removeComment, removeReply, sendReply, unLike, getUserId, event, getEvent } from '../../api';
 import { useDispatch, useSelector } from 'react-redux';
 import { addLike, removeLike } from '../../DataStore/Likes/actions'
 import { IMG_BASE, VID_BASE } from '../../App';
 import $ from 'jquery'
 import { handleRemoveModal } from '../Profile/removeAlert';
 import { faX } from '@fortawesome/free-solid-svg-icons';
+import { addDoc, collection, onSnapshot, query, where } from 'firebase/firestore';
+import { db } from '../../firebase-config';
 
 
 const Main = () => {
@@ -32,8 +34,15 @@ const Main = () => {
     //Handle loading state
     const [isLoading,setIsLoading] = useState(true);
 
-    const [feed,setFeed] = useState([])
-    const [feedCache,setFeedCache] = useState([])
+    const [feed,setFeed] = useState([]);
+    const [feedCache,setFeedCache] = useState([]);
+
+    // Event data
+    const [events ,setEvent] = useState([]);
+
+    const handleEvent = useCallback(async()=>{
+        setEvent(await getEvent());
+    },[setEvent])
 
     const likes = useSelector((state)=> state.likes);
     const dispatch = useDispatch();
@@ -52,6 +61,7 @@ const Main = () => {
             }
           }
         checkUserInfo();
+        handleEvent();
         document.title = t("home.main.label");
         //Set the loading state to false when the component load
         setIsLoading(false)
@@ -81,45 +91,83 @@ const Main = () => {
         } catch (error) {
             console.error(error);
         }
-      };
+    };
 
-      useEffect(() => {
+    useEffect(() => {
         isLoading && handleFeedCache();
         !isLoading && feedCache.length > 0 && handleFeed();
-      }, [likes,isLoading,feedCache]);
+    }, [likes,isLoading,feedCache]);
+
+    //Ref to the collection in firestore
+    const eventref = collection(db,'event');  
 
     // add like
 
-  const handleLike = async (user_id, post_id , index) => {
-    try {  
-        const response = await Like(user_id, post_id);
-        feed[index].likeStatus = 'liked';
-        feed[index].likeCount += 1;
-        dispatch(addLike({
-            from: user_id,
-            post : post_id
-        }))
-        // hundle the success or err 
-        console.log(response)
-    } catch (error) {
-        console.error(error);
-    }
-  };
-  const handleUnLike = async (user_id, post_id , index) => {
-    try {  
-        const response = await unLike({user_id, post_id});
-        feed[index].likeStatus = 'notLiked';
-        feed[index].likeCount -= 1;
-        dispatch(removeLike({
-            from: user_id,
-            post : post_id
-        }))
-        // hundle the success or err 
-        console.log(response)
-    } catch (error) {
-        console.error(error);
-    }
-  };
+    const handleLike = async (user_id, post_id , index) => {
+        try {  
+            const response = await Like(user_id, post_id);
+            feed[index].likeStatus = 'liked';
+            feed[index].likeCount += 1;
+            dispatch(addLike({
+                from: user_id,
+                post : post_id
+            }))
+
+            const _id = await getUserId(post_id);
+
+            // add data to event collection in db
+            try {
+                const res = await event(user_id, _id, "like");
+                
+                // hundle the success or err 
+                console.log(response)
+            } catch (error) {
+                console.error(error);
+            }
+
+            //Send msg to fireStore 
+            await addDoc(eventref,{
+                from: user_id,
+                to: _id,
+                type: "like"
+            });
+
+            // hundle the success or err 
+            console.log(response)
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    //if a new like is added
+    useEffect(()=>{
+        if(events){
+          //create the query to listen to
+          const queryEvent = query(eventref,where("to","==", userIdCookies.userId ));
+          //if there is any change on the query grap the data frm the doc and send it to stor as a receiveMsg action
+          onSnapshot(queryEvent,(data)=>{
+             data.forEach((doc)=>{
+                dispatch(console.log(doc.data()))
+             })
+          })
+        }
+    },[events])
+
+    const handleUnLike = async (user_id, post_id , index) => {
+        try {  
+            const response = await unLike({user_id, post_id});
+            feed[index].likeStatus = 'notLiked';
+            feed[index].likeCount -= 1;
+            dispatch(removeLike({
+                from: user_id,
+                post : post_id
+            }))
+            // hundle the success or err 
+            console.log(response)
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
   // add Comment   
   const handleComment = async (user_id, post_id, text , index) => {

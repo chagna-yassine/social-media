@@ -518,14 +518,45 @@ export const updatePassword = async (userData) => {
   }
 };
 
-export const Event = async (user_id, content) => {
+export const event = async (from, to, type) => {
   try {
     const response = await fetch(`${API_BASE_URL}/Fanout`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(user_id, content),
+      body: JSON.stringify(from, to, type),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getUserId = async (post_id) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Fanout/GetId`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(post_id),
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getEvent = async () => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Fanout/Get`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
     const data = await response.json();
     return data;

@@ -20,7 +20,6 @@ import DefaultOutlet from './Home/Messages/DefaultOutlet';
 import { Provider } from 'react-redux'
 import { store } from './DataStore/store';
 import Recovery from './Auth/Recovery/Recovery';
-import WebSocketService from './WebSocketService';
 
 export const IMG_BASE = "http://localhost:5001/ImageBlob/";
 export const VID_BASE = "http://localhost:5001/VideoBlob/";
@@ -40,7 +39,6 @@ function App() {
   })
   return (
     <Router>
-      <WebSocketService />
       <TopMenu/>
       {isLoading ? (
         <LoadingScreen/>
