@@ -41,7 +41,7 @@ router.post('/GetId', async (req, res) => {
 router.post('/Get', async (req, res) => {
     try {      
         // Find the post with the given post_id and select the user_id field
-        const events = await Event.findById()
+        const events = await Event.find({})
     
         // send success msg
         res.status(201).json(events);

@@ -113,6 +113,7 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 2.5);
     position: relative;
     margin-left: 5em;
+    height: 90vh !important;
     width: 20%; 
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;

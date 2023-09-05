@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Home.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useCookies } from 'react-cookie'
@@ -7,9 +7,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faMessage, faSquarePlus, faUser  } from '@fortawesome/free-regular-svg-icons';
 import { faHouse, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { handleNotifications } from './HomeFonctionalities';
 import { useTranslation } from 'react-i18next';
-import { checkExistence } from '../api';
+import { checkExistence, getEvent } from '../api';
 
 const Home = () => {
 
@@ -23,7 +24,18 @@ const Home = () => {
   const [userIdCookies] = useCookies(['userId']);
   const [userNameCookies] = useCookies(['username']);
 
+  const [events, setEvent] = useState([]);
+  const evnt = useSelector((state)=> state.event);
+
   const navigate = useNavigate();
+
+  const handleGetEvent = async () =>{
+    // setEvent(await getEvent());
+    const E = await getEvent();
+
+    const filteredEvents = E.filter(event => event.to.includes(userIdCookies.userId));
+    setEvent(filteredEvents);
+  }
 
   useEffect(()=>{
       //Check if the user not loged in and rederect him to the login
@@ -39,8 +51,11 @@ const Home = () => {
         }
       }
     checkUserInfo();
-      handleBgImgs(currentDisplayMode,"Main-img","Main");
-  },[currentDisplayMode,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username])
+    handleGetEvent();
+    handleBgImgs(currentDisplayMode,"Main-img","Main");
+
+    console.log("events :", events);
+  },[currentDisplayMode,navigate,userCookies.token,userIdCookies.userId,userNameCookies.username,evnt])
 
   return (
     <div id='Main' className='Main'>
@@ -61,7 +76,15 @@ const Home = () => {
                     </div>
                 </div>
                 <ul id='Notification-list' className="list-group List">
-                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.like")}</li>
+                {events.map((event, index) => (
+                  <li key={index} >
+                    <strong>From:</strong> {event.from}<br />
+                    <strong>To:</strong> {event.to}<br />
+                    <strong>Type:</strong> {event.type}<br />
+                    <strong>Created At:</strong> {event.createAt}<br />
+                  </li>
+                ))}
+                  {/* <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.like")}</li>
                   <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.cmnt")}</li>
                   <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.share")}</li>
                   <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>{t("home.main.msg")} User</li>
@@ -72,7 +95,10 @@ const Home = () => {
                   <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.like")}</li>
                   <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.cmnt")}</li>
                   <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.share")}</li>
-                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>{t("home.main.msg")} User</li>
+                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>{t("home.main.msg")} User</li> */}
+                </ul>
+                <ul>
+                
                 </ul>
               </div>
             </div>
