@@ -12,9 +12,6 @@ import { handleNotifications } from './HomeFonctionalities';
 import { useTranslation } from 'react-i18next';
 import { checkExistence, getEvent } from '../api';
 
-import Swal from 'sweetalert2';
-import 'sweetalert2/dist/sweetalert2.min.css';
-
 const Home = () => {
 
   const [ t , i18n ] = useTranslation("global");
@@ -61,13 +58,6 @@ const Home = () => {
   useEffect(()=>{
     handleGetEvent();
     console.log("events :", events);
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Your work has been saved',
-      showConfirmButton: false,
-      timer: 1500
-    })
   },[evnt])
 
   return (
