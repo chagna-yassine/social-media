@@ -3,9 +3,10 @@ import "./Main.css";
 import { useCookies } from 'react-cookie';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { checkExistence, getFeed } from '../../api';
 import { useSelector } from 'react-redux';
 import Post from '../../Posts/Post';
+import { checkExistence } from '../../API/Auth/checkExistence';
+import { getFeed } from '../../API/Feed/feed';
 
 
 const Main = () => {
@@ -80,7 +81,7 @@ const Main = () => {
                     />
                 ))
             }
-    </ul>
+      </ul>
     )
   )
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Content from './Content'
 import Header from './Header'
 import Interactions from './Interactions'
-import { getComment } from '../api'
+import { getComment } from '../API/Comment/getComment';
 
 const Post = ({post , currentDisplayMode , index , feed}) => {
     const { _id , user_id , media , text , likeCount , commentCount , likeStatus } = post;
@@ -14,7 +14,6 @@ const Post = ({post , currentDisplayMode , index , feed}) => {
     
             // return the result in the post variable to be used later
             setComments(response);
-            console.log(response);
         } catch (error) {
             console.error(error);
         }
@@ -40,6 +39,7 @@ const Post = ({post , currentDisplayMode , index , feed}) => {
                 handleGetComment={handleGetComment}
                 comments={comments}
                 feed={feed}
+                user_id={user_id}
             />
             <Interactions
                 currentDisplayMode={currentDisplayMode}

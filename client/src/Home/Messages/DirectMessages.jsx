@@ -4,11 +4,13 @@ import { faArrowLeftLong, faImage, faInfoCircle } from '@fortawesome/free-solid-
 import { useTranslation } from 'react-i18next';
 import { useCookies } from 'react-cookie';
 import { useNavigate, useParams } from 'react-router-dom';
-import { checkExistence, getMessages , sendMessage } from '../../api';
 import { useDispatch, useSelector } from 'react-redux';
 import { receiveMsg, sendMsg } from '../../DataStore/Messages/actions';
 import { addDoc, collection, onSnapshot, query, where } from 'firebase/firestore';
 import { db } from '../../firebase-config';
+import { checkExistence } from '../../API/Auth/checkExistence';
+import { getMessages } from '../../API/Messages/getMessages';
+import { sendMessage } from '../../API/Messages/sendMessage';
 
 const DirectMessages = () => {
 

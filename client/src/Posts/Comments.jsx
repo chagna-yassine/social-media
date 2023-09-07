@@ -5,7 +5,9 @@ import { IMG_BASE } from '../App';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import $ from 'jquery';
-import { Comment, removeComment, sendReply } from '../api';
+import { Comment } from '../API/Comment/comment';
+import { removeComment } from '../API/Comment/removeComment';
+import { sendReply } from '../API/Comment/sendReply';
 
 const Comments = ({ postId , currentDisplayMode , index , handleGetComment , comments , feed}) => {
 
@@ -21,6 +23,7 @@ const Comments = ({ postId , currentDisplayMode , index , handleGetComment , com
             // hundle the success or err 
             console.log(response)
             setComment('')
+            handleGetComment();
         } catch (error) {
             console.error(error);
         }
@@ -118,7 +121,7 @@ const Comments = ({ postId , currentDisplayMode , index , handleGetComment , com
                     reply.indexOf(`@${replied_toName}`) === -1 ? (
                         <form className='Submition' onSubmit={(e)=>{e.preventDefault();handleGetComment();}}>
                             <input type="text" value={comment} onChange={(e) => setComment(e.target.value)}/>
-                            <button type='button' className='button bg-primary border-0' onClick={()=>{handleComment(userIdCookies.userId, postId, comment , index);handleGetComment();}}>send</button>
+                            <button type='button' className='button bg-primary border-0' onClick={()=>{comment && handleComment(userIdCookies.userId, postId, comment , index)}}>send</button>
                         </form>
                     ):(
                         <form className='Submition replySubmition' onSubmit={(e)=>{e.preventDefault();handleGetComment();}}>

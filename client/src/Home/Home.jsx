@@ -10,7 +10,8 @@ import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { handleNotifications } from './HomeFonctionalities';
 import { useTranslation } from 'react-i18next';
-import { checkExistence, getEvent } from '../api';
+import { getEvent } from '../API/Event/getEvent';
+import { checkExistence } from '../API/Auth/checkExistence';
 
 const Home = () => {
 

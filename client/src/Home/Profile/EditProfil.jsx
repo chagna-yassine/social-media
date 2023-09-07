@@ -3,9 +3,11 @@ import './EditProfil.css';
 import { IMG_BASE } from '../../App';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen, faX } from '@fortawesome/free-solid-svg-icons';
-import { updateCover, updatePic, updateUser } from '../../api';
 import { useTranslation } from 'react-i18next';
 import { useCookies } from 'react-cookie';
+import { updateUser } from '../../API/User/updateUser';
+import { updateCover } from '../../API/User/updateCover';
+import { updatePic } from '../../API/User/updatePic';
 
 const EditProfil = ({userData , display , setDisplay}) => {
 
