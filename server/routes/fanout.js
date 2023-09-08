@@ -50,4 +50,18 @@ router.post('/Get', async (req, res) => {
     }
 })
 
+router.post('/update', async (req, res) => {
+    try {    
+        const id = req.body;
+
+        await Event.findOneAndUpdate({ id },{
+            seen : false
+        });
+    
+        res.status(201).json({message: "Updated"});
+    }catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+    })
+
 export default router;

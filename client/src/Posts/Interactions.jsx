@@ -10,9 +10,6 @@ import { addLike, removeLike } from '../DataStore/Likes/actions'
 import { useCookies } from 'react-cookie'
 import { newLike } from '../DataStore/Event/action'
 
-import Swal from 'sweetalert2';
-import 'sweetalert2/dist/sweetalert2.min.css';
-
 const Interactions = ({ currentDisplayMode , feed , _id , index , likeCount , commentCount , handleGetComment , likeStatus}) => {
 
     const [userIdCookies] = useCookies(['userId']);
@@ -73,23 +70,15 @@ const Interactions = ({ currentDisplayMode , feed , _id , index , likeCount , co
         if(events){
           //create the query to listen to
           const queryEvent = query(eventref,where("to","==", userIdCookies.userId ),where('from',"!=",userIdCookies.userId));
-          //if there is any change on the query grap the data frm the doc and send it to stor as a receiveMsg action
+          //if there is any change on the query grap the data frm the doc and send it to stor as a event action
           onSnapshot(queryEvent,(data)=>{
              data.forEach((doc)=>{
                 dispatch(newLike({
-                    from: userIdCookies.userId,
-                    to : "post_id"
+                    from: doc.from,
+                    to : doc.to
                 }))
              })
           })
-
-          Swal.fire({
-            position: 'top-end',
-            text: "message",
-            toast: true,
-            timer: 4000, // 2 seconds
-            showConfirmButton: false,
-          });
         }
     },[events,likes])
 

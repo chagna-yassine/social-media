@@ -580,3 +580,18 @@ export const getEvent = async () => {
     throw error;
   }
 };
+
+export const updateEvent = async (id) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/Fanout/update`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const data = await response.json(id);
+    return data;
+  } catch (error) {
+    throw error;
+  }
+};
