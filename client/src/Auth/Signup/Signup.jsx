@@ -8,8 +8,9 @@ import { useCookies } from 'react-cookie'
 import { handleBgImgs } from '../../HandleBgImgs/handleBgImgs'
 import { handleViewPassword } from '../AuthFunctionalities'
 import { useTranslation } from 'react-i18next'
-import { checkExistence, signup } from '../../api'
 import { handleDataValidation } from './HandleSignup';
+import { checkExistence } from '../../API/Auth/checkExistence';
+import { signup } from '../../API/Auth/signup';
 
 const Signup = () => {
 

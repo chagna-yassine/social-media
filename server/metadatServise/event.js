@@ -4,7 +4,6 @@ const eventSchema = new mongoose.Schema({
     from : {type: mongoose.Schema.Types.ObjectId, ref: 'User', require: true},
     to : [{type: mongoose.Schema.Types.ObjectId, ref: 'User', require: true}],
     type: {type: String, require: true},
-    seen: {type: Boolean, default: false},
     createAt: {type: Date, default: Date.now}
 });
 

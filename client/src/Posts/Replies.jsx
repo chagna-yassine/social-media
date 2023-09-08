@@ -3,7 +3,7 @@ import { handleRemoveModal } from '../Home/Profile/removeAlert'
 import { IMG_BASE } from '../App'
 import { useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
-import { removeReply } from '../api'
+import { removeReply } from '../API/Comment/removeReply';
 
 const Replies = ({reply , cmnt , currentDisplayMode , handleGetComment}) => {
 

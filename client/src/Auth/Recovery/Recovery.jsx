@@ -5,10 +5,13 @@ import { useNavigate } from 'react-router-dom'
 import { useCookies } from 'react-cookie'
 import { handleBgImgs } from '../../HandleBgImgs/handleBgImgs'
 import { useTranslation } from 'react-i18next'
-import { checkEmail, checkExistence, sendEmail, updatePassword } from '../../api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { handleViewPassword } from '../AuthFunctionalities';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
+import { checkExistence } from '../../API/Auth/checkExistence';
+import { checkEmail } from '../../API/Recovery/checkEmail';
+import { sendEmail } from '../../API/Recovery/sendEmail';
+import { updatePassword } from '../../API/Recovery/updatePassword';
 
 
 const Recovery = () => {

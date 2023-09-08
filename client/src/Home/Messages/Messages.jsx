@@ -3,8 +3,9 @@ import "./Messages.css";
 import { useCookies } from 'react-cookie';
 import { useTranslation } from 'react-i18next';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { checkExistence, getConversations } from '../../api';
 import { useSelector } from 'react-redux';
+import { checkExistence } from '../../API/Auth/checkExistence';
+import { getConversations } from '../../API/Messages/getConversations';
 
 const Messages = () => {
 

@@ -10,8 +10,8 @@ import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { handleNotifications } from './HomeFonctionalities';
 import { useTranslation } from 'react-i18next';
-import { checkExistence, event, getEvent } from '../api';
-import { sendAlert } from '../Posts/notifAlert';
+import { getEvent } from '../API/Event/getEvent';
+import { checkExistence } from '../API/Auth/checkExistence';
 
 const Home = () => {
 
@@ -88,9 +88,6 @@ const Home = () => {
                     <strong>Created At:</strong> {event.createAt}<br />
                   </li>
                 ))}
-                {events.map((event) =>
-                  event.seen === false ? () => sendAlert(event) : null
-                )}
                   {/* <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.like")}</li>
                   <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.cmnt")}</li>
                   <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.share")}</li>

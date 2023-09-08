@@ -132,7 +132,30 @@ router.get('/', async (req, res) => {
 
         const posts = await Post.find({ user_id: id }).sort({created_at : -1}).populate('user_id', 'username profilePic');
 
-        res.json(posts);
+        const newPosts = await Promise.all(
+            posts.map(async (post) => {
+              const post_id = post._id;
+              let isLiked;
+              //search for the like
+              const like = await Like.findOne({ user_id : id, post_id });
+              //Check the like if it's exist or not
+              if (!like) {
+                isLiked = 'notLiked';
+              } else {
+                //if it not exist send a notLiked msg else send a liked msg
+                isLiked = 'liked';
+              }
+      
+              const likeCount = await Like.find({ post_id }).countDocuments();
+              const commentCount = await Comment.find({ post_id }).countDocuments();
+              const plainPost = post.toObject();
+    
+              return { ...plainPost, likeStatus: isLiked, likeCount, commentCount }
+            })
+          );
+
+        res.status(201).json(newPosts);
+
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

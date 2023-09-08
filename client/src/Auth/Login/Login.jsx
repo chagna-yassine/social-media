@@ -8,7 +8,8 @@ import { useCookies } from 'react-cookie'
 import { handleBgImgs } from '../../HandleBgImgs/handleBgImgs'
 import { handleViewPassword } from '../AuthFunctionalities'
 import { useTranslation } from 'react-i18next'
-import { checkExistence, login } from '../../api';
+import { checkExistence } from '../../API/Auth/checkExistence';
+import { login } from '../../API/Auth/login';
 
 
 const Login = () => {

@@ -242,6 +242,14 @@
     display: none;
   }
 
+.noPost{
+    text-align: center;
+    text-transform: capitalize;
+    color: var(--white);
+    font-weight: bolder;
+    margin-top: 6vh;
+}
+
 /* Responsive design */
 
 @media screen and (min-width: 1020px) and  (max-width: 1250px){

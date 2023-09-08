@@ -5,10 +5,12 @@ import { faLocationDot, faPhotoVideo, faUserTag } from '@fortawesome/free-solid-
 import { useCookies } from 'react-cookie'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { checkExistence, uploadImgPost, uploadPost, uploadVideoPost } from '../../api'
-
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
+import { checkExistence } from '../../API/Auth/checkExistence'
+import { uploadPost } from '../../API/Post/uploadPost'
+import { uploadImgPost } from '../../API/Post/uploadImgPost'
+import { uploadVideoPost } from '../../API/Post/uploadVideoPost'
 
 const AddPost = () => {
 
