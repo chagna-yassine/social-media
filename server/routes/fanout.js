@@ -1,6 +1,7 @@
 import express from "express";
 import { Post } from "../metadatServise/post.js";
 import { Event } from "../metadatServise/event.js";
+import { User } from "../metadatServise/user.js";
 
 const router = express.Router();
 
@@ -45,6 +46,40 @@ router.post('/Get', async (req, res) => {
     
         // send success msg
         res.status(201).json(events);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+})
+
+router.post('/update', async (req, res) => {
+    try {
+        //get the data
+        const {id} = req.body;
+        await Event.findOneAndUpdate({ _id : id },{
+            seen : true
+        });
+    
+        res.status(201).json({message: "Updated"});
+    }catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+})
+
+router.post('/GetName', async (req, res) => {
+    try {
+        // get event data from api
+        const {_id} = req.body;
+      
+        // Find the name with the given _id and select the username field
+        const user = await User.findById(_id).select("username");
+    
+        if (!user) {
+            throw new Error("user not found");
+        }
+    
+        // Return the username
+        // send success msg
+        res.status(201).json(user.username);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

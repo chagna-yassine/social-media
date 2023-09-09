@@ -11,7 +11,12 @@ import { useSelector } from 'react-redux';
 import { handleNotifications } from './HomeFonctionalities';
 import { useTranslation } from 'react-i18next';
 import { getEvent } from '../API/Event/getEvent';
+import { updateEvent } from '../API/Event/updateEvent';
+import { getUserName } from '../API/User/getUserName';
 import { checkExistence } from '../API/Auth/checkExistence';
+
+import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 const Home = () => {
 
@@ -36,6 +41,32 @@ const Home = () => {
 
     const filteredEvents = E.filter(event => event.to.includes(userIdCookies.userId));
     setEvent(filteredEvents);
+  }
+
+  const sendNotif = async () => {
+    Swal.fire({
+      position: 'top-end',
+      text: "message",
+      toast: true,
+      timer: 4000, // 2 seconds
+      showConfirmButton: false,
+    });
+
+    return true
+  }
+
+  const handleNotif = async (id) => {
+    const res = await sendNotif();
+
+    if (res) {
+      await updateEvent(id);
+    }
+  }
+
+  const getName = async (id) => {
+    const name = await getUserName(id);
+    console.log("name :", name);
+    return String(name);
   }
 
   useEffect(()=>{
@@ -74,24 +105,27 @@ const Home = () => {
             <div id='Notification' className={`Side-bar ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
               <div className='Side-bar-content'>
                 <div className="Side-bar-header">
-                    <div className={`Side-bar-header-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}><h5>{t("home.main.notif")}</h5></div>
+                    {/* <div className={`Side-bar-header-label ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}><h5>{t("home.main.notif")}</h5></div> */}
                     <div className="Side-bar-header-icon-container">
                         <FontAwesomeIcon className='Side-bar-header-icon' icon={faBell}/>
                     </div>
                 </div>
                 <ul id='Notification-list' className="list-group List">
-                {events.map((event, index) => (
-                  <li key={index} >
-                    <strong>From:</strong> {event.from}<br />
-                    <strong>To:</strong> {event.to}<br />
-                    <strong>Type:</strong> {event.type}<br />
-                    <strong>Created At:</strong> {event.createAt}<br />
+                {/* {events.map((event, index) => (
+
+                  // event.seen === false ? ()=>{handleNotif(event._id)} : null,
+                  
+                  // <li key={index} >
+                  //   <strong>From:</strong> {event.from}<br />
+                  //   <strong>To:</strong> {event.to}<br />
+                  //   <strong>Type:</strong> {event.type}<br />
+                  //   <strong>Created At:</strong> {event.createAt}<br />
+                  // </li>
+                  <li key={index} className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>
+                    {() => { getName(event.from)}} New {event.type}
                   </li>
-                ))}
-                  {/* <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.like")}</li>
-                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.cmnt")}</li>
-                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.share")}</li>
-                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>{t("home.main.msg")} User</li>
+                  
+                ))} */}
                   <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.like")}</li>
                   <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.cmnt")}</li>
                   <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.share")}</li>
@@ -99,7 +133,11 @@ const Home = () => {
                   <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.like")}</li>
                   <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.cmnt")}</li>
                   <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.share")}</li>
-                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>{t("home.main.msg")} User</li> */}
+                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>{t("home.main.msg")} User</li>
+                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.like")}</li>
+                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.cmnt")}</li>
+                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>User {t("home.main.share")}</li>
+                  <li className={`list-group-item List-item ${currentDisplayMode === 'dark' ? 'dark' : 'light'} ${i18n.language === "ar" ? "ar" : null}`}>{t("home.main.msg")} User</li>
                 </ul>
                 <ul>
                 

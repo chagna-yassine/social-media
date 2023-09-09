@@ -186,7 +186,7 @@
 .Main .Side-bar .List .List-item{
     visibility: visible;
     color: var(--white);
-    max-width: 100%; 
+    min-width: 80%; 
     max-height: 10vh;
     border-radius: 10px;
     border: var(--dark-gray) 1px solid;

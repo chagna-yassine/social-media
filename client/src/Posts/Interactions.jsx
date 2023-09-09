@@ -14,8 +14,8 @@ import { event } from '../API/Event/event';
 import { getEvent } from '../API/Event/getEvent';
 import { getUserId } from '../API/User/getUserId';
 
-import Swal from 'sweetalert2';
-import 'sweetalert2/dist/sweetalert2.min.css';
+// import Swal from 'sweetalert2';
+// import 'sweetalert2/dist/sweetalert2.min.css';
 
 const Interactions = ({ currentDisplayMode , feed , _id , index , likeCount , commentCount , handleGetComment , likeStatus}) => {
 
@@ -86,14 +86,6 @@ const Interactions = ({ currentDisplayMode , feed , _id , index , likeCount , co
                 }))
              })
           })
-
-          Swal.fire({
-            position: 'top-end',
-            text: "message",
-            toast: true,
-            timer: 4000, // 2 seconds
-            showConfirmButton: false,
-          });
         }
     },[events,likes])
 
