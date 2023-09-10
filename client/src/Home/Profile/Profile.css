@@ -105,7 +105,7 @@
 }
 
 .Main .Feed-container .Profile .Profile-info .Profile-bio.light{
-    color: var(--dark);
+    color: var(--white);
 }
 .Main .Feed-container .Profile .Profile-info .Profile-bio.dark{
     color: var(--dark-white);
@@ -136,7 +136,7 @@
     font-weight: bolder;
     border: 0;
     border-radius: 5px;
-    width: 40%;
+    width: 45%;
     padding: 1vh;
     transition: background-color 1s;
 }

@@ -37,6 +37,7 @@ const SearchedProfile = () => {
     const [ followStatus , setFollowStatus ] = useState('');
 
     const [isLoading,setIsLoading] = useState(true);
+    const [isUserDataLoaded,setIsUserDataLoaded] = useState(false);
 
      //Declare user post   
      const [postsCache, setPostsCahe] = useState([]);
@@ -48,7 +49,7 @@ const SearchedProfile = () => {
     //Use a callback hook to prevend multiple rerender in the useEffect hook
     const handeUserData = useCallback(async()=>{
         setUser(await getUser({username}));
-        setIsLoading(false)
+        setIsUserDataLoaded(true)
     },[username,setUser])
 
     // function that check the follow status and set it to following or notFollowing
@@ -126,6 +127,8 @@ const SearchedProfile = () => {
             const user_id = user._id;
             const response = await getPost(user_id);
             setPostsCahe(response);
+            console.log(user_id);
+            setIsLoading(false)
         } catch (error) {
             console.error(error);
         }
@@ -136,10 +139,10 @@ const SearchedProfile = () => {
         }
     
       useEffect(() => {
-            isLoading && handleGetPostCahe();
+            isLoading  ? isUserDataLoaded &&  handleGetPostCahe() :
             !isLoading && postsCache.length > 0 && handleGetPost();
-        }, [likes,isLoading,postsCache]);
-    
+        }, [likes,isLoading,postsCache,isUserDataLoaded]);
+    console.log(posts);
     return (
         //Handle if the component is Fully loading
         !isLoading && (
@@ -171,7 +174,7 @@ const SearchedProfile = () => {
         <h4 className='Post-Label'>{t("home.profile.posts")}</h4>
         <ul className={`list-group Post-List ${currentDisplayMode === 'dark' ? 'dark' : 'light'}`}>
             {
-             posts.length > 0 ? posts.map((post,index)=>(
+              posts.length > 0 ? posts.map((post,index)=>(
                     <Post 
                         post={post} 
                         currentDisplayMode={currentDisplayMode} 
@@ -180,8 +183,8 @@ const SearchedProfile = () => {
                         isLoading={isLoading}
                     />
                 )): (
-                    <h2 className='noPost'>no post yet</h2>
-                )
+                  <h2 className='noPost'>Create your first post</h2>
+              )
             }
         </ul>
       </div>
